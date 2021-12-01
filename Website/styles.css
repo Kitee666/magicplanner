@@ -1,0 +1,104 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+body .header {
+  background-color: black;
+  border-radius: 0;
+}
+body .header .head {
+  font-size: 64px;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  color: white;
+}
+body .header .head .underline {
+  border-bottom: 3px solid #FC6492;
+  line-height: 108px;
+}
+body .header .desc {
+  color: white;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+}
+body .header .images .picture .img {
+  width: 240px;
+  object-fit: cover;
+}
+body .header .buttonfull .arrow {
+  margin-left: 10px;
+  width: 18px;
+  height: 18px;
+  margin-right: -5px;
+  margin-bottom: 2px;
+  object-fit: cover;
+}
+body .header .buttonfull.first:hover {
+  background-color: black;
+  color: white;
+}
+body .header .buttonfull.first:hover .arrow {
+  content: url('assets/ArrowWhite.png');
+}
+body .header .buttonfull.outline {
+  margin-left: 40px;
+}
+body .header .buttonfull.outline:hover .arrow {
+  content: url('assets/ArrowBlack.png');
+}
+body .second-cont .left-text .left-head {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  text-align: center;
+}
+body .second-cont .left-text .left-desc {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+}
+body .second-cont .left-text .sec-button {
+  text-align: center;
+  margin-top: 40px;
+}
+body .second-cont .left-text .sec-button .buttonfull {
+  background-color: black;
+}
+body .second-cont .left-text .sec-button .buttonfull .arrow {
+  margin-left: 10px;
+  width: 18px;
+  height: 18px;
+  margin-right: -5px;
+  margin-bottom: 2px;
+  object-fit: cover;
+}
+body .second-cont .left-text .sec-button .buttonfull:hover {
+  background-color: white;
+  color: black;
+}
+body .second-cont .left-text .sec-button .buttonfull:hover .arrow {
+  content: url('assets/ArrowBlack.png');
+}
+body .second-cont .right-image {
+  text-align: center;
+  margin-top: -86px;
+}
+body .second-cont .right-image .right-img {
+  width: 500px;
+}
+body .footer {
+  border-top: 1px solid #FC6492;
+}
+body .footer .copyright {
+  color: #636363;
+  font-size: 12px;
+  font-weight: 300;
+}

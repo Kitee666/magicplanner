@@ -1,127 +1,203 @@
 html {
-	scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
+
 body {
-	font-family: 'Poppins', sans-serif;
-	font-weight: 400;
-	overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
 
 
-.header{
-    background-color: black;
-    border-radius: 0;
-    .head{
-        font-size: 64px;
-        font-weight: normal;
-        letter-spacing: 0.05em;
-        color: white;
-        .underline{
-            border-bottom: 3px solid #FC6492;
-            line-height: 108px;
-        }
-    }
-    .desc{
-        color: white;
-        font-weight: 300;
-        font-size: 18px;
-        line-height: 27px;
-    }
+    .header {
+        background-color: black;
+        border-radius: 0;
 
-    .images{
-        .picture{
-            .img{
-                width: 240px;
-                object-fit: cover;  
+        .head {
+            font-size: 64px;
+            font-weight: normal;
+            letter-spacing: 0.05em;
+            color: white;
+
+            .underline {
+                border-bottom: 3px solid #FC6492;
+                line-height: 108px;
             }
         }
-    }
-    .buttonfull{
-        .arrow{
-            margin-left: 10px;
-            width: 18px;
-            height: 18px;
-            margin-right: -5px;
-            margin-bottom: 2px;
-            object-fit: cover;
-        }
 
-        &.first{
-            &:hover{
-                background-color: black;
-                color: white;
-                .arrow{
-                    content: url('assets/ArrowWhite.png');
-                }
-            }
-        }
-        
-        &.outline{
-            margin-left: 40px;
-            &:hover{
-                .arrow{
-                    content: url('assets/ArrowBlack.png');
-                }               
-            }
-        }
-    }
-}
-
-.second-cont{
-    .left-text{
-        .left-head{
-            font-style: normal;
-            font-weight: 700;
-            font-size: 32px;
-            line-height: 48px;
-            text-align: center;
-        }
-        .left-desc{
-            font-style: normal;
+        .desc {
+            color: white;
             font-weight: 300;
             font-size: 18px;
             line-height: 27px;
-            text-align: center;
         }
-        .sec-button{
-            text-align: center;
-            margin-top: 40px;
-            .buttonfull{
-                background-color: black;
-                .arrow{
-                    margin-left: 10px;
-                    width: 18px;
-                    height: 18px;
-                    margin-right: -5px;
-                    margin-bottom: 2px;
+
+        .images {
+            .picture {
+                .img {
+                    width: 240px;
                     object-fit: cover;
                 }
-                &:hover{
-                    background-color: white;
-                    color: black;
-                    .arrow{
+            }
+        }
+
+        .buttonfull {
+            .arrow {
+                margin-left: 10px;
+                width: 18px;
+                height: 18px;
+                margin-right: -5px;
+                margin-bottom: 2px;
+                object-fit: cover;
+            }
+
+            &.first {
+                &:hover {
+                    background-color: black;
+                    color: white;
+
+                    .arrow {
+                        content: url('assets/ArrowWhite.png');
+                    }
+                }
+            }
+
+            &.outline {
+                margin-left: 40px;
+
+                &:hover {
+                    .arrow {
                         content: url('assets/ArrowBlack.png');
                     }
                 }
-
             }
         }
     }
-    .right-image{
-        text-align: center;
-        margin-top: -86px;
-        .right-img{
-            width: 500px;
+
+    .second-cont {
+        .left-text {
+            .left-head {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 32px;
+                line-height: 48px;
+                text-align: center;
+            }
+
+            .left-desc {
+                font-style: normal;
+                font-weight: 300;
+                font-size: 18px;
+                line-height: 27px;
+                text-align: center;
+            }
+
+            .sec-button {
+                text-align: center;
+                margin-top: 40px;
+
+                .buttonfull {
+                    background-color: black;
+
+                    .arrow {
+                        margin-left: 10px;
+                        width: 18px;
+                        height: 18px;
+                        margin-right: -5px;
+                        margin-bottom: 2px;
+                        object-fit: cover;
+                    }
+
+                    &:hover {
+                        background-color: white;
+                        color: black;
+
+                        .arrow {
+                            content: url('assets/ArrowBlack.png');
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .right-image {
+            text-align: center;
+            margin-top: -86px;
+
+            .right-img {
+                width: 500px;
+            }
         }
     }
-}
 
-.footer{
-    border-top: 1px solid #FC6492;
-    .copyright{
-        color: #636363;
-        font-size: 12px;
-        font-weight: 300;
+    .authors{
+        margin-top: -30px;
+        margin-bottom: 60px;;
+        .author-head{
+            margin-bottom: 40px;
+            h2{
+                font-weight: 700;
+                font-size: 48px;
+            }
+        }
+        .thumbnails{
+            .single-thumb{
+                text-align: center;
+                margin-bottom: 50px;
+                .author-img{
+                    width: 87px;
+                    height: 87px;
+                    object-fit: cover;
+                }
+                h3{
+                    font-weight: 500;
+                    font-size: 20px;
+                    letter-spacing: 0.05em;
+                    margin-bottom: 0;
+                }
+                p{
+                    font-size: 16px;
+                    color: #FC6492;
+                    letter-spacing: 0.05em;
+                }
+            }
+            .other-thumbs{
+                display: flex;
+                justify-content: space-between;
+                flex-flow: row wrap;
+                .mini-thumb{
+                    text-align: center;
+                    padding: 0 5px 0 5px;
+                    .author-img{
+                        width: 87px;
+                        height: 87px;
+                        object-fit: cover;
+                    }
+                    h3{
+                        
+                        font-weight: 500;
+                        font-size: 20px;
+                        letter-spacing: 0.05em;
+                        margin-bottom: 0;
+                    }
+                    p{
+                        font-size: 16px;
+                        color: #FC6492;
+                        letter-spacing: 0.05em;
+                    }
+                }
+            }
+        }
     }
-}
+
+    .footer {
+        border-top: 1px solid #FC6492;
+
+        .copyright {
+            color: #636363;
+            font-size: 12px;
+            font-weight: 300;
+        }
+    }
 
 }

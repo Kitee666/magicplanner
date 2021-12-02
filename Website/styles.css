@@ -94,6 +94,62 @@ body .second-cont .right-image {
 body .second-cont .right-image .right-img {
   width: 500px;
 }
+body .authors {
+  margin-top: -30px;
+  margin-bottom: 60px;
+}
+body .authors .author-head {
+  margin-bottom: 40px;
+}
+body .authors .author-head h2 {
+  font-weight: 700;
+  font-size: 48px;
+}
+body .authors .thumbnails .single-thumb {
+  text-align: center;
+  margin-bottom: 50px;
+}
+body .authors .thumbnails .single-thumb .author-img {
+  width: 87px;
+  height: 87px;
+  object-fit: cover;
+}
+body .authors .thumbnails .single-thumb h3 {
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+body .authors .thumbnails .single-thumb p {
+  font-size: 16px;
+  color: #FC6492;
+  letter-spacing: 0.05em;
+}
+body .authors .thumbnails .other-thumbs {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+body .authors .thumbnails .other-thumbs .mini-thumb {
+  text-align: center;
+  padding: 0 5px 0 5px;
+}
+body .authors .thumbnails .other-thumbs .mini-thumb .author-img {
+  width: 87px;
+  height: 87px;
+  object-fit: cover;
+}
+body .authors .thumbnails .other-thumbs .mini-thumb h3 {
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+body .authors .thumbnails .other-thumbs .mini-thumb p {
+  font-size: 16px;
+  color: #FC6492;
+  letter-spacing: 0.05em;
+}
 body .footer {
   border-top: 1px solid #FC6492;
 }

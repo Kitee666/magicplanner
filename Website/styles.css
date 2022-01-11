@@ -6,6 +6,12 @@ body {
   font-weight: 400;
   overflow-x: hidden;
 }
+body .navbar-nav .nav-item.active .nav-link:hover {
+  color: #FC6492 !important;
+}
+body .navbar-brand:hover {
+  color: #FC6492 !important;
+}
 body .header {
   background-color: black;
   border-radius: 0;

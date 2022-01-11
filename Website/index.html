@@ -8,7 +8,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 <body>
   <!-- NAVBAR -->
   <nav class="navbar fixed-top  navbar-expand-lg navbar-dark bg-none">
-    <a class="navbar-brand" href="#">HOME</a>
+    <a class="navbar-brand" href="#home">HOME</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,7 +29,7 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Pytania<span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item active">
+        <li class="nav-item">
           <a class="nav-link">|<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
@@ -41,7 +41,7 @@
   <!-- END OF NAVBAR -->
 
   <!-- HEADER - FIRST SECTION -->
-  <div class="jumbotron header">
+  <div id="home" class="jumbotron header">
     <div class="row offset-1">
       <div class="col-xl-6">
         <h1 class="display-4 head">
@@ -279,6 +279,24 @@
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <script>
+    
+$(document).ready(function(){
+  $(window).scroll(function(){
+  	var scroll = $(window).scrollTop();
+	  if (scroll > 450) {
+	    $(".navbar-brand").css("color" , "black");
+      $(".nav-link").css("color" , "black");
+	  }
+
+	  else{
+		  $(".navbar-brand").css("color" , "white");  	
+      $(".nav-link").css("color" , "white");
+    }
+  })
+})
+  </script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>

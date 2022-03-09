@@ -1,132 +1,211 @@
-create table "TestTABLE"
-(
-    id   integer not null
-        constraint testtable_pk
-            primary key,
-    name varchar
-);
 
-alter table "TestTABLE"
-    owner to postgres;
-
-create table "Pracownicy"
+create table if not exists "Lecturer"
 (
-    id           integer not null
+    id       integer not null
         constraint pracownicy_pk
             primary key,
-    "Imie"       varchar not null,
-    "Nazwisko"   varchar not null,
-    "Stanowisko" varchar
+    name     varchar not null,
+    lastname varchar not null,
+    subject  varchar
 );
 
-alter table "Pracownicy"
+alter table "Lecturer"
     owner to postgres;
 
-create table "Przedmioty"
-(
-    id                 integer not null
-        constraint przedmioty_pk
-            primary key,
-    "Nazwa_przedmiotu" varchar not null,
-    "Typ"              varchar not null,
-    "Liczba_godzin"    varchar not null,
-    "Rok_studiów"      integer not null
-);
-
-alter table "Przedmioty"
-    owner to postgres;
-
-create table "Sale"
-(
-    id           integer not null
-        constraint sale_pk
-            primary key,
-    "Nazwa_sali" varchar not null,
-    "Pojemnosc"  integer
-);
-
-alter table "Sale"
-    owner to postgres;
-
-create table "Zjazdy"
+create table if not exists "Room"
 (
     id     integer not null
-        constraint zjazdy_pk
+        constraint sale_pk
             primary key,
-    "Data" date    not null
+    number varchar not null
 );
 
-alter table "Zjazdy"
+alter table "Room"
     owner to postgres;
 
-create table "Grupy"
+create table if not exists "Meeting"
 (
-    id            integer not null
-        constraint grupy_pk
+    id        integer not null
+        constraint meeting_pk
             primary key,
-    "Nazwa_grupy" varchar not null,
-    "Rok_studiow" integer not null,
-    "Liczebnosc"  integer not null
+    date_from date    not null,
+    date_to   date
 );
 
-alter table "Grupy"
+alter table "Meeting"
     owner to postgres;
 
-create table "Dezyderaty"
+create table if not exists "Groups"
 (
-    id            integer not null
-        constraint dezyderaty_pk
+    id   integer not null
+        constraint groups_pk
             primary key,
-    id_pracownika integer
-        constraint dezyderaty_pracownicy_id_fk
-            references "Pracownicy",
-    id_zjazdu     integer
-        constraint dezyderaty_zjazdy_id_fk
-            references "Zjazdy",
-    "Adnotacja"   varchar
+    type varchar not null,
+    rok  integer not null,
+    size integer not null
 );
 
-alter table "Dezyderaty"
+alter table "Groups"
     owner to postgres;
 
-create table "Przydzialy"
+create table if not exists "Subject"
 (
-    id            integer not null
-        constraint przydzialy_pk
+    id          integer not null
+        constraint przedmioty_pk
             primary key,
-    id_pracownika integer
-        constraint przydzialy_pracownicy_id_fk
-            references "Pracownicy",
-    id_przedmiotu integer
-        constraint przydzialy_przedmioty_id_fk
-            references "Przedmioty",
-    id_grupy      integer
-        constraint przydzialy_grupy_id_fk
-            references "Grupy"
+    name        varchar not null,
+    lecturer_id integer
+        constraint subject_lecturer_id_fk
+            references "Lecturer",
+    group_id    integer
+        constraint subject_groups_id_fk
+            references "Groups"
 );
 
-alter table "Przydzialy"
+alter table "Subject"
     owner to postgres;
 
-create table "Plan_zajec"
+create table if not exists "Note"
 (
-    id            integer not null
-        constraint plan_zajec_pk
+    id      integer not null
+        constraint note_pk
             primary key,
-    id_przydzialu integer
-        constraint plan_zajec_przydzialy_id_fk
-            references "Przydzialy",
-    id_zjazdu     integer
-        constraint plan_zajec_zjazdy_id_fk
-            references "Zjazdy",
-    id_sali       integer
-        constraint plan_zajec_sale_id_fk
-            references "Sale",
-    "Od"          integer not null,
-    "Do"          integer not null
+    title   varchar,
+    content text    not null
 );
 
-alter table "Plan_zajec"
+alter table "Note"
     owner to postgres;
+
+create table if not exists "Events"
+(
+    id         integer not null
+        constraint events_pk
+            primary key,
+    date_from  date    not null,
+    date_to    date    not null,
+    subject_id integer
+        constraint events_subject_id_fk
+            references "Subject",
+    room_id    integer
+        constraint events_room_id_fk
+            references "Room",
+    meeting_id integer
+        constraint events_meeting_id_fk
+            references "Meeting"
+);
+
+alter table "Events"
+    owner to postgres;
+
+create table if not exists "Events_note"
+(
+    id        integer not null
+        constraint events_note_pk
+            primary key,
+    events_id integer
+        constraint events_note_events_id_fk
+            references "Events",
+    note_id   integer
+        constraint events_note_note_id_fk
+            references "Note"
+);
+
+alter table "Events_note"
+    owner to postgres;
+
+INSERT INTO public."Lecturer" VALUES (1,'Jerzy','Białkowski','PZ');
+INSERT INTO public."Lecturer" VALUES (2,'Bartosz','Bieganowski','ASD,asd, pp, wsw');
+INSERT INTO public."Lecturer" VALUES (3,'Rafał','Bocian','SK, sk, MIKR, mikr');
+INSERT INTO public."Lecturer" VALUES (4,'Aleksandra','Boniewicz','bd I, c, bd II, sem');
+INSERT INTO public."Lecturer" VALUES (5,'Dariusz','Borkowski','');
+INSERT INTO public."Lecturer" VALUES (6,'Marta','Burzańska','BD I, BD II, TC, sem');
+INSERT INTO public."Lecturer" VALUES (7,'Michał','Burzański','wsw, tc, mier');
+INSERT INTO public."Lecturer" VALUES (8,'Krzysztof','Czarkowski','wsw');
+INSERT INTO public."Lecturer" VALUES (9,'Adrian','Falkowski','mat');
+INSERT INTO public."Lecturer" VALUES (10,'Anna','Gogolińska','IO, io, JAV, jav');
+INSERT INTO public."Lecturer" VALUES (11,'Agnieszka','Goroncy','bd I, sad');
+INSERT INTO public."Lecturer" VALUES (12,'Piotr','Górny','mat');
+INSERT INTO public."Lecturer" VALUES (13,'Tomasz','Grzona','grf');
+INSERT INTO public."Lecturer" VALUES (14,'Alicja','Jaworska-Pastuszak','mat');
+INSERT INTO public."Lecturer" VALUES (15,'Mariusz','Kaniecki','PTO, pto');
+INSERT INTO public."Lecturer" VALUES (16,'Anna','Kwiatkowska','PYTH');
+INSERT INTO public."Lecturer" VALUES (17,'Damian','Kurpiewski','pp, pyth');
+INSERT INTO public."Lecturer" VALUES (18,'Dawid','Maliszewski','c');
+INSERT INTO public."Lecturer" VALUES (19,'Jakub','Narębski','FIZ, fiz, MIER, mob');
+INSERT INTO public."Lecturer" VALUES (20,'Grzegorz','Pastuszak','mat');
+INSERT INTO public."Lecturer" VALUES (21,'Marcin','Piątkowski','C, c,');
+INSERT INTO public."Lecturer" VALUES (22,'Andrzej','Rutkowski','');
+INSERT INTO public."Lecturer" VALUES (23,'Andrzej','Sendlewski','WSW');
+INSERT INTO public."Lecturer" VALUES (24,'Robert','Skiba','mat');
+INSERT INTO public."Lecturer" VALUES (25,'Krzysztof','Skowronek','');
+INSERT INTO public."Lecturer" VALUES (26,'Mikołaj','Szczupak','bk, pp, so, wsw');
+INSERT INTO public."Lecturer" VALUES (27,'Dorota','Szreder','ang');
+INSERT INTO public."Lecturer" VALUES (28,'Jerzy','Szymański','SO, so, AUS, aus');
+INSERT INTO public."Lecturer" VALUES (29,'Mateusz','Topolewski','pp, bd II, pdw1');
+INSERT INTO public."Lecturer" VALUES (30,'Sylwester','Wieczorkowski','web');
+INSERT INTO public."Lecturer" VALUES (31,'Aleksander','Zaigrajew','SAD, sad');
+INSERT INTO public."Lecturer" VALUES (32,'Bartosz','Ziemkiewicz','asd, bk, PP, pp, grf, pdw1, sem');
+
+INSERT INTO public."Room" VALUES (1,'Aula','346');
+INSERT INTO public."Room" VALUES (2,'S1','16');
+INSERT INTO public."Room" VALUES (3,'S2','40');
+INSERT INTO public."Room" VALUES (4,'S3','68');
+INSERT INTO public."Room" VALUES (5,'S4','40');
+INSERT INTO public."Room" VALUES (6,'S5','62');
+INSERT INTO public."Room" VALUES (7,'S6','16');
+INSERT INTO public."Room" VALUES (8,'S7','23');
+INSERT INTO public."Room" VALUES (9,'S8','33');
+INSERT INTO public."Room" VALUES (10,'S9','138');
+INSERT INTO public."Room" VALUES (11,'SS1','30');
+INSERT INTO public."Room" VALUES (12,'SS2','30');
+INSERT INTO public."Room" VALUES (13,'SS3','24');
+INSERT INTO public."Room" VALUES (14,'L1','16');
+INSERT INTO public."Room" VALUES (15,'L2','16');
+INSERT INTO public."Room" VALUES (16,'L3','16');
+INSERT INTO public."Room" VALUES (17,'L4','16');
+INSERT INTO public."Room" VALUES (18,'L5','16');
+INSERT INTO public."Room" VALUES (19,'L6','20');
+INSERT INTO public."Room" VALUES (20,'L7','20');
+INSERT INTO public."Room" VALUES (21,'L8','16');
+INSERT INTO public."Room" VALUES (22,'L9','10');
+INSERT INTO public."Room" VALUES (23,'L10','16');
+INSERT INTO public."Room" VALUES (24,'L11','16');
+INSERT INTO public."Room" VALUES (25,'L12','16');
+INSERT INTO public."Room" VALUES (26,'L13','12');
+INSERT INTO public."Room" VALUES (27,'L14','12');
+INSERT INTO public."Room" VALUES (28,'L15','16');
+INSERT INTO public."Room" VALUES (29,'Pm1','8');
+INSERT INTO public."Room" VALUES (30,'Pm2','8');
+INSERT INTO public."Room" VALUES (31,'Pm3','8');
+
+INSERT INTO public."Meeting" VALUES (1,'2021-10-16','2021-10-17');
+INSERT INTO public."Meeting" VALUES (2,'2021-10-23','2021-10-24');
+INSERT INTO public."Meeting" VALUES (3,'2021-11-06','2021-11-07');
+INSERT INTO public."Meeting" VALUES (4,'2021-11-20','2021-11-21');
+INSERT INTO public."Meeting" VALUES (5,'2021-12-04','2021-12-05');
+INSERT INTO public."Meeting" VALUES (6,'2021-12-18','2021-12-19');
+INSERT INTO public."Meeting" VALUES (7,'2022-01-15','2022-01-16');
+INSERT INTO public."Meeting" VALUES (8,'2022-01-29','2022-01-30');
+INSERT INTO public."Meeting" VALUES (9,'2022-02-05','2022-02-06');
+INSERT INTO public."Meeting" VALUES (10,'2022-02-26','2022-02-27');
+INSERT INTO public."Meeting" VALUES (11,'2022-03-12','2022-03-13');
+INSERT INTO public."Meeting" VALUES (12,'2022-03-26','2022-03-27');
+INSERT INTO public."Meeting" VALUES (13,'2022-04-09','2022-04-10');
+INSERT INTO public."Meeting" VALUES (14,'2022-04-23','2022-04-24');
+INSERT INTO public."Meeting" VALUES (15,'2022-05-07','2022-05-08');
+INSERT INTO public."Meeting" VALUES (16,'2022-05-14','2022-05-15');
+INSERT INTO public."Meeting" VALUES (17,'2022-05-28','2022-05-29');
+INSERT INTO public."Meeting" VALUES (18,'2022-06-11','2022-06-12');
+
+INSERT INTO public."Groups" VALUES (1,'Wykład',1,52);
+INSERT INTO public."Groups" VALUES (2,'Laboratorium',1,52);
+INSERT INTO public."Groups" VALUES (3,'Ćwiczenia',1,52);
+INSERT INTO public."Groups" VALUES (4,'Wykład',2,43);
+INSERT INTO public."Groups" VALUES (5,'Laboratorium',2,43);
+INSERT INTO public."Groups" VALUES (6,'Ćwiczenia',2,43);
+INSERT INTO public."Groups" VALUES (7,'Wykład',3,29);
+INSERT INTO public."Groups" VALUES (8,'Laboratorium',3,29);
+INSERT INTO public."Groups" VALUES (9,'Ćwiczenia',3,29);
 
 

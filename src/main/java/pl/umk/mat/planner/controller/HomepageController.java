@@ -16,5 +16,11 @@ public class HomepageController {
         model.addAttribute("appName", appName);
         return "home";
     }
-
+/*
+    @GetMapping("/inputy")
+    public String homePage(Model model) {
+        model.addAttribute("appName", appName);
+        return "inputy";
+    }
+*/
 }

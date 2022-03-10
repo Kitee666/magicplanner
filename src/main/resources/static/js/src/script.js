@@ -1,1 +1,3 @@
-alert("asdas");
+$(document).ready(function(){
+    alert("dupa")
+});

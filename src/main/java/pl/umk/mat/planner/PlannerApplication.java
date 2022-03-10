@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PlannerApplication {
 
+    private int id;
+
     public static void main(String[] args) {
         SpringApplication.run(PlannerApplication.class, args);
     }

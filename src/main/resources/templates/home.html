@@ -3,131 +3,73 @@
 <head>
     <meta charset="utf-8">
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+    <link th:href="@{/css/home.css}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script th:src="@{/js/src/script.js}"></script>
+    <script th:src="@{/js/src/calendar.js}"></script>
+
     <title>
         Initialize Globals Demo - Demos | FullCalendar
     </title>
 
-    <link href="/docs/dist/demo-to-codepen.css" rel="stylesheet">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-            font-size: 14px;
-        }
 
-        #external-events {
-            position: fixed;
-            z-index: 2;
-            top: 20px;
-            left: 20px;
-            width: 150px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            background: #eee;
-        }
-
-        #external-events .fc-event {
-            cursor: move;
-            margin: 3px 0;
-        }
-
-        #calendar-container {
-            position: relative;
-            z-index: 1;
-            margin-left: 200px;
-        }
-
-        #calendar {
-            max-width: 1100px;
-            margin: 20px auto;
-        }
-
-    </style>
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
-    <script src="/docs/dist/demo-to-codepen.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var Calendar = FullCalendar.Calendar;
-            var Draggable = FullCalendar.Draggable;
-
-            var containerEl = document.getElementById('external-events');
-            var calendarEl = document.getElementById('calendar');
-            var checkbox = document.getElementById('drop-remove');
-
-            // initialize the external events
-            // -----------------------------------------------------------------
-
-            new Draggable(containerEl, {
-                itemSelector: '.fc-event',
-                eventData: function(eventEl) {
-                    return {
-                        title: eventEl.innerText
-                    };
-                }
-            });
-
-            // initialize the calendar
-            // -----------------------------------------------------------------
-
-            var calendar = new Calendar(calendarEl, {
-                headerToolbar: {
-                    center: 'dayGridMonth,timeGridFourDay'
-                },
-                views: {
-                    timeGridFourDay: {
-                        type: 'timeGrid',
-                        duration: { days: 2 },
-                        buttonText: '2 day'
-                    }
-                },
-                editable: true,
-                droppable: true, // this allows things to be dropped onto the calendar
-                drop: function(info) {
-                    // is the "remove after drop" checkbox checked?
-                    if (checkbox.checked) {
-                        // if so, remove the element from the "Draggable Events" list
-                        info.draggedEl.parentNode.removeChild(info.draggedEl);
-                    }
-                }
-            });
-
-            calendar.render();
-        });
-    </script>
 </head>
 <body>
-<div id='external-events'>
-    <p>
-        <strong>Draggable Events</strong>
-    </p>
-
-    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-        <div class='fc-event-main'>My Event 1</div>
+<div class="container-fluid calendarHead">
+    <div class="row">
+        <div class="col-xl-12 offset-xl-1 header">
+            <p class="subtext"><span class="sep">|</span> Magic Plan Scheduler</p>
+            <h1 class="title">Kalendarz</h1>
+        </div>
     </div>
-    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-        <div class='fc-event-main'>My Event 2</div>
-    </div>
-    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-        <div class='fc-event-main'>My Event 3</div>
-    </div>
-    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-        <div class='fc-event-main'>My Event 4</div>
-    </div>
-    <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-        <div class='fc-event-main'>My Event 5</div>
-    </div>
-
-    <p>
-        <input type='checkbox' id='drop-remove' />
-        <label for='drop-remove'>remove after drop</label>
-    </p>
 </div>
 
-<div id='calendar-container'>
-    <div id='calendar'></div>
+<div class="container-fluid calendarElements">
+    <div class="row">
+        <div class="col-xl-1 offset-xl-1">
+            <div id='external-events'>
+                <p>
+                    <strong>Draggable Events</strong>
+                </p>
+
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                    <div class='fc-event-main'>My Event 1</div>
+                </div>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                    <div class='fc-event-main'>My Event 2</div>
+                </div>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                    <div class='fc-event-main'>My Event 3</div>
+                </div>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                    <div class='fc-event-main'>My Event 4</div>
+                </div>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                    <div class='fc-event-main'>My Event 5</div>
+                </div>
+
+                <p>
+                    <input type='checkbox' id='drop-remove' />
+                    <label for='drop-remove'>remove after drop</label>
+                </p>
+            </div>
+        </div>
+        <div class="col-xl-9">
+            <div id='calendar-container'>
+                <div id='calendar'></div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
 </body>
-<script th:src="@{/js/src/script.js}"></script>
+
 </html>

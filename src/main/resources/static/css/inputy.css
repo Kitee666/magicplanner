@@ -1,0 +1,13 @@
+.container {
+    dispaly: flex;
+    justify-content: space-evenly;
+}
+
+input, button {
+    height: 40px;
+}
+
+#result{
+    front-size: 30px;
+    front-weight: bold;
+}

@@ -7,33 +7,37 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "\"Lecturer\"")
+@Table(name = "Lecturer")
 public class Lecturer {
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, updatable = false)
+    private Long id;
 
-    @Lob
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, columnDefinition = "TEXT")
     private String name;
 
-    @Lob
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "lastname", nullable = false, columnDefinition = "TEXT")
     private String lastname;
 
-    @Lob
-    @Column(name = "subject")
+    @Column(name = "subject", columnDefinition = "TEXT")
     private String subject;
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
 
     public Lecturer() {
     }
 
-    public String getSubject() {
-        return subject;
+    public Lecturer(String name, String lastname, String subject) {
+        this.name = name;
+        this.lastname = lastname;
+        this.subject = subject;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public String getSubject() {
+        return subject;
     }
 
     public String getLastname() {
@@ -52,11 +56,11 @@ public class Lecturer {
         this.name = name;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

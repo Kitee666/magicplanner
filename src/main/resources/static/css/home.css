@@ -22,7 +22,6 @@ html, body {
 #calendar-container {
     position: relative;
     z-index: 1;
-    margin-left: 200px;
 }
 
 #calendar {
@@ -48,4 +47,20 @@ html, body {
     bottom: 99px;
     color: #FC6492;
 
+}
+
+.buttonCont{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.fc .fc-col-header-cell-cushion{
+    text-decoration: none;
+    color: #000000;
+}
+
+.fc .fc-daygrid-day-number{
+    text-decoration: none;
+    color: #FC6492;
 }

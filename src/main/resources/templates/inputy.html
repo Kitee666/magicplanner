@@ -18,78 +18,134 @@
 
 </head>
 <body>
-    <div class="MainContainer">
-    <div>
-        <input type="button" id="addSubject" value="Add Subject" name="button"/>
-        <input type="button" id="addLecturer" value="Add Lecturer" name="button"/>
-        <input type="button" id="addGroup" value="Add Group" name="button"/>
-        <input type="button" id="addMeeting" value="Add Meeting" name="button"/>
-        <input type="button" id="addRoom" value="Add Room" name="button"/>
-        <input type="button" id="addNote" value="Add Note" name="button"/>
-    </div>
-    </div>
-    <div id ="SubjectContainer"class="inputElement">
-        <div class="mb-3">
-            <input type="email" class="form-control" id="getSubjectName" placeholder="Nazwa przedmiotu">
+<div class="container-fluid inputView">
+    <div class="row">
+        <div class="col-xl-6 left">
+            <div class="title">
+                <h3>MagicPlanScheduler</h3>
+            </div>
+            <div class="image">
+                <img th:src="@{/img/magnifier.png}"/>
+            </div>
+            <div class="subtitle">
+                <h2>Dodaj elementy do kalendarza!</h2>
+            </div>
+            <div class="desc">
+                <p>Skorzystaj z narzędzi dostępnych po prawej stronie aby dopasować pola dostępne w kalendarzu do swoich potrzeb!</p>
+            </div>
+            <div class="return">
+                <div class="arrow">
+                    <img th:src="@{/img/ArrowLeft.png}"/>
+                </div>
+                <div class="returnText">
+                    <a href="http://localhost:8080/">Powrót do kalendarza</a>
+                </div>
+            </div>
         </div>
-        <div id="SelectLecturer">
-            <select class="form-select">
-                <option>SelectLecturer</option>
-                <option>Lecutrer1</option>
-                <option>Lecutrer2</option>
-            </select>
+        <div class="col-xl-6 right">
+            <div class="rightTitle">
+                <h2>Wybierz komponent</h2>
+            </div>
+            <div class="MainContainer">
+                <div class="buttons">
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addSubject" value="Subject" name="button"/>
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addLecturer" value="Lecturer" name="button"/>
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addGroup" value="Group" name="button"/>
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addMeeting" value="Meeting" name="button"/>
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addRoom" value="Room" name="button"/>
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addNote" value="Note" name="button"/>
+                </div>
+
+                <div id ="SubjectContainer"class="inputElement">
+                    <div class="elementHead">
+                        <h3>Dodaj Subject</h3>
+                    </div>
+                    <div class="inputField">
+                        <input type="email" class="form-control" id="getSubjectName" placeholder="Nazwa przedmiotu">
+                    </div>
+                    <div id="SelectLecturer">
+                        <select class="form-select">
+                            <option>SelectLecturer</option>
+                            <option>Lecutrer1</option>
+                            <option>Lecutrer2</option>
+                        </select>
+                    </div>
+                    <div id="SelectGroup">
+                        <select class="form-select">
+                            <option>Select Group</option>
+                            <option>Group1</option>
+                            <option>Group2</option>
+                        </select>
+                    </div>
+                    <div> <button type="button" id="getSubjectButton" class="btn btn-dark btnAdd">Dodaj</button> </div>
+                    <div class="results" id="SubjectResult">Result</div>
+
+                </div>
+                <div id ="LecturerContainer"class="inputElement">
+                    <div class="elementHead">
+                        <h3>Dodaj Lecturer</h3>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" id="getLecturerName" placeholder="Imie">
+                        <input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko">
+                        <input type="text" class="form-control" id="getLeturerSubject" placeholder="Nazwa przedmiotu">
+                        <button type="button" id="getLecturerButton" class="btn btn-dark btnAdd">Dodaj</button>
+                    </div>
+                    <div class="results" id="LecturerResult">Result</div>
+                </div>
+                <div id ="GroupContainer"class="inputElement">
+                    <div class="elementHead">
+                        <h3>Dodaj Group</h3>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" id="getGroupType" placeholder="Typ Grupy">
+                        <input type="text" class="form-control" id="getGroupYear" placeholder="Rok">
+                        <input type="text" class="form-control" id="getGroupSize" placeholder="Rozmiar Grupy">
+                        <button type="button" id="getGroupButton" class="btn btn-dark btnAdd">Dodaj</button>
+                    </div>
+                    <div class="results" id="GroupResult">Result</div>
+                </div>
+                <div id ="MeetingContainer"class="inputElement">
+                    <div class="elementHead">
+                        <h3>Dodaj Meeting</h3>
+                    </div>
+                    <div class="datePick">
+                        <p class="pickerSub">Początek zjazdu</p>
+                        <input type="date" class="picker" id = "dateStart"/>
+                    </div>
+                    <div class="datePick">
+                        <p class="pickerSub">Koniec zjazdu</p>
+                        <input type="date" class="picker" id = "dateEnd"/></div>
+                    <div>
+                        <button type="button" id="getMeetingButton" class="btn btn-dark btnAdd">Dodaj</button>
+                    </div>
+                    <div class="results" id="MeetingResult">Result</div>
+                </div>
+                <div id ="RoomContainer"class="inputElement">
+                    <div class="elementHead">
+                        <h3>Dodaj Room</h3>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" id="getRoomName" placeholder="Nazwa Sali">
+                        <button type="button" id="getRoomButton" class="btn btn-dark btnAdd">Dodaj</button>
+                    </div>
+                    <div class="results" id="RoomResult">Result</div>
+                </div>
+                <div id ="NoteContainer"class="inputElement">
+                    <div class="elementHead">
+                        <h3>Dodaj Note</h3>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" id="getNoteTitle" placeholder="Nazwa Notatki">
+                        <input type="text" class="form-control" id="getNoteInput" placeholder="Tekst">
+                        <button type="button" id="getNoteButton" class="btn btn-dark btnAdd">Dodaj</button>
+                    </div>
+                    <div class="results" id="NoteResult">Result</div>
+                </div>
+            </div>
         </div>
-        <div id="SelectGroup">
-            <select class="form-select">
-                <option>Select Group</option>
-                <option>Group1</option>
-                <option>Group2</option>
-            </select>
-        </div>
-        <div> <button type="button" id="getSubjectButton" class="btn btn-primary">ADD</button> </div>
-        <div id="SubjectResult">Result</div>
-    </div>
-    </div>
-    <div id ="LecturerContainer"class="inputElement">
         <div>
-            <input type="text" class="form-control" id="getLecturerName" placeholder="Imie">
-            <input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko">
-            <input type="text" class="form-control" id="getLeturerSubject" placeholder="Nazwa przedmiotu">
-            <button type="button" id="getLecturerButton" class="btn btn-primary">ADD</button>
-        </div>
-        <div id="LecturerResult">Result</div>
     </div>
-    <div id ="GroupContainer"class="inputElement">
-        <div>
-            <input type="text" class="form-control" id="getGroupType" placeholder="Typ Grupy">
-            <input type="text" class="form-control" id="getGroupYear" placeholder="Rok">
-            <input type="text" class="form-control" id="getGroupSize" placeholder="Rozmiar Grupy">
-            <button type="button" id="getGroupButton" class="btn btn-primary">ADD</button>
-        </div>
-        <div id="GroupResult">Result</div>
-    </div>
-    <div id ="MeetingContainer"class="inputElement">
-        <div><input type="date" id = "dateStart"/>Początek zjazdu</div>
-        <div><input type="date" id = "dateEnd"/>Koniec zjazdu</div>
-        <div>
-            <button type="button" id="getMeetingButton" class="btn btn-primary">ADD</button>
-        </div>
-        <div id="MeetingResult">Result</div>
-    </div>
-    <div id ="RoomContainer"class="inputElement">
-        <div>
-            <input type="text" class="form-control" id="getRoomName" placeholder="Nazwa Sali">
-            <button type="button" id="getRoomButton" class="btn btn-primary">ADD</button>
-        </div>
-        <div id="RoomResult">Result</div>
-    </div>
-    <div id ="NoteContainer"class="inputElement">
-        <div>
-            <input type="text" class="form-control" id="getNoteTitle" placeholder="Nazwa Notatki">
-            <input type="text" class="form-control" id="getNoteInput" placeholder="Tekst">
-            <button type="button" id="getNoteButton" class="btn btn-primary">ADD</button>
-        </div>
-        <div id="NoteResult">Result</div>
-    </div>
+</div>
 </body>
 </html>

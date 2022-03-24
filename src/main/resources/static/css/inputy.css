@@ -1,3 +1,10 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
 .container {
     dispaly: flex;
     justify-content: space-evenly;
@@ -10,4 +17,173 @@ input, button {
 #result{
     front-size: 30px;
     front-weight: bold;
+}
+
+.inputView .left{
+    height: 100vh;
+    background-color: #FC6492;
+}
+
+.inputView .left .title h3 {
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    margin-top: 19px;
+    padding-left: 20px;
+}
+
+.inputView .left .image{
+    padding-top: 136px;
+    text-align: center;
+}
+
+.inputView .left .image img{
+    object-fit: cover;
+}
+
+.inputView .left .subtitle h2{
+    padding-top: 104px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 32px;
+    color: white;
+    letter-spacing: 0.05em
+}
+
+.inputView .left .desc p {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+}
+
+.inputView .left .return{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.inputView .left .return .arrow{
+    position: absolute;
+    bottom: 20px;
+    left: 34px;
+}
+
+.inputView .left .return .arrow img{
+    width: 36px;
+    object-fit: contain;
+}
+
+.inputView .left .return .returnText a{
+    margin-left: 14px;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+    color: white;
+    position: absolute;
+    bottom: 26px;
+    left: 71px;
+    text-decoration: none;
+}
+.inputView .left .return .returnText a:hover{
+    color: black;
+    transition: 0.3s;
+}
+
+.inputView .right .rightTitle{
+    margin-top: 56px;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.inputView .right .rightTitle h2{
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: 0.05em;
+}
+
+.inputView .MainContainer{
+    text-align: center;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.inputView .right .MainContainer .buttons{
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+.inputView .right .MainContainer .buttons .btnComp{
+    flex: 0 25%;
+    margin-left: 32px;
+    margin-top: 25px;
+    color: black;
+    border-color: #FC6492;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.inputView .right .MainContainer .buttons .btnComp:hover{
+    background-color: #FC6492;
+    color: white;
+}
+
+.inputView .right .MainContainer .inputElement{
+    margin-top: 108px;
+}
+
+.inputView .right .MainContainer .inputElement .elementHead{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.inputView .right .MainContainer .inputElement .elementHead h3{
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.05em;
+}
+
+.inputView .right .MainContainer .inputElement .inputField{
+    margin-bottom: 23px;
+}
+
+.inputView .right .MainContainer .inputElement .form-control{
+    border-radius: 6px;
+    border: 1px solid #000000;
+    height: 35px;
+    margin-bottom: 23px;
+}
+
+.inputView .right .MainContainer .inputElement .form-select{
+    border-radius: 6px;
+    border: 1px solid #000000;
+    height: 35px;
+    margin-bottom: 23px;
+}
+
+.inputView .right .MainContainer .inputElement .btnAdd{
+    color: #fff;
+    background: #000000;
+    border-color: #000000;
+    font-weight: 600;
+    font-size: 20px;
+    width: 220px;
+    letter-spacing: 0.05em;
+    margin-top: 30px;
+}
+
+.inputView .right .MainContainer .inputElement .datePick{
+    margin-bottom: 20px;
+}
+
+.inputView .right .MainContainer .inputElement .datePick .pickerSub{
+    margin-bottom: 5px;
+}
+
+.inputView .right .MainContainer .inputElement .results{
+    margin-top: 40px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #00CB20;
 }

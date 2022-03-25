@@ -6,42 +6,43 @@ import pl.umk.mat.planner.lecturer.Lecturer;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "subject")
 public class Subject {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, updatable = false)
     private Integer id;
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecturer_id")
     private Lecturer lecturer;
-
-    @Lob
-    @Column(name = "name", nullable = false)
-    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
 
     @OneToMany(mappedBy = "subject")
-    private Set<Event> events = new LinkedHashSet<>();
+    private List<Event> events = new java.util.ArrayList<>();
 
-    public Set<Event> getEvents() {
-        return events;
+    public Subject() {
     }
 
-    public void setEvents(Set<Event> events) {
+    public Subject(String name, Lecturer lecturer, Group group, List<Event> events) {
+        this.name = name;
+        this.lecturer = lecturer;
+        this.group = group;
         this.events = events;
     }
 
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
@@ -60,13 +61,19 @@ public class Subject {
         this.lecturer = lecturer;
     }
 
-    public Integer getId() {
-        return id;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
-    //TODO Reverse Engineering! Migrate other columns to the entity
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 }

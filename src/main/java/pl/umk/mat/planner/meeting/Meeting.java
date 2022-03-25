@@ -2,60 +2,63 @@ package pl.umk.mat.planner.meeting;
 
 import pl.umk.mat.planner.event.Event;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.time.LocalDate;
+import javax.persistence.*;
+import java.time.OffsetDateTime;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "meeting")
 public class Meeting {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, updatable = false)
     private Integer id;
 
     @Column(name = "date_from", nullable = false)
-    private LocalDate dateFrom;
+    private OffsetDateTime dateFrom;
 
     @Column(name = "date_to")
-    private LocalDate dateTo;
+    private OffsetDateTime dateTo;
 
     @OneToMany(mappedBy = "meeting")
-    private Set<Event> events = new LinkedHashSet<>();
+    private List<Event> events = new java.util.ArrayList<>();
 
-    public Set<Event> getEvents() {
-        return events;
+    public Meeting() {
     }
 
-    public void setEvents(Set<Event> events) {
-        this.events = events;
-    }
-
-    public LocalDate getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(LocalDate dateTo) {
-        this.dateTo = dateTo;
-    }
-
-    public LocalDate getDateFrom() {
-        return dateFrom;
-    }
-
-    public void setDateFrom(LocalDate dateFrom) {
+    public Meeting(OffsetDateTime dateFrom, OffsetDateTime dateTo, List<Event> events) {
         this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.events = events;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public OffsetDateTime getDateFrom() {
+        return dateFrom;
     }
 
-    //TODO Reverse Engineering! Migrate other columns to the entity
+    public void setDateFrom(OffsetDateTime dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public OffsetDateTime getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(OffsetDateTime dateTo) {
+        this.dateTo = dateTo;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
 }

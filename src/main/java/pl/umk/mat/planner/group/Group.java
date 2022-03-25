@@ -3,17 +3,16 @@ package pl.umk.mat.planner.group;
 import pl.umk.mat.planner.subject.Subject;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Table(name = "Groups")
+@Table(name = "groups")
 public class Group {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, updatable = false)
     private Integer id;
 
-    @Lob
     @Column(name = "type", nullable = false)
     private String type;
 
@@ -24,30 +23,20 @@ public class Group {
     private Integer size;
 
     @OneToMany(mappedBy = "group")
-    private Set<Subject> subjects = new LinkedHashSet<>();
+    private List<Subject> subjects = new java.util.ArrayList<>();
 
-    public Set<Subject> getSubjects() {
-        return subjects;
+    public Group() {
     }
 
-    public void setSubjects(Set<Subject> subjects) {
+    public Group(String type, Integer rok, Integer size, List<Subject> subjects) {
+        this.type = type;
+        this.rok = rok;
+        this.size = size;
         this.subjects = subjects;
     }
 
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    public Integer getRok() {
-        return rok;
-    }
-
-    public void setRok(Integer rok) {
-        this.rok = rok;
+    public Integer getId() {
+        return id;
     }
 
     public String getType() {
@@ -58,13 +47,29 @@ public class Group {
         this.type = type;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getRok() {
+        return rok;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRok(Integer rok) {
+        this.rok = rok;
     }
 
-    //TODO Reverse Engineering! Migrate other columns to the entity
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
+
 }

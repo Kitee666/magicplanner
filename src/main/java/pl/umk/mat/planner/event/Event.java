@@ -1,66 +1,71 @@
 package pl.umk.mat.planner.event;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.umk.mat.planner.meeting.Meeting;
 import pl.umk.mat.planner.room.Room;
 import pl.umk.mat.planner.subject.Subject;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "Events")
+@Table(name = "events")
 public class Event {
     @Id
-    @Column(name = "id", nullable = false)
-    private Integer id;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "subject_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, updatable = false)
+    private Long id;
+
+    @Column(name = "date_from", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime dateFrom;
+
+    @Column(name = "date_to", nullable = false, columnDefinition = "TIMESTAMP WITH TIME ZONE")
+    private OffsetDateTime dateTo;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "subject_id", nullable = false)
     private Subject subject;
 
-    @Column(name = "date_from", nullable = false)
-    private LocalDate dateFrom;
-
-    @Column(name = "date_to", nullable = false)
-    private LocalDate dateTo;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "meeting_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "meeting_id", nullable = false)
     private Meeting meeting;
 
-    public Meeting getMeeting() {
-        return meeting;
+    public Event() {
     }
 
-    public void setMeeting(Meeting meeting) {
+    public Event(OffsetDateTime dateFrom, OffsetDateTime dateTo, Subject subject, Room room, Meeting meeting) {
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.subject = subject;
+        this.room = room;
         this.meeting = meeting;
     }
 
-    public Room getRoom() {
-        return room;
+    public Long getId() {
+        return id;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    public LocalDate getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(LocalDate dateTo) {
-        this.dateTo = dateTo;
-    }
-
-    public LocalDate getDateFrom() {
+    public OffsetDateTime getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(LocalDate dateFrom) {
+    public void setDateFrom(OffsetDateTime dateFrom) {
         this.dateFrom = dateFrom;
+    }
+
+    public OffsetDateTime getDateTo() {
+        return dateTo;
+    }
+
+    public void setDateTo(OffsetDateTime dateTo) {
+        this.dateTo = dateTo;
     }
 
     public Subject getSubject() {
@@ -71,13 +76,19 @@ public class Event {
         this.subject = subject;
     }
 
-    public Integer getId() {
-        return id;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
-    //TODO Reverse Engineering! Migrate other columns to the entity
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
+    }
 }

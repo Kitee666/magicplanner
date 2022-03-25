@@ -4,27 +4,33 @@ import pl.umk.mat.planner.event.Event;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "room")
 public class Room {
     @Id
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false, updatable = false)
     private Integer id;
 
-    @Lob
     @Column(name = "number", nullable = false)
     private String number;
 
     @OneToMany(mappedBy = "room")
-    private Set<Event> events = new LinkedHashSet<>();
+    private List<Event> events = new java.util.ArrayList<>();
 
-    public Set<Event> getEvents() {
-        return events;
+    public Room() {
     }
 
-    public void setEvents(Set<Event> events) {
+    public Room(String number, List<Event> events) {
+        this.number = number;
         this.events = events;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getNumber() {
@@ -35,13 +41,11 @@ public class Room {
         this.number = number;
     }
 
-    public Integer getId() {
-        return id;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
-
-    //TODO Reverse Engineering! Migrate other columns to the entity
 }

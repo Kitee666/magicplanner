@@ -11,7 +11,7 @@ public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "type", nullable = false)
     private String type;
@@ -35,7 +35,7 @@ public class Group {
         this.subjects = subjects;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

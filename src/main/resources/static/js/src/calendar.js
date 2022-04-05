@@ -30,12 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new Calendar(calendarEl, {
         locale: 'pl',
+
         headerToolbar: {
             left: 'prev,next,today',
             center: 'title',
             right: 'dayGridMonth,timeGridTwoDays',
 
         },
+        initialView: 'timeGridTwoDays',
         views: {
             timeGridTwoDays: {
                 type: 'timeGrid',
@@ -43,7 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 buttonText: 'Weekendy',
                 hiddenDays: [ 1, 2, 3, 4, 5],
                 weekday: 'long',
-                // slotDuration: '01:00:00'
+                slotDuration: '01:00:00',
+                slotMinTime: '08:00:00',
+                slotMaxTime: '20:00:00'
             },
             dayGridMonth: {
                 buttonText: 'Widok miesiąca'

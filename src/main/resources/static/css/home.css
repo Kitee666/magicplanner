@@ -1,7 +1,8 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
 }
 
@@ -29,7 +30,7 @@ html, body {
     margin: 20px auto;
 }
 
-.calendarHead{
+.calendarHead {
     height: 230px;
     background: #000000;
     position: relative;
@@ -42,25 +43,24 @@ html, body {
     bottom: 35px;
 }
 
-.header .subtext{
+.header .subtext {
     position: absolute;
     bottom: 99px;
-    color: #FC6492;
-
+    color: #fc6492;
 }
 
-.buttonCont{
+.buttonCont {
     width: 100%;
     text-align: center;
     margin-top: 20px;
 }
 
-.fc .fc-col-header-cell-cushion{
+.fc .fc-col-header-cell-cushion {
     text-decoration: none;
     color: #000000;
 }
 
-.fc .fc-daygrid-day-number{
+.fc .fc-daygrid-day-number {
     text-decoration: none;
-    color: #FC6492;
+    color: #fc6492;
 }

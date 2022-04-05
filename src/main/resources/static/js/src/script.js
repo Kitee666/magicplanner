@@ -40,34 +40,43 @@ $(document).ready(function(){ // START
         let getSubjectNameInput = $("#getSubjectName").val();
         let SelectLecturerInput = $("#SelectLecturer option:selected").val();// We need to get info about Lecturers from DataBase :) -> Select list to be used here
         let SelectGroupInput = $("#SelectGroup option:selected").val();// We need to get values about groups form DataBase :) -> Select Group to be used here
+        ///$("#SubjectResult").text(getSubjectNameInput + " " + SelectLecturerInput + " " + SelectGroupInput);
 
-        $("#SubjectResult").text(getSubjectNameInput + " " + SelectLecturerInput + " " + SelectGroupInput);
+        const SubjectJSON = jQuery.parseJSON( '{ "name": "'+getSubjectNameInput+'","lecturer_id": "'+SelectLecturerInput+'","group_id": "'+SelectGroupInput+'" }' );
+        console.log(JSON.stringify(SubjectJSON));
     });
     $("#getLecturerButton").click(function() { // adding new lecturer - tmp output in line below
+
         let getLecturerNameInput = $("#getLecturerName").val();
         let getLecturerLastNameInput = $("#getLecturerLastName").val();
         let getLecturerSubjectInput = $("#getLeturerSubject").val(); // !IMPORTANT -> RED FAL
-        $("#LecturerResult").text(getLecturerNameInput + " " + getLecturerLastNameInput + " " + getLecturerSubjectInput);
+        const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerNameInput+'","subject": "'+getLecturerSubjectInput+'" }' );
+        console.log(JSON.stringify(LecturerJSON));
     });
     $("#getGroupButton").click(function() {
         let getGroupTypeInput = $("#getGroupType").val();
         let getGroupYearInput = $("#getGroupYear").val();
         let getGroupSizeInput = $("#getGroupSize").val();
-        $("#GroupResult").text(getGroupTypeInput + ", " + getGroupYearInput + ", " + getGroupSizeInput);
+        ///$("#GroupResult").text(getGroupTypeInput + ", " + getGroupYearInput + ", " + getGroupSizeInput);
+        const GroupJSON = jQuery.parseJSON( '{ "type": "'+getGroupTypeInput+'","rok": "'+getGroupYearInput+'","size": "'+getGroupSizeInput+'" }' );
+        console.log(JSON.stringify(GroupJSON));
     });
     $("#getMeetingButton").click(function() {
         let getMeetingStartDateInput = $("#dateStart").val();
         let getMeetingEndDateInput = $("#dateEnd").val();
-        $("#MeetingResult").text(getMeetingStartDateInput + " to " + getMeetingEndDateInput);
-    });
-    $("#getRoomButton").click(function() {
-        let getRoomInput = $("#getRoomName").val();
-        $("#RoomResult").text(getRoomInput);
+        // $("#RoomResult").text(getRoomInput);
+        const MeetingJSON = jQuery.parseJSON( '{ "date_from": "'+getMeetingStartDateInput+'","date_to": "'+getMeetingEndDateInput+'" }' );
+        console.log(JSON.stringify(MeetingJSON));
     });
     $("#getNoteButton").click(function() {
         let getNoteTitle = $("#getNoteTitle").val();
         let getNoteInput = $("#getNoteInput").val();
-        $("#NoteResult").text(getNoteTitle + " " + getNoteInput);
+        const NotesJSON = jQuery.parseJSON( '{ "title": "'+getNoteTitle+'","content": "'+getNoteInput+'" }' );
+        console.log(JSON.stringify(NotesJSON));
     });
-
+    $("#getRoomButton").click(function() {
+        let getRoomName = $("#getRoomName").val();
+        const RoomJSON = jQuery.parseJSON( '{ "number": "'+getRoomName+'" }' );
+        console.log(JSON.stringify(RoomJSON));
+    });
 });

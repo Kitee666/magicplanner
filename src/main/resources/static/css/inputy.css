@@ -6,12 +6,10 @@ body {
     font-size: 14px;
 }
 
-
 input,
 button {
     height: 40px;
 }
-
 
 .inputView .left {
     height: 100vh;
@@ -79,6 +77,7 @@ button {
     left: 71px;
     text-decoration: none;
 }
+
 .inputView .left .return .returnText a:hover {
     color: black;
     transition: 0.3s;

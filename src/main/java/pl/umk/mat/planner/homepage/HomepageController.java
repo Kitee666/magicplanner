@@ -22,4 +22,10 @@ public class HomepageController {
         return "inputy";
     }
 
+    @GetMapping("/user")
+    public String UserPage(Model model) {
+        model.addAttribute("appName", appName);
+        return "user";
+    }
+
 }

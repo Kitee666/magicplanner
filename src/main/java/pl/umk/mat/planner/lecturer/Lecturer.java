@@ -1,10 +1,6 @@
 package pl.umk.mat.planner.lecturer;
 
-import pl.umk.mat.planner.subject.Subject;
-
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "lecturer")

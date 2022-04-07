@@ -41,5 +41,4 @@ public class LecturerController {
                 })
                 .orElseThrow(() -> new LecturerNotFoundException(id));
     }
-
 }

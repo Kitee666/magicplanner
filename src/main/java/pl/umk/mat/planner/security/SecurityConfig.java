@@ -13,6 +13,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable() // TODO: zaktualizowac csrf
                 .authorizeRequests()
                 .antMatchers("/","/admin","index","/css/*","/js/*")
                 .permitAll()

@@ -80,3 +80,25 @@ $(document).ready(function(){ // START
         console.log(JSON.stringify(RoomJSON));
     });
 });
+
+/////////////////////////////////DATATABLES DISPLAY//////////////////////////////
+////LECTURER DATATABLE////
+$(document).ready(function() {
+    $('#lecturertable').DataTable({
+        "ajax": {
+            "url": "http://localhost:8080/api/v1/lecturer",
+            "type": "GET",
+            "dataSrc": "",
+        },
+        "columns": [{
+            data: "name"
+        },
+            {
+                data: "lastname"
+            },
+            {
+                data: "subject"
+            }
+        ]
+    });
+});

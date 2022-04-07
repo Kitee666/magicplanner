@@ -23,41 +23,41 @@
 <body>
 <div class="container-fluid calendarHead">
     <div class="row">
-        <div class="col-xl-12 offset-xl-1 header">
+        <div class="col-xl-5 offset-xl-1 header">
             <p class="subtext"><span class="sep">|</span> Magic Plan Scheduler</p>
             <h1 class="title">Kalendarz</h1>
+        </div>
+        <div class="col-xl-6 header right">
+            <div class="image">
+                <img th:src="@{/img/space.png}" />
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container-fluid calendarElements">
     <div class="row">
-        <div class="col-xl-2 offset-xl-1">
-            <div id='external-events'>
+        <div class="col-xl-2 offset-xl-1 left">
+            <div id='external-events' class="draggable">
                 <p>
-                    <strong>Draggable Events</strong>
+                    Draggable Events
                 </p>
-
-                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
                     <div class='fc-event-main'>My Event 1</div>
                 </div>
-                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
                     <div class='fc-event-main'>My Event 2</div>
                 </div>
-                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
                     <div class='fc-event-main'>My Event 3</div>
                 </div>
-                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
                     <div class='fc-event-main'>My Event 4</div>
                 </div>
-                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
+                <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
                     <div class='fc-event-main'>My Event 5</div>
                 </div>
 
-                <p>
-                    <input type='checkbox' id='drop-remove' />
-                    <label for='drop-remove'>remove after drop</label>
-                </p>
             </div>
             <div class="buttonCont">
                 <a href="http://localhost:8080/inputy" class="btn btn-primary addButton">Dodaj dane do kalendarza</a>

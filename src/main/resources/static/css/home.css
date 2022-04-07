@@ -1,22 +1,9 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
-}
-
-#external-events {
-    z-index: 2;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    background: #eee;
-    width: 300px;
-    margin-top: 20px;
-}
-
-#external-events .fc-event {
-    cursor: move;
-    margin: 3px 0;
 }
 
 #calendar-container {
@@ -29,11 +16,12 @@ html, body {
     margin: 20px auto;
 }
 
-.calendarHead{
+.calendarHead {
     height: 230px;
     background: #000000;
     position: relative;
 }
+
 .header .title {
     font-weight: 700;
     font-size: 64px;
@@ -42,25 +30,103 @@ html, body {
     bottom: 35px;
 }
 
-.header .subtext{
-    position: absolute;
-    bottom: 99px;
-    color: #FC6492;
-
+.calendarHead .right {
+    text-align: center;
+    margin-top: 14px;
 }
 
-.buttonCont{
+.calendarHead .right .image img {
+    object-fit: cover;
+}
+
+.header .subtext {
+    position: absolute;
+    bottom: 99px;
+    color: #fc6492;
+}
+
+.buttonCont {
     width: 100%;
     text-align: center;
     margin-top: 20px;
 }
 
-.fc .fc-col-header-cell-cushion{
+.fc .fc-col-header-cell-cushion {
     text-decoration: none;
     color: #000000;
 }
 
-.fc .fc-daygrid-day-number{
+.fc .fc-daygrid-day-number {
     text-decoration: none;
-    color: #FC6492;
+    color: #fc6492;
+}
+
+.calendarElements {
+    margin-top: 60px;
+}
+
+.calendarElements .draggable p {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.calendarElements .draggable {
+    background: #FFFFFF;
+    box-shadow: 4px 4px 14px 6px rgb(0 0 0 / 25%);
+    border-radius: 6px;
+    z-index: 2;
+    padding: 20px;
+    width: 300px;
+    margin-top: 20px;
+}
+
+.calendarElements .draggable .singleblock {
+    margin-bottom: 9px;
+    padding: 3px;
+    cursor: move;
+}
+
+.fc-prev-button .fc-button .fc-button-primary {
+    background: #FC6492;
+    border: solid 1px #FC6492;
+}
+
+.fc .fc-button-group>.fc-button {
+    background: #FC6492;
+    border: solid 1px #FC6492;
+}
+
+.fc .fc-button-group>.fc-button:hover {
+    background: #ff2466;
+    border: solid 1px #ff2466;
+    box-shadow: none;
+}
+
+.fc-dayGridMonth-button .fc-button .fc-button-primary .fc-button-active:visited {
+    background: #ff2466;
+    border: 1px solid #ff2466;
+    box-shadow: none;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+    background: #ff2466;
+    border: 1px solid #ff2466;
+    box-shadow: none;
+}
+
+.fc .fc-button-primary:focus,
+.fc .fc-button-primary:not(:disabled).fc-button-active:focus,
+.fc .fc-button-primary:not(:disabled):active:focus {
+    box-shadow: none;
+}
+
+.fc .fc-timegrid-slot {
+    height: 4.4em;
+    border-bottom: 0;
+}
+
+.fc .fc-timegrid-axis-cushion,
+.fc .fc-timegrid-slot-label-cushion {
+    color: #ff2466;
 }

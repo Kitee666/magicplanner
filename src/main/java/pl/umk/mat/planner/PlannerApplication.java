@@ -18,12 +18,12 @@ public class PlannerApplication {
         SpringApplication.run(PlannerApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(LecturerRepository lecturerRepository, GroupRepository groupRepository){
-        return args -> {
-            // TODO: transactions
-            Lecturer janek = new Lecturer("Jan","Kowal","Bardzociekway");
-            lecturerRepository.save(janek);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(LecturerRepository lecturerRepository, GroupRepository groupRepository){
+//        return args -> {
+//            // TODO: transactions
+//            Lecturer janek = new Lecturer("Jan","Kowal","Bardzociekway");
+//            lecturerRepository.save(janek);
+//        };
+//    }
 }

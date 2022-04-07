@@ -180,3 +180,35 @@ button {
     font-size: 14px;
     color: #00cb20;
 }
+
+.modal .modal-content .elementHead{
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 115px;
+}
+.modal .modal-content .elementHead h3{
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.05em;
+}
+
+.modal .modal-content .form-control {
+    border-radius: 6px;
+    border: 1px solid #000000;
+    height: 35px;
+    margin-bottom: 23px;
+}
+
+
+.modal .modal-content .results{
+    margin-top: 40px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #00cb20;
+    text-align: center;
+}
+
+.modal .modal-content {
+    padding: 20px;
+    height: 70vh;
+}

@@ -81,6 +81,8 @@ $(document).ready(function(){ // START
     });
 });
 
+
+
 /////////////////////////////////DATATABLES DISPLAY//////////////////////////////
 ////LECTURER DATATABLE////
 $(document).ready(function() {
@@ -101,4 +103,26 @@ $(document).ready(function() {
             }
         ]
     });
+});
+$(document).ready(function() {
+    let select = $('#xdKurwa');
+
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "http://localhost:8080/api/v1/lecturer",
+        success : function(lecturers){
+            console.log(lecturers)
+
+            $.each(lecturers, function(i, item) {
+                let option = $("<option>");
+                option.text(item.name + " " + item.lastname);
+                option.attr("value", item.id);
+                select.append(option);
+            });
+
+        }
+    });
+
+
 });

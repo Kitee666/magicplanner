@@ -88,7 +88,7 @@ $(document).ready(function(){ // START
 $(document).ready(function() {
     $('#lecturertable').DataTable({
         "ajax": {
-            "url": "http://localhost:8080/api/v1/lecturer",
+            "url": api_lecturer,
             "type": "GET",
             "dataSrc": "",
         },

@@ -41,4 +41,9 @@ public class LecturerController {
                 })
                 .orElseThrow(() -> new LecturerNotFoundException(id));
     }
+
+    @DeleteMapping("/lecturer/{id}")
+    void deleteLecturer(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }

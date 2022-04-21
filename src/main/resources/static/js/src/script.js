@@ -104,8 +104,9 @@ $(document).ready(function() {
         ]
     });
 });
+
 $(document).ready(function() {
-    let select = $('#xdKurwa');
+    let select = $('#selectLec');
 
     $.ajax({
         type: 'GET',
@@ -120,9 +121,46 @@ $(document).ready(function() {
                 option.attr("value", item.id);
                 select.append(option);
             });
-
         }
     });
+});
 
+$(document).ready(function() {
+    let select = $('#selectGr');
 
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "http://localhost:8080/api/v1/groups",
+        success : function(groups){
+            console.log(groups)
+
+            $.each(groups, function(i, item) {
+                let option = $("<option>");
+                option.text(item.rok + " " + item.type);
+                option.attr("value", item.id);
+                select.append(option);
+            });
+        }
+    });
+});
+
+$(document).ready(function() {
+    let select = $('#selectGr');
+
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "http://localhost:8080/api/v1/groups",
+        success : function(groups){
+            console.log(groups)
+
+            $.each(groups, function(i, item) {
+                let option = $("<option>");
+                option.text(item.rok + " " + item.type);
+                option.attr("value", item.id);
+                select.append(option);
+            });
+        }
+    });
 });

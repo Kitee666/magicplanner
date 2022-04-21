@@ -8,7 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<!--    //LINKI DO API  -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <!--    //LINKI DO API  -->
     <script>
         const api_lecturer = "/api/lecturer/add";
     </script>
@@ -37,7 +39,7 @@
                     <img th:src="@{/img/ArrowLeft.png}" />
                 </div>
                 <div class="returnText">
-                    <a href="http://localhost:8080/">Powrót do kalendarza</a>
+                    <a href="http://localhost:8080/admin">Powrót do kalendarza</a>
                 </div>
             </div>
         </div>
@@ -61,18 +63,14 @@
                     <div class="inputField">
                         <input type="email" class="form-control" id="getSubjectName" placeholder="Nazwa przedmiotu">
                     </div>
-                    <div id="SelectLecturer">
-                        <select class="form-select">
-                            <option>SelectLecturer</option>
-                            <option>Lecutrer1</option>
-                            <option>Lecutrer2</option>
+                    <div id="SelectLecturer" class="test">
+                        <select id="selectLec" class="form-select display">
+                            <option value = ""></option>
                         </select>
                     </div>
-                    <div id="SelectGroup">
-                        <select class="form-select">
-                            <option>Select Group</option>
-                            <option>Group1</option>
-                            <option>Group2</option>
+                    <div id="SelectGroup" class="test">
+                        <select id="selectGr" class="form-select display">
+                            <option value = ""></option>
                         </select>
                     </div>
                     <div>
@@ -81,16 +79,16 @@
                     <div class="results" id="SubjectResult">Result</div>
                 </div>
                 <div id="LecturerContainer" class="inputElement">
-                    <div class="elementHead">
-                        <h3>Dodaj Lecturer</h3>
-                    </div>
-                    <div>
-                        <input type="text" class="form-control" id="getLecturerName" placeholder="Imie">
-                        <input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko">
-                        <input type="text" class="form-control" id="getLeturerSubject" placeholder="Nazwa przedmiotu">
-                        <button type="button" id="getLecturerButton" class="btn btn-dark btnAdd">Dodaj</button>
-                    </div>
-                    <div class="results" id="LecturerResult">Result</div>
+                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModal" >Dodaj</button>
+                    <table id="lecturertable" class="display" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Lastname</th>
+                            <th>Subject</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
                 <div id="GroupContainer" class="inputElement">
                     <div class="elementHead">
@@ -142,6 +140,22 @@
                     </div>
                     <div class="results" id="NoteResult">Result</div>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!--  MODAL FOR LECTURER  -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="elementHead">
+                    <h3>Dodaj Lecturer</h3>
+                </div>
+                <div>
+                    <input type="text" class="form-control" id="getLecturerName" placeholder="Imie"><input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko">
+                    <input type="text" class="form-control" id="getLeturerSubject" placeholder="Nazwa przedmiotu">
+                </div>
+                <button type="button" id="getLecturerButton" class="btn btn-dark btnAdd">Dodaj</button>
+                <div class="results" id="LecturerResult">Result</div>
             </div>
         </div>
     </div>

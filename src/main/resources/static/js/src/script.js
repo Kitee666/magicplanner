@@ -80,3 +80,87 @@ $(document).ready(function(){ // START
         console.log(JSON.stringify(RoomJSON));
     });
 });
+
+
+
+/////////////////////////////////DATATABLES DISPLAY//////////////////////////////
+////LECTURER DATATABLE////
+$(document).ready(function() {
+    $('#lecturertable').DataTable({
+        "ajax": {
+            "url": "http://localhost:8080/api/v1/lecturer",
+            "type": "GET",
+            "dataSrc": "",
+        },
+        "columns": [{
+            data: "name"
+        },
+            {
+                data: "lastname"
+            },
+            {
+                data: "subject"
+            }
+        ]
+    });
+});
+
+$(document).ready(function() {
+    let select = $('#selectLec');
+
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "http://localhost:8080/api/v1/lecturer",
+        success : function(lecturers){
+            console.log(lecturers)
+
+            $.each(lecturers, function(i, item) {
+                let option = $("<option>");
+                option.text(item.name + " " + item.lastname);
+                option.attr("value", item.id);
+                select.append(option);
+            });
+        }
+    });
+});
+
+$(document).ready(function() {
+    let select = $('#selectGr');
+
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "http://localhost:8080/api/v1/groups",
+        success : function(groups){
+            console.log(groups)
+
+            $.each(groups, function(i, item) {
+                let option = $("<option>");
+                option.text(item.rok + " " + item.type);
+                option.attr("value", item.id);
+                select.append(option);
+            });
+        }
+    });
+});
+
+$(document).ready(function() {
+    let select = $('#selectGr');
+
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: "http://localhost:8080/api/v1/groups",
+        success : function(groups){
+            console.log(groups)
+
+            $.each(groups, function(i, item) {
+                let option = $("<option>");
+                option.text(item.rok + " " + item.type);
+                option.attr("value", item.id);
+                select.append(option);
+            });
+        }
+    });
+});

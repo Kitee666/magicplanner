@@ -54,24 +54,33 @@
                     <input type="button" class="btn btn-outline-danger btnComp" id="addGroup" value="Group" name="button" />
                     <input type="button" class="btn btn-outline-danger btnComp" id="addMeeting" value="Meeting" name="button" />
                     <input type="button" class="btn btn-outline-danger btnComp" id="addRoom" value="Room" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addSubjectName" value="SubjectName" name="button" />
                     <input type="button" class="btn btn-outline-danger btnComp" id="addNote" value="Note" name="button" />
                 </div>
                 <div id="SubjectContainer" class="inputElement">
                     <div class="elementHead">
                         <h3>Dodaj Subject</h3>
                     </div>
-                    <div class="inputField">
-                        <input type="email" class="form-control" id="getSubjectName" placeholder="Nazwa przedmiotu">
+                    <label>Nazwa Przedmiotu</label>
+                    <div id="SelectSubjectName" class="test">
+                        <select id="selectSubjName" class="form-select display">
+                            <option value = ""></option>
+                        </select>
                     </div>
+                    <label>Wykładowca</label>
                     <div id="SelectLecturer" class="test">
                         <select id="selectLec" class="form-select display">
                             <option value = ""></option>
                         </select>
                     </div>
+                    <label>Grupa</label>
                     <div id="SelectGroup" class="test">
                         <select id="selectGr" class="form-select display">
                             <option value = ""></option>
                         </select>
+                    </div>
+                    <div class="inputField">
+                        <input type="text" class="form-control" id="NumberOfHoursSubj" placeholder="Liczba Godzin">
                     </div>
                     <div>
                         <button type="button" id="getSubjectButton" class="btn btn-dark btnAdd">Dodaj</button>
@@ -95,9 +104,30 @@
                         <h3>Dodaj Group</h3>
                     </div>
                     <div>
-                        <input type="text" class="form-control" id="getGroupType" placeholder="Typ Grupy">
-                        <input type="text" class="form-control" id="getGroupYear" placeholder="Rok">
-                        <input type="text" class="form-control" id="getGroupSize" placeholder="Rozmiar Grupy">
+                        <label>Rok Studiów</label>
+                        <select name="Year" id="getGroupYear">
+                            <option>Rok 1</option>
+                            <option>Rok 2</option>
+                            <option>Rok 3</option>
+                            <option>Rok 4</option>
+                        </select>
+                        <label>Typ Grupy</label>
+                        <select name="GroupType" id="getGroupType">
+                            <option>Wykład</option>
+                            <option>Ćwiczenia</option>
+                            <option>Labolatoria</option>
+                            <option>Przedmiot do Wyboru</option>
+                        </select>
+                        <label>Numer Grupy</label>
+                        <select name="GroupNumber" id="getGroupNumber">
+                            <option>Grupa 1</option>
+                            <option>Grupa 2</option>
+                            <option>Grupa 3</option>
+                            <option>Grupa 4</option>
+                        </select>
+                        <div class="inputField">
+                            <input type="text" class="form-control" id="getGroupSize" placeholder="Rozmiar Grupy">
+                        </div>
                         <button type="button" id="getGroupButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
                     <div class="results" id="GroupResult">Result</div>
@@ -110,10 +140,6 @@
                         <p class="pickerSub">Początek zjazdu</p>
                         <input type="date" class="picker" id="dateStart" />
                     </div>
-                    <div class="datePick">
-                        <p class="pickerSub">Koniec zjazdu</p>
-                        <input type="date" class="picker" id="dateEnd" />
-                    </div>
                     <div>
                         <button type="button" id="getMeetingButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
@@ -125,9 +151,20 @@
                     </div>
                     <div>
                         <input type="text" class="form-control" id="getRoomName" placeholder="Nazwa Sali">
+                        <input type="text" class="form-control" id="getRoomSize" placeholder="Rozmiar Sali">
                         <button type="button" id="getRoomButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
                     <div class="results" id="RoomResult">Result</div>
+                </div>
+                <div id="SubjectNameContainer" class="inputElement">
+                    <div class="elementHead">
+                        <h3>Dodaj SubjectName</h3>
+                    </div>
+                    <div>
+                        <input type="text" class="form-control" id="getSubjectName" placeholder="Nazwa Przedmiotu">
+                        <button type="button" id="getSubjectNameButton" class="btn btn-dark btnAdd">Dodaj</button>
+                    </div>
+                    <div class="results" id="SubjectNameResult">Result</div>
                 </div>
                 <div id="NoteContainer" class="inputElement">
                     <div class="elementHead">

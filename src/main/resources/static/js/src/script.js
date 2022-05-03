@@ -27,6 +27,10 @@ $(document).ready(function(){ // START
         $('.inputElement').hide();
         $("#RoomContainer").show();
     });
+    $("#addSubjectName").click(function () { // show note - adding options
+        $('.inputElement').hide();
+        $("#SubjectNameContainer").show();
+    });
     $("#addNote").click(function () { // show note - adding options
         $('.inputElement').hide();
         $("#NoteContainer").show();
@@ -37,12 +41,13 @@ $(document).ready(function(){ // START
      * */
 
     $("#getSubjectButton").click(function() { // adding new lecturer - tmp output in line below
-        let getSubjectNameInput = $("#getSubjectName").val();
+        let SelectSubjectNameInput = $("#SelectSubjectName option:selected").val(); // We need to get values about SubjectName form DataBase :) -> Select SubjectName to be used here
         let SelectLecturerInput = $("#SelectLecturer option:selected").val();// We need to get info about Lecturers from DataBase :) -> Select list to be used here
         let SelectGroupInput = $("#SelectGroup option:selected").val();// We need to get values about groups form DataBase :) -> Select Group to be used here
+        let SelectNumberOfHoursSubj = $("#NumberOfHoursSubj").val();
         ///$("#SubjectResult").text(getSubjectNameInput + " " + SelectLecturerInput + " " + SelectGroupInput);
 
-        const SubjectJSON = jQuery.parseJSON( '{ "name": "'+getSubjectNameInput+'","lecturer_id": "'+SelectLecturerInput+'","group_id": "'+SelectGroupInput+'" }' );
+        const SubjectJSON = jQuery.parseJSON( '{ "name": "'+SelectSubjectNameInput+'","lecturer_id": "'+SelectLecturerInput+'","group_id": "'+SelectGroupInput+'","subject_hours": "'+SelectNumberOfHoursSubj+'"}' );
         console.log(JSON.stringify(SubjectJSON));
     });
     $("#getLecturerButton").click(function() { // adding new lecturer - tmp output in line below
@@ -50,20 +55,23 @@ $(document).ready(function(){ // START
         let getLecturerNameInput = $("#getLecturerName").val();
         let getLecturerLastNameInput = $("#getLecturerLastName").val();
         let getLecturerSubjectInput = $("#getLeturerSubject").val(); // !IMPORTANT -> RED FAL
-        const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerNameInput+'","subject": "'+getLecturerSubjectInput+'" }' );
+        const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerLastNameInput+'","subject": "'+getLecturerSubjectInput+'" }' );
         console.log(JSON.stringify(LecturerJSON));
     });
     $("#getGroupButton").click(function() {
         let getGroupTypeInput = $("#getGroupType").val();
         let getGroupYearInput = $("#getGroupYear").val();
+        let getGroupNumberInput = $("#getGroupNumber").val();
         let getGroupSizeInput = $("#getGroupSize").val();
         ///$("#GroupResult").text(getGroupTypeInput + ", " + getGroupYearInput + ", " + getGroupSizeInput);
-        const GroupJSON = jQuery.parseJSON( '{ "type": "'+getGroupTypeInput+'","rok": "'+getGroupYearInput+'","size": "'+getGroupSizeInput+'" }' );
+        const GroupJSON = jQuery.parseJSON( '{ "rok": "'+getGroupYearInput+'","type": "'+getGroupTypeInput+'", "group_number": "'+getGroupNumberInput+'","size": "'+getGroupSizeInput+'" }' );
         console.log(JSON.stringify(GroupJSON));
     });
     $("#getMeetingButton").click(function() {
         let getMeetingStartDateInput = $("#dateStart").val();
-        let getMeetingEndDateInput = $("#dateEnd").val();
+        var getMeetingEndDateInput = new Date(getMeetingStartDateInput);
+        getMeetingEndDateInput.setDate(getMeetingEndDateInput.getDate() + 1); // something like that XD
+        getMeetingEndDateInput = getMeetingEndDateInput.getFullYear() + '-' + (getMeetingEndDateInput.getMonth() < 10 ? '0' : '') + (getMeetingEndDateInput.getMonth()+1) + '-'+ (getMeetingEndDateInput.getDate() < 10 ? '0' : '') + getMeetingEndDateInput.getDate(); // date with leading zeros (i know it looks like shit...)
         // $("#RoomResult").text(getRoomInput);
         const MeetingJSON = jQuery.parseJSON( '{ "date_from": "'+getMeetingStartDateInput+'","date_to": "'+getMeetingEndDateInput+'" }' );
         console.log(JSON.stringify(MeetingJSON));
@@ -76,8 +84,14 @@ $(document).ready(function(){ // START
     });
     $("#getRoomButton").click(function() {
         let getRoomName = $("#getRoomName").val();
-        const RoomJSON = jQuery.parseJSON( '{ "number": "'+getRoomName+'" }' );
+        let getRoomSize = $("#getRoomSize").val();
+        const RoomJSON = jQuery.parseJSON( '{ "number": "'+getRoomName+'", "size": "'+getRoomSize+'" }' );
         console.log(JSON.stringify(RoomJSON));
+    });
+    $("#getSubjectNameButton").click(function() {
+        let getSubjectNameButtonInput = $("#getSubjectName").val();
+        const NotesJSON = jQuery.parseJSON( '{ "subject_name": "'+getSubjectNameButtonInput+'" }' );
+        console.log(JSON.stringify(NotesJSON));
     });
 });
 
@@ -106,7 +120,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    let select = $('#selectLec');
+    let selectL = $('#selectLec');
 
     $.ajax({
         type: 'GET',
@@ -119,7 +133,7 @@ $(document).ready(function() {
                 let option = $("<option>");
                 option.text(item.name + " " + item.lastname);
                 option.attr("value", item.id);
-                select.append(option);
+                selectL.append(option);
             });
         }
     });
@@ -146,20 +160,20 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    let select = $('#selectGr');
+    let selectSN = $('#selectSubjName');
 
     $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: "http://localhost:8080/api/v1/groups",
+        url: "http://localhost:8080/api/v1/subjectName",
         success : function(groups){
             console.log(groups)
 
             $.each(groups, function(i, item) {
                 let option = $("<option>");
-                option.text(item.rok + " " + item.type);
+                option.text(item.nazwa );
                 option.attr("value", item.id);
-                select.append(option);
+                selectSN.append(option);
             });
         }
     });

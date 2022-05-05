@@ -1,13 +1,10 @@
 package pl.umk.mat.planner.subject;
 
 import pl.umk.mat.planner.event.Event;
-import pl.umk.mat.planner.group.Group;
 import pl.umk.mat.planner.lecturer.Lecturer;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "subject")
@@ -15,7 +12,7 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -26,7 +23,7 @@ public class Subject {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
-    private Group group;
+    private pl.umk.mat.planner.group.Group group;
 
     @OneToMany(mappedBy = "subject")
     private List<Event> events = new java.util.ArrayList<>();
@@ -34,14 +31,14 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(String name, Lecturer lecturer, Group group, List<Event> events) {
+    public Subject(String name, Lecturer lecturer, pl.umk.mat.planner.group.Group group, List<Event> events) {
         this.name = name;
         this.lecturer = lecturer;
         this.group = group;
         this.events = events;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -61,11 +58,11 @@ public class Subject {
         this.lecturer = lecturer;
     }
 
-    public Group getGroup() {
+    public pl.umk.mat.planner.group.Group getGroup() {
         return group;
     }
 
-    public void setGroup(Group group) {
+    public void setGroup(pl.umk.mat.planner.group.Group group) {
         this.group = group;
     }
 

@@ -2,6 +2,7 @@ package pl.umk.mat.planner.lecturer;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -15,23 +16,23 @@ public class LecturerController {
     }
 
     @GetMapping("/lecturer")
-    List<Lecturer> all() {
+    List<Lecturer> findAll() {
         return repository.findAll();
     }
 
     @GetMapping("/lecturer/{id}")
-    Lecturer one(@PathVariable Long id) {
+    Lecturer findOne(@PathVariable Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new LecturerNotFoundException(id));
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @PostMapping("/lecturer")
-    Lecturer newLecturer(@RequestBody Lecturer newLecturer) {
+    Lecturer add(@RequestBody Lecturer newLecturer) {
         return repository.save(newLecturer);
     }
 
     @PutMapping("/lecturer/{id}")
-    Lecturer replaceLecturer(@RequestBody Lecturer newLecturer, @PathVariable Long id) {
+    Lecturer replace(@RequestBody Lecturer newLecturer, @PathVariable Long id) {
         return repository.findById(id)
                 .map(lecturer -> {
                     lecturer.setName(newLecturer.getName());
@@ -42,4 +43,8 @@ public class LecturerController {
                 .orElseThrow(() -> new LecturerNotFoundException(id));
     }
 
+    @DeleteMapping("/lecturer/{id}")
+    void delete(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }

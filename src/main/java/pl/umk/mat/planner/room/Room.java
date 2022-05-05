@@ -3,9 +3,7 @@ package pl.umk.mat.planner.room;
 import pl.umk.mat.planner.event.Event;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "room")
@@ -13,7 +11,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false, updatable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "number", nullable = false)
     private String number;
@@ -29,7 +27,7 @@ public class Room {
         this.events = events;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

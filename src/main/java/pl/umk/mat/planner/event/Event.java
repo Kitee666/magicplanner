@@ -1,14 +1,10 @@
 package pl.umk.mat.planner.event;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import pl.umk.mat.planner.meeting.Meeting;
 import pl.umk.mat.planner.room.Room;
 import pl.umk.mat.planner.subject.Subject;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Entity

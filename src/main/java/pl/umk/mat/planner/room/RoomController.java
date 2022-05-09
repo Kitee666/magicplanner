@@ -37,7 +37,7 @@ public class RoomController {
         return repository.findById(id)
                 .map(room -> {
                     room.setNumber(newRoom.getNumber());
-                    room.setEvents(newRoom.getEvents());
+                    room.setSize(newRoom.getSize());
                     return repository.save(room);
                 })
                 .orElseThrow(EntityNotFoundException::new);

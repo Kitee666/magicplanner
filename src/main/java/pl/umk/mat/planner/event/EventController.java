@@ -38,9 +38,8 @@ public class EventController {
                 .map(event -> {
                     event.setDateFrom(newEvent.getDateFrom());
                     event.setDateTo(newEvent.getDateTo());
-                    event.setSubject(newEvent.getSubject());
+                    event.setConnector(newEvent.getConnector());
                     event.setRoom(newEvent.getRoom());
-                    event.setMeeting(newEvent.getMeeting());
                     return repository.save(event);
                 })
                 .orElseThrow(EntityNotFoundException::new);

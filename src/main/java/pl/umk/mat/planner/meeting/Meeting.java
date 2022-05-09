@@ -1,62 +1,33 @@
 package pl.umk.mat.planner.meeting;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.umk.mat.planner.event.Event;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "meeting")
 public class Meeting {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "date_from", nullable = false)
+    @Column(name = "date_from", nullable = false, unique = true)
     private OffsetDateTime dateFrom;
 
-    @Column(name = "date_to")
+    @Column(name = "date_to", nullable = false, unique = true)
     private OffsetDateTime dateTo;
 
-    @OneToMany(mappedBy = "meeting")
-    private List<Event> events = new java.util.ArrayList<>();
-
-    public Meeting() {
-    }
-
-    public Meeting(OffsetDateTime dateFrom, OffsetDateTime dateTo, List<Event> events) {
+    public Meeting(OffsetDateTime dateFrom, OffsetDateTime dateTo) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
-        this.events = events;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public OffsetDateTime getDateFrom() {
-        return dateFrom;
-    }
-
-    public void setDateFrom(OffsetDateTime dateFrom) {
-        this.dateFrom = dateFrom;
-    }
-
-    public OffsetDateTime getDateTo() {
-        return dateTo;
-    }
-
-    public void setDateTo(OffsetDateTime dateTo) {
-        this.dateTo = dateTo;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
     }
 }

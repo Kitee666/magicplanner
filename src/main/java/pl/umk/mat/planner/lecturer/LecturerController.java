@@ -37,10 +37,10 @@ public class LecturerController {
                 .map(lecturer -> {
                     lecturer.setName(newLecturer.getName());
                     lecturer.setLastname(newLecturer.getLastname());
-                    lecturer.setSubject(newLecturer.getSubject());
+                    lecturer.setTitle(newLecturer.getTitle());
                     return repository.save(lecturer);
                 })
-                .orElseThrow(() -> new LecturerNotFoundException(id));
+                .orElseThrow(EntityNotFoundException::new);
     }
 
     @DeleteMapping("/lecturer/{id}")

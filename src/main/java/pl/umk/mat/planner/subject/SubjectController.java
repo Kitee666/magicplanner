@@ -37,9 +37,8 @@ public class SubjectController {
         return repository.findById(id)
                 .map(subject -> {
                     subject.setName(newSubject.getName());
-                    subject.setLecturer(newSubject.getLecturer());
-                    subject.setGroup(newSubject.getGroup());
-                    subject.setEvents(newSubject.getEvents());
+                    subject.setYear(newSubject.getYear());
+                    subject.setHours(newSubject.getHours());
                     return repository.save(subject);
                 })
                 .orElseThrow(EntityNotFoundException::new);

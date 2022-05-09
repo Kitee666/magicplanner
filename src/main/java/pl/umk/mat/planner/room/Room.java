@@ -1,49 +1,38 @@
 package pl.umk.mat.planner.room;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.umk.mat.planner.event.Event;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "room")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "number", nullable = false)
+    @Column(name = "number", nullable = false, unique = true)
     private String number;
 
-    @OneToMany(mappedBy = "room")
-    private List<Event> events = new java.util.ArrayList<>();
+    @Column(name = "size", nullable = false)
+    private Integer size;
 
-    public Room() {
-    }
+    @OneToMany(mappedBy = "room", orphanRemoval = true)
+    private Collection<Event> events = new ArrayList<>();
 
-    public Room(String number, List<Event> events) {
+    public Room(String number, Integer size) {
         this.number = number;
-        this.events = events;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
+        this.size = size;
     }
 }

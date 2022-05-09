@@ -36,9 +36,10 @@ public class GroupController {
         return repository.findById(id)
                 .map(group -> {
                     group.setType(newGroup.getType());
-                    group.setRok(newGroup.getRok());
                     group.setSize(newGroup.getSize());
-                    group.setSubjects(newGroup.getSubjects());
+                    group.setYearType(newGroup.getYearType());
+                    group.setHours(newGroup.getHours());
+                    group.setName(newGroup.getName());
                     return repository.save(group);
                 })
                 .orElseThrow(EntityNotFoundException::new);

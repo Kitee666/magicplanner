@@ -1,76 +1,45 @@
 package pl.umk.mat.planner.subject;
 
-import pl.umk.mat.planner.event.Event;
-import pl.umk.mat.planner.lecturer.Lecturer;
+import lombok.*;
+import pl.umk.mat.planner.connector.Connector;
+import pl.umk.mat.planner.types.yearType;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
 
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 @Table(name = "subject")
 public class Subject {
+    @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lecturer_id")
-    private Lecturer lecturer;
+    @Column(name = "hours", nullable = false)
+    private Integer hours;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
-    private pl.umk.mat.planner.group.Group group;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "year", nullable = false)
+    private yearType year;
 
-    @OneToMany(mappedBy = "subject")
-    private List<Event> events = new java.util.ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "connector_id")
+    private Connector connector;
 
-    public Subject() {
-    }
+    @OneToMany(mappedBy = "subject", orphanRemoval = true)
+    private Collection<Connector> connectors = new ArrayList<>();
 
-    public Subject(String name, Lecturer lecturer, pl.umk.mat.planner.group.Group group, List<Event> events) {
+    public Subject(String name, yearType year, Integer hours) {
         this.name = name;
-        this.lecturer = lecturer;
-        this.group = group;
-        this.events = events;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Lecturer getLecturer() {
-        return lecturer;
-    }
-
-    public void setLecturer(Lecturer lecturer) {
-        this.lecturer = lecturer;
-    }
-
-    public pl.umk.mat.planner.group.Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(pl.umk.mat.planner.group.Group group) {
-        this.group = group;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
+        this.year = year;
+        this.hours = hours;
     }
 }

@@ -38,7 +38,6 @@ public class MeetingController {
                 .map(meeting -> {
                     meeting.setDateFrom(newMeeting.getDateFrom());
                     meeting.setDateTo(newMeeting.getDateTo());
-                    meeting.setEvents(newMeeting.getEvents());
                     return repository.save(meeting);
                 })
                 .orElseThrow(EntityNotFoundException::new);

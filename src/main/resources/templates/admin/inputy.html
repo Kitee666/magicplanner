@@ -51,36 +51,28 @@
                 <div class="buttons">
                     <input type="button" class="btn btn-outline-danger btnComp" id="addSubject" value="Subject" name="button" />
                     <input type="button" class="btn btn-outline-danger btnComp" id="addLecturer" value="Lecturer" name="button" />
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addGroup" value="Group" name="button" />
+                    <!-- <input type="button" class="btn btn-outline-danger btnComp" id="addGroup" value="Group" name="button" /> -->
                     <input type="button" class="btn btn-outline-danger btnComp" id="addMeeting" value="Meeting" name="button" />
                     <input type="button" class="btn btn-outline-danger btnComp" id="addRoom" value="Room" name="button" />
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addSubjectName" value="SubjectName" name="button" />
                     <input type="button" class="btn btn-outline-danger btnComp" id="addNote" value="Note" name="button" />
                 </div>
                 <div id="SubjectContainer" class="inputElement">
                     <div class="elementHead">
                         <h3>Dodaj Subject</h3>
                     </div>
-                    <label>Nazwa Przedmiotu</label>
-                    <div id="SelectSubjectName" class="test">
-                        <select id="selectSubjName" class="form-select display">
-                            <option value = ""></option>
-                        </select>
-                    </div>
-                    <label>Wykładowca</label>
-                    <div id="SelectLecturer" class="test">
-                        <select id="selectLec" class="form-select display">
-                            <option value = ""></option>
-                        </select>
-                    </div>
-                    <label>Grupa</label>
-                    <div id="SelectGroup" class="test">
-                        <select id="selectGr" class="form-select display">
-                            <option value = ""></option>
-                        </select>
-                    </div>
-                    <div class="inputField">
-                        <input type="text" class="form-control" id="NumberOfHoursSubj" placeholder="Liczba Godzin">
+                    <label>Nazwa Przedmmiotu</label>
+                    <input type="text" class="form-control" id="getSubjectName" placeholder="Programowanie I">
+                    <label>Rok Przedmiotu</label>
+                    <select name="Year" class="form-control" id="getSubjectYear">
+                        <option>Rok 1</option>
+                        <option>Rok 2</option>
+                        <option>Rok 3</option>
+                        <option>Rok 4</option>
+                    </select>
+                    <label>Liczba Godzin dla Przedmiotu</label>
+                    <input type="text" class="form-control" id="getSubjectHours" placeholder="60">
+                    <div>
+                        <button type="button" id="addGroupButton" class="btn btn-dark btnAdd">Dodaj Grupe</button>
                     </div>
                     <div>
                         <button type="button" id="getSubjectButton" class="btn btn-dark btnAdd">Dodaj</button>
@@ -94,43 +86,63 @@
                         <tr>
                             <th>Name</th>
                             <th>Lastname</th>
-                            <th>Subject</th>
+                            <th>degree</th>
                         </tr>
                         </thead>
                     </table>
                 </div>
                 <div id="GroupContainer" class="inputElement">
-                    <div class="elementHead">
-                        <h3>Dodaj Group</h3>
-                    </div>
-                    <div>
-                        <label>Rok Studiów</label>
-                        <select name="Year" id="getGroupYear">
-                            <option>Rok 1</option>
-                            <option>Rok 2</option>
-                            <option>Rok 3</option>
-                            <option>Rok 4</option>
-                        </select>
-                        <label>Typ Grupy</label>
-                        <select name="GroupType" id="getGroupType">
-                            <option>Wykład</option>
-                            <option>Ćwiczenia</option>
-                            <option>Labolatoria</option>
-                            <option>Przedmiot do Wyboru</option>
-                        </select>
-                        <label>Numer Grupy</label>
-                        <select name="GroupNumber" id="getGroupNumber">
-                            <option>Grupa 1</option>
-                            <option>Grupa 2</option>
-                            <option>Grupa 3</option>
-                            <option>Grupa 4</option>
-                        </select>
-                        <div class="inputField">
-                            <input type="text" class="form-control" id="getGroupSize" placeholder="Rozmiar Grupy">
-                        </div>
+                    <!--
+                   <div class="GroupElements">
+                       <h3>Dodaj Group</h3>
+                   </div>
+                   <div>
+                       <label>Typ Grupy</label>
+                       <select name="GroupType" class="form-control" id="getGroupType">
+                           <option>Wykład</option>
+                           <option>Ćwiczenia/Labolatoria</option>
+                           <option>Przedmiot do Wyboru</option>
+                       </select>
+                       <label>Rozmiar Grupy</label>
+                       <div class="inputField">
+                           <input type="text" class="form-control" id="getGroupSize" placeholder="50">
+                       </div>
+                       <label>Rok Studiów</label>
+                       <select name="Year" class="form-control" id="getGroupYear">
+                           <option>Rok 1</option>
+                           <option>Rok 2</option>
+                           <option>Rok 3</option>
+                           <option>Rok 4</option>
+                       </select>
+                       <label>Ilosc godzin dla przedmiotu</label>
+                       <div class="inputField">
+                           <input type="text" class="form-control" id="getGroupHours" placeholder="30">
+                       </div>
+                       <label>Nazwa Grupy</label>
+                       <select name="GroupName" class="form-control" id="getGroupName">
+                           <option>Grupa 1</option>
+                           <option>Grupa 2</option>
+                           <option>Grupa 3</option>
+                           <option>Grupa 4</option>
+                           <option>Grupa 5</option>
+                           <option>Grupa 6</option>
+                       </select>
+                       <label>Wykładowca grupy</label>
+                       <div id="SelectGroupLecturer" class="test">
+                           <select id="selectLec" class="form-select display">
+                               <option value = ""></option>
+                           </select>
+                       </div>
+                       <label>Sala Grupy</label>
+                       <div id="SelectGroupRoom" class="test">
+                           <select id="selectRm" class="form-select display">
+                               <option value = ""></option>
+                           </select>
+                       </div>
+
                         <button type="button" id="getGroupButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
-                    <div class="results" id="GroupResult">Result</div>
+                    -->
                 </div>
                 <div id="MeetingContainer" class="inputElement">
                     <div class="elementHead">
@@ -156,16 +168,6 @@
                     </div>
                     <div class="results" id="RoomResult">Result</div>
                 </div>
-                <div id="SubjectNameContainer" class="inputElement">
-                    <div class="elementHead">
-                        <h3>Dodaj SubjectName</h3>
-                    </div>
-                    <div>
-                        <input type="text" class="form-control" id="getSubjectName" placeholder="Nazwa Przedmiotu">
-                        <button type="button" id="getSubjectNameButton" class="btn btn-dark btnAdd">Dodaj</button>
-                    </div>
-                    <div class="results" id="SubjectNameResult">Result</div>
-                </div>
                 <div id="NoteContainer" class="inputElement">
                     <div class="elementHead">
                         <h3>Dodaj Note</h3>
@@ -188,8 +190,15 @@
                     <h3>Dodaj Lecturer</h3>
                 </div>
                 <div>
-                    <input type="text" class="form-control" id="getLecturerName" placeholder="Imie"><input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko">
-                    <input type="text" class="form-control" id="getLeturerSubject" placeholder="Nazwa przedmiotu">
+                    <input type="text" class="form-control" id="getLecturerName" placeholder="Imie">
+                    <input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko">
+                    <select name="GroupType" class="form-control" id="getLeturerDegree">
+                        <option>Inzynier</option>
+                        <option>Magister</option>
+                        <option>Doktor</option>
+                        <option>Doktor Habilitowany</option>
+                        <option>Profesor</option>
+                    </select>
                 </div>
                 <button type="button" id="getLecturerButton" class="btn btn-dark btnAdd">Dodaj</button>
                 <div class="results" id="LecturerResult">Result</div>

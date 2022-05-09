@@ -34,8 +34,18 @@ $(document).ready(function(){ // START
         $("#NoteContainer").show();
     });
 
+    // Here starts Code for adding multiple grops for object at once
 
-    $("#addGroupButton").click(function () { // adding multiple groups in one subject
+    let GroupType = [];
+    let GroupSize = [];
+    let GroupYear = [];
+    let GroupHours = [];
+    let GroupName = [];
+    let GroupLecturer = [];
+    let GroupRoom = [];
+
+
+    $("#addGroupButton").click(function () { // add group input fields and push them to array
 
         $("#GroupContainer").append("<div class=\"GroupElements\">\n" +
             "                       <h3>Dodaj Group</h3>\n" +
@@ -84,6 +94,22 @@ $(document).ready(function(){ // START
             "                           </select>\n" +
             "                       </div>");
 
+        let getGroupTypeInput = $("#getGroupType").val();
+        let getGroupSizeInput = $("#getGroupSize").val();
+        let getGroupYearInput = $("#getGroupYear").val();
+        let getGroupHoursInput = $("#getGroupHours").val();
+        let getGroupNameInput = $("#getGroupName").val();
+        let SelectGroupLecturerInput = $("#SelectGroupLecturer option:selected").val();
+        let SelectGroupRoomInput = $("#SelectGroupRoom option:selected").val();
+
+        GroupType.push(getGroupTypeInput);
+        GroupSize.push(getGroupSizeInput);
+        GroupYear.push(getGroupYearInput);
+        GroupHours.push(getGroupHoursInput);
+        GroupName.push(getGroupNameInput);
+        GroupLecturer.push(SelectGroupLecturerInput);
+        GroupRoom.push(SelectGroupRoomInput);
+
         $("#GroupContainer").show();
     });
     /**
@@ -98,10 +124,12 @@ $(document).ready(function(){ // START
         //let SelectSubjectNameInput = $("#SelectSubjectName option:selected").val(); // We need to get values about SubjectName form DataBase :) -> Select SubjectName to be used here
         //let SelectLecturerInput = $("#SelectLecturer option:selected").val();// We need to get info about Lecturers from DataBase :) -> Select list to be used here
         //let SelectGroupInput = $("#SelectGroup option:selected").val();// We need to get values about groups form DataBase :) -> Select Group to be used here
-        ///$("#SubjectResult").text(getSubjectNameInput + " " + SelectLecturerInput + " " + SelectGroupInput);
 
         const SubjectJSON = jQuery.parseJSON( '{ "name": "'+getSubjectNameInput+'","subject_year": "'+getSubjectYearInput+'","subject_hours": "'+getSubjectHoursInput+'"}' );
-        console.log(JSON.stringify(SubjectJSON));
+        console.log(JSON.stringify(SubjectJSON)); //json for subject inputs
+
+        const GroupJSON = jQuery.parseJSON( '{ "group_type": "'+GroupType+'", "group_size": "'+GroupSize+'", "group_year": "'+GroupYear+'", "group_hours": "'+GroupHours+'", "group_name": "'+GroupName+'", "group_lecturer": "'+GroupLecturer+'", "group_room": "'+GroupRoom+'", }' );
+        console.log(JSON.stringify(GroupJSON)); //json for all groups inputs
     });
     $("#getLecturerButton").click(function() { // adding new lecturer - tmp output in line below
 
@@ -111,6 +139,7 @@ $(document).ready(function(){ // START
         const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerLastNameInput+'","degree": "'+getLecturerDegreeInput+'" }' );
         console.log(JSON.stringify(LecturerJSON));
     });
+    /*
     $("#getGroupButton").click(function() {
         let getGroupTypeInput = $("#getGroupType").val();
         let getGroupSizeInput = $("#getGroupSize").val();
@@ -123,6 +152,7 @@ $(document).ready(function(){ // START
 
         console.log(JSON.stringify(GroupJSON));
     });
+    */
     $("#getMeetingButton").click(function() {
         let getMeetingStartDateInput = $("#dateStart").val();
         var getMeetingEndDateInput = new Date(getMeetingStartDateInput);

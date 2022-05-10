@@ -179,8 +179,8 @@ $(document).ready(function(){ // START
                 console.log(meeting)
             }
         });
-
     });
+
     $("#getNoteButton").click(function() {
         let getNoteTitle = $("#getNoteTitle").val();
         let getNoteInput = $("#getNoteInput").val();
@@ -252,24 +252,25 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#mettingtable').DataTable({
         "ajax": {
-            "url": "http://localhost:8080/api/v1/metting",
+            "url": "http://localhost:8080/api/v1/meeting",
             "type": "GET",
             "dataSrc": "",
         },
         "columns": [{
-            data: "date_from"
+            data: "dateFrom"
         },
             {
-                data: "date_to"
+                data: "dateTo"
             }
         ]
     });
 });
+/*
 ////NOTE DATATABLE////
 $(document).ready(function() {
     $('#notetable').DataTable({
         "ajax": {
-            "url": "http://localhost:8080/api/v1/metting",
+            "url": "http://localhost:8080/api/v1/note",
             "type": "GET",
             "dataSrc": "",
         },
@@ -282,7 +283,7 @@ $(document).ready(function() {
         ]
     });
 });
-
+*/
 
 /////////////////////////////////SELECTS DISPLAY(IN GROUPS INPUT)//////////////////////////////
 ////LECTURER SELECT////

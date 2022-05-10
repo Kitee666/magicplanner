@@ -49,8 +49,6 @@ $(document).ready(function(){ // START
 
         $("#GroupContainer").append("<div class=\"GroupElements\">\n" +
             "                       <h3>Dodaj Group</h3>\n" +
-            "                   </div>\n" +
-            "                   <div>\n" +
             "                       <label>Typ Grupy</label>\n" +
             "                       <select name=\"GroupType\" class=\"form-control\" id=\"getGroupType\">\n" +
             "                           <option>Wykład</option>\n" +
@@ -92,7 +90,8 @@ $(document).ready(function(){ // START
             "                           <select id=\"selectRm\" class=\"form-select display\">\n" +
             "                               <option value = \"\"></option>\n" +
             "                           </select>\n" +
-            "                       </div>");
+            "                       </div>\n" +
+            "                    </div>");
 
         let getGroupTypeInput = $("#getGroupType").val();
         let getGroupSizeInput = $("#getGroupSize").val();
@@ -121,9 +120,6 @@ $(document).ready(function(){ // START
         let getSubjectNameInput = $("#getSubjectName").val();
         let getSubjectYearInput = $("#getSubjectYear").val();
         let getSubjectHoursInput = $("#getSubjectHours").val();
-        //let SelectSubjectNameInput = $("#SelectSubjectName option:selected").val(); // We need to get values about SubjectName form DataBase :) -> Select SubjectName to be used here
-        //let SelectLecturerInput = $("#SelectLecturer option:selected").val();// We need to get info about Lecturers from DataBase :) -> Select list to be used here
-        //let SelectGroupInput = $("#SelectGroup option:selected").val();// We need to get values about groups form DataBase :) -> Select Group to be used here
 
         const SubjectJSON = jQuery.parseJSON( '{ "name": "'+getSubjectNameInput+'","subject_year": "'+getSubjectYearInput+'","subject_hours": "'+getSubjectHoursInput+'"}' );
         console.log(JSON.stringify(SubjectJSON)); //json for subject inputs
@@ -136,8 +132,20 @@ $(document).ready(function(){ // START
         let getLecturerNameInput = $("#getLecturerName").val();
         let getLecturerLastNameInput = $("#getLecturerLastName").val();
         let getLecturerDegreeInput = $("#getLeturerDegree").val(); // !IMPORTANT -> RED FAL
-        const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerLastNameInput+'","degree": "'+getLecturerDegreeInput+'" }' );
-        console.log(JSON.stringify(LecturerJSON));
+        //const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerLastNameInput+'","title": "'+getLecturerDegreeInput+'" }' );
+        //console.log(JSON.stringify(LecturerJSON));
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://localhost:8080/api/v1/lecturer",
+            data: JSON.stringify({"name": getLecturerNameInput,"lastname": getLecturerLastNameInput,"title": getLecturerDegreeInput}),
+            success : function(lecturer){
+                console.log(lecturer)
+            }
+        });
+
     });
     /*
     $("#getGroupButton").click(function() {
@@ -155,23 +163,48 @@ $(document).ready(function(){ // START
     */
     $("#getMeetingButton").click(function() {
         let getMeetingStartDateInput = $("#dateStart").val();
-        var getMeetingEndDateInput = new Date(getMeetingStartDateInput);
+        let getMeetingEndDateInput = new Date(getMeetingStartDateInput);
         getMeetingEndDateInput.setDate(getMeetingEndDateInput.getDate() + 1); // something like that XD
         getMeetingEndDateInput = getMeetingEndDateInput.getFullYear() + '-' + (getMeetingEndDateInput.getMonth() < 10 ? '0' : '') + (getMeetingEndDateInput.getMonth()+1) + '-'+ (getMeetingEndDateInput.getDate() < 10 ? '0' : '') + getMeetingEndDateInput.getDate(); // date with leading zeros (i know it looks like shit...)
-        const MeetingJSON = jQuery.parseJSON( '{ "date_from": "'+getMeetingStartDateInput+'","date_to": "'+getMeetingEndDateInput+'" }' );
-        console.log(JSON.stringify(MeetingJSON));
+        //const MeetingJSON = jQuery.parseJSON( '{ "date_from": "'+getMeetingStartDateInput+'","date_to": "'+getMeetingEndDateInput+'" }' );
+        //console.log(JSON.stringify(MeetingJSON));
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://localhost:8080/api/v1/meeting",
+            data: JSON.stringify({"dateFrom": getMeetingStartDateInput,"dateTo": getMeetingEndDateInput}),
+            success : function(meeting){
+                console.log(meeting)
+            }
+        });
     });
+
     $("#getNoteButton").click(function() {
         let getNoteTitle = $("#getNoteTitle").val();
         let getNoteInput = $("#getNoteInput").val();
         const NotesJSON = jQuery.parseJSON( '{ "title": "'+getNoteTitle+'","content": "'+getNoteInput+'" }' );
         console.log(JSON.stringify(NotesJSON));
+
     });
     $("#getRoomButton").click(function() {
-        let getRoomName = $("#getRoomName").val();
+        let getRoomName = $("#getRoomNumber").val();
         let getRoomSize = $("#getRoomSize").val();
-        const RoomJSON = jQuery.parseJSON( '{ "number": "'+getRoomName+'", "size": "'+getRoomSize+'" }' );
-        console.log(JSON.stringify(RoomJSON));
+        //const RoomJSON = jQuery.parseJSON( '{ "number": "'+getRoomName+'", "size": "'+getRoomSize+'" }' );
+        //console.log(JSON.stringify(RoomJSON));
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://localhost:8080/api/v1/room",
+            data: JSON.stringify({"number": getRoomName,"size": getRoomSize}),
+            success : function(room){
+                console.log(room)
+            }
+        });
+
     });
 });
 
@@ -193,25 +226,80 @@ $(document).ready(function() {
                 data: "lastname"
             },
             {
-                data: "subject"
+                data: "title"
             }
         ]
     });
 });
+////ROOM DATATABLE////
+$(document).ready(function() {
+    $('#roomtable').DataTable({
+        "ajax": {
+            "url": "http://localhost:8080/api/v1/room",
+            "type": "GET",
+            "dataSrc": "",
+        },
+        "columns": [{
+            data: "number"
+        },
+            {
+                data: "size"
+            }
+        ]
+    });
+});
+////MEETING DATATABLE////
+$(document).ready(function() {
+    $('#mettingtable').DataTable({
+        "ajax": {
+            "url": "http://localhost:8080/api/v1/meeting",
+            "type": "GET",
+            "dataSrc": "",
+        },
+        "columns": [{
+            data: "dateFrom"
+        },
+            {
+                data: "dateTo"
+            }
+        ]
+    });
+});
+/*
+////NOTE DATATABLE////
+$(document).ready(function() {
+    $('#notetable').DataTable({
+        "ajax": {
+            "url": "http://localhost:8080/api/v1/note",
+            "type": "GET",
+            "dataSrc": "",
+        },
+        "columns": [{
+            data: "title"
+        },
+            {
+                data: "noteinput"
+            }
+        ]
+    });
+});
+*/
 
+/////////////////////////////////SELECTS DISPLAY(IN GROUPS INPUT)//////////////////////////////
+////LECTURER SELECT////
 $(document).ready(function() {
     let selectL = $('#selectLec');
 
     $.ajax({
         type: 'GET',
         dataType: 'json',
-        url: "http://localhost:8080/api/v1/lecturer",
+        url: api_lecturer,
         success : function(lecturers){
             console.log(lecturers)
 
             $.each(lecturers, function(i, item) {
                 let option = $("<option>");
-                option.text(item.name + " " + item.lastname + " " + item.stopien);
+                option.text(item.name + " " + item.lastname + " " + item.title);
                 option.attr("value", item.id);
                 selectL.append(option);
             });
@@ -219,6 +307,7 @@ $(document).ready(function() {
     });
 });
 
+////ROOM SELECT////
 $(document).ready(function() {
     let selectR = $('#selectRm');
 
@@ -229,7 +318,7 @@ $(document).ready(function() {
         success : function(room){
             console.log(room)
 
-            $.each(lecturers, function(i, item) {
+            $.each(room, function(i, item) {
                 let option = $("<option>");
                 option.text(item.number + " " + item.size);
                 option.attr("value", item.id);

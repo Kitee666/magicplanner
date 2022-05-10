@@ -1,6 +1,4 @@
-/**
- *                      TEN JQUERY TO JEST CHUJ I CIPA -> NIC Z TEGO NIE BEDZIE -> ELO
- * */
+
 $(document).ready(function(){ // START
     $('.inputElement').hide(); // hide all inputs
     /**

@@ -174,7 +174,7 @@ $(document).ready(function(){ // START
             dataType: 'json',
             contentType: 'application/json; charset=UTF-8',
             url: "http://localhost:8080/api/v1/meeting",
-            data: JSON.stringify({"date_from": getMeetingStartDateInput,"date_to": getMeetingEndDateInput}),
+            data: JSON.stringify({"dateFrom": getMeetingStartDateInput,"dateTo": getMeetingEndDateInput}),
             success : function(meeting){
                 console.log(meeting)
             }

@@ -20,6 +20,11 @@ public class EventController {
         return repository.findAll();
     }
 
+    @GetMapping("/event/filtered")
+    List<Event> findAllBetween() {
+        return repository.findAll();
+    }
+
     @GetMapping("/event/{id}")
     Event findOne(@PathVariable Long id) {
         return repository.findById(id)

@@ -59,7 +59,6 @@
                 <div id="SubjectContainer" class="inputElement">
                     <div class="elementHead">
                         <h3>Dodaj Subject</h3>
-                    </div>
                     <label>Nazwa Przedmmiotu</label>
                     <input type="text" class="form-control" id="getSubjectName" placeholder="Programowanie I">
                     <label>Rok Przedmiotu</label>
@@ -78,9 +77,10 @@
                         <button type="button" id="getSubjectButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
                     <div class="results" id="SubjectResult">Result</div>
+                    </div>
                 </div>
                 <div id="LecturerContainer" class="inputElement">
-                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModal" >Dodaj</button>
+                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalLecturer" >Dodaj</button>
                     <table id="lecturertable" class="display" style="width:100%">
                         <thead>
                         <tr>
@@ -91,12 +91,12 @@
                         </thead>
                     </table>
                 </div>
+
                 <div id="GroupContainer" class="inputElement">
-                    <!--
+                    </div>
+                <!--
                    <div class="GroupElements">
                        <h3>Dodaj Group</h3>
-                   </div>
-                   <div>
                        <label>Typ Grupy</label>
                        <select name="GroupType" class="form-control" id="getGroupType">
                            <option>Wykład</option>
@@ -139,51 +139,46 @@
                                <option value = ""></option>
                            </select>
                        </div>
-
-                        <button type="button" id="getGroupButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
                     -->
-                </div>
                 <div id="MeetingContainer" class="inputElement">
-                    <div class="elementHead">
-                        <h3>Dodaj Meeting</h3>
-                    </div>
-                    <div class="datePick">
-                        <p class="pickerSub">Początek zjazdu</p>
-                        <input type="date" class="picker" id="dateStart" />
-                    </div>
-                    <div>
-                        <button type="button" id="getMeetingButton" class="btn btn-dark btnAdd">Dodaj</button>
-                    </div>
-                    <div class="results" id="MeetingResult">Result</div>
+                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalMetting" >Dodaj</button>
+                    <table id="mettingtable" class="display" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>dateStart</th>
+                            <th>dateEnd</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
                 <div id="RoomContainer" class="inputElement">
-                    <div class="elementHead">
-                        <h3>Dodaj Room</h3>
-                    </div>
-                    <div>
-                        <input type="text" class="form-control" id="getRoomName" placeholder="Nazwa Sali">
-                        <input type="text" class="form-control" id="getRoomSize" placeholder="Rozmiar Sali">
-                        <button type="button" id="getRoomButton" class="btn btn-dark btnAdd">Dodaj</button>
-                    </div>
-                    <div class="results" id="RoomResult">Result</div>
+                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalRoom" >Dodaj</button>
+                    <table id="roomtable" class="display" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>getRoomNumber</th>
+                            <th>getRoomSize</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
                 <div id="NoteContainer" class="inputElement">
-                    <div class="elementHead">
-                        <h3>Dodaj Note</h3>
-                    </div>
-                    <div>
-                        <input type="text" class="form-control" id="getNoteTitle" placeholder="Nazwa Notatki">
-                        <input type="text" class="form-control" id="getNoteInput" placeholder="Tekst">
-                        <button type="button" id="getNoteButton" class="btn btn-dark btnAdd">Dodaj</button>
-                    </div>
-                    <div class="results" id="NoteResult">Result</div>
+                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalNote" >Dodaj</button>
+                    <table id="notetable" class="display" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th>getNoteTitle</th>
+                            <th>getNoteInput</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
     <!--  MODAL FOR LECTURER  -->
-    <div class="modal" id="myModal">
+    <div class="modal" id="myModalLecturer">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="elementHead">
@@ -205,5 +200,54 @@
             </div>
         </div>
     </div>
+    <!--  MODAL FOR Metting -->
+    <div class="modal" id="myModalMetting">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="elementHead">
+                    <h3>Dodaj Metting</h3>
+                </div>
+                <div>
+                    <p class="datePick">Początek zjazdu</p>
+                    <input type="date" class="pickerSub" id="dateStart" />
+                </div>
+                <button type="button" id="getMeetingButton" class="btn btn-dark btnAdd">Dodaj</button>
+                <div class="results" id="MettingResult">Result</div>
+            </div>
+        </div>
+    </div>
+    <!--  MODAL FOR Room -->
+    <div class="modal" id="myModalRoom">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="elementHead">
+                    <h3>Dodaj Room</h3>
+                </div>
+                <div>
+                    <input type="text" class="form-control" id="getRoomNumber" placeholder="L12">
+                    <input type="text" class="form-control" id="getRoomSize" placeholder="30">
+                </div>
+                <button type="button" id="getRoomButton" class="btn btn-dark btnAdd">Dodaj</button>
+                <div class="results" id="RoomResult">Result</div>
+            </div>
+        </div>
+    </div>
+    <!--  MODAL FOR Note -->
+    <div class="modal" id="myModalNote">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="elementHead">
+                    <h3>Dodaj Room</h3>
+                </div>
+                <div>
+                    <input type="text" class="form-control" id="getNoteTitle" placeholder="Tytuł">
+                    <input type="text" class="form-control" id="getNoteInput" placeholder="dawno temu">
+                </div>
+                <button type="button" id="getNoteButton" class="btn btn-dark btnAdd">Dodaj</button>
+                <div class="results" id="NoteResult">Result</div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

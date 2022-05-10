@@ -26,7 +26,6 @@ public class EventController {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-
     @PostMapping("/event")
     Event add(@RequestBody Event newEvent) {
         return repository.save(newEvent);

@@ -3,11 +3,9 @@ package pl.umk.mat.planner.meeting;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import pl.umk.mat.planner.event.Event;
 
 import javax.persistence.*;
-import java.time.OffsetDateTime;
-import java.util.List;
+import java.time.LocalDate;
 
 @NoArgsConstructor
 @Getter
@@ -21,12 +19,12 @@ public class Meeting {
     private Long id;
 
     @Column(name = "date_from", nullable = false, unique = true)
-    private OffsetDateTime dateFrom;
+    private LocalDate dateFrom;
 
     @Column(name = "date_to", nullable = false, unique = true)
-    private OffsetDateTime dateTo;
+    private LocalDate dateTo;
 
-    public Meeting(OffsetDateTime dateFrom, OffsetDateTime dateTo) {
+    public Meeting(LocalDate dateFrom, LocalDate dateTo) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
     }

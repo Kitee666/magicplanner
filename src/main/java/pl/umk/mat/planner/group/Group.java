@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.umk.mat.planner.connector.Connector;
 import pl.umk.mat.planner.types.groupType;
+import pl.umk.mat.planner.types.yearType;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -31,7 +32,7 @@ public class Group {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "year_type", nullable = false)
-    private pl.umk.mat.planner.types.yearType yearType;
+    private yearType yearType;
 
     @Column(name = "hours", nullable = false)
     private Integer hours;

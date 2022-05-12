@@ -1,5 +1,7 @@
 package pl.umk.mat.planner.connector;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,6 +42,7 @@ public class Connector {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "connector", orphanRemoval = true)
     private Collection<Event> events = new ArrayList<>();
 

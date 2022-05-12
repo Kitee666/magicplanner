@@ -1,9 +1,11 @@
 package pl.umk.mat.planner.lecturer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.umk.mat.planner.connector.Connector;
 
 import javax.persistence.*;
@@ -31,7 +33,9 @@ public class Lecturer {
     @Column(name = "title")
     private String title;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "lecturer", orphanRemoval = true)
     private Collection<Connector> connectors = new ArrayList<>();
+
 
 }

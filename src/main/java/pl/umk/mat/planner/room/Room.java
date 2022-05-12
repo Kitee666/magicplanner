@@ -1,5 +1,6 @@
 package pl.umk.mat.planner.room;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class Room {
     @Column(name = "size", nullable = false)
     private Integer size;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "room", orphanRemoval = true)
     private Collection<Event> events = new ArrayList<>();
 

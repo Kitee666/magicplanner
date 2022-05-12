@@ -1,5 +1,7 @@
 package pl.umk.mat.planner.event;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +34,7 @@ public class Event {
     @JoinColumn(name = "connector_id", nullable = false)
     private Connector connector;
 
+    @JsonBackReference
     @ManyToOne(optional = false)
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;

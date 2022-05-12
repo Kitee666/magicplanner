@@ -212,3 +212,10 @@ button {
     padding: 20px;
     height: 70vh;
 }
+
+.inputView .right .MainContainer .inputElement .GroupElements {
+    border-radius: 6px;
+    border: 1px solid #000000;
+    height: 35px;
+    margin-bottom: 23px;
+}

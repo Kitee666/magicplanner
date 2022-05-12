@@ -1,7 +1,5 @@
 package pl.umk.mat.planner.types;
 
-import java.util.stream.Stream;
-
 public enum yearType {
     ROK_I(1),
     ROK_II(2),

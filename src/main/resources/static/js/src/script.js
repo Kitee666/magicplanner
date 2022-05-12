@@ -1,6 +1,3 @@
-/**
- *                      TEN JQUERY TO JEST CHUJ I CIPA -> NIC Z TEGO NIE BEDZIE -> ELO
- * */
 $(document).ready(function(){ // START
     $('.inputElement').hide(); // hide all inputs
     /**
@@ -37,16 +34,20 @@ $(document).ready(function(){ // START
     // Here starts Code for adding multiple groups for object at once
     let GroupLecturerJSON = [];
     let GroupRoomJSON = [];
+    var id = 0;
 
     $("#addGroupButton").click(function () { // add group input fields and push them to array
+
+        id ++;
+
 
         $("#GroupContainer").append($("<h3>Dodaj Group</h3>\n" +
             "                        <label>Ilosc godzin dla przedmiotu</label>\n" +
             "                        <div class=\"inputField\">\n" +
-            "                            <input type=\"text\" class=\"GroupElements\" id=\"getGroupHours\" placeholder=\"30\">\n" +
+            "                            <input type=\"text\" class=\"form-control GroupElements\" id=\"getGroupHours\" placeholder=\"30\">\n" +
             "                        </div>\n" +
             "                        <label>Nazwa Grupy</label>\n" +
-            "                        <select name=\"GroupName\" class=\"GroupElements\" id=\"getGroupName\">\n" +
+            "                        <select name=\"GroupName\" class=\"form-control GroupElements\"  id=\"getGroupName\">\n" +
             "                            <option>Grupa 1</option>\n" +
             "                            <option>Grupa 2</option>\n" +
             "                            <option>Grupa 3</option>\n" +
@@ -56,16 +57,16 @@ $(document).ready(function(){ // START
             "                        </select>\n" +
             "                        <label>Rozmiar Grupy</label>\n" +
             "                        <div class=\"inputField\">\n" +
-            "                            <input type=\"text\" class=\"GroupElements\" id=\"getGroupSize\" placeholder=\"50\">\n" +
+            "                            <input type=\"text\" class=\"form-control GroupElements\" id=\"getGroupSize\" placeholder=\"50\">\n" +
             "                        </div>\n" +
             "                        <label>Typ Grupy</label>\n" +
-            "                        <select name=\"GroupType\" class=\"GroupElements\" id=\"getGroupType\">\n" +
+            "                        <select name=\"GroupType\" class=\"form-control GroupElements\" id=\"getGroupType\">\n" +
             "                            <option>WYKLAD</option>\n" +
             "                            <option>LAB</option>\n" +
             "                            <option>NIEST</option>\n" +
             "                        </select>\n" +
             "                        <label>Rok Studiów</label>\n" +
-            "                        <select name=\"Year\" class=\"GroupElements\" id=\"getGroupYear\">\n" +
+            "                        <select name=\"Year\" class=\"form-control GroupElements\" id=\"getGroupYear\">\n" +
             "                            <option>ROK_I</option>\n" +
             "                            <option>ROK_II</option>\n" +
             "                            <option>ROK_III</option>\n" +
@@ -73,18 +74,62 @@ $(document).ready(function(){ // START
             "                        </select>\n" +
             "                        <label>Wykładowca grupy</label>\n" +
             "                        <div id=\"SelectGroupLecturer\" class=\"test1\">\n" +
-            "                            <select id=\"selectLec\" class=\"form-select display\">\n" +
+            `                            <select id=\"selectLec${id}\" ` +
+            "                           class=\"form-select display\">\n" +
             "                                <option value = \"\"></option>\n" +
             "                            </select>\n" +
             "                        </div>\n" +
             "                        <label>Sala Grupy</label>\n" +
             "                        <div id=\"SelectGroupRoom\" class=\"test2\">\n" +
-            "                            <select id=\"selectRm\" class=\"form-select display\">\n" +
+            `                            <select id=\"selectRm${id}\" ` +
+            "                                  class=\"form-select display\">\n" +
             "                                <option value = \"\"></option>\n" +
             "                            </select>\n" +
             "                        </div>"));
 
         $("#GroupContainer").show();
+
+        /////////////////////////////////SELECTS DISPLAY(IN GROUPS INPUT)//////////////////////////////
+        ////LECTURER SELECT////
+        $(document).ready(function() {
+            let selectL = $('#selectLec'+ id);
+
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: api_lecturer,
+                success : function(lecturers){
+                    console.log(lecturers)
+                    $.each(lecturers, function(i, item) {
+                        let option = $("<option>");
+                        option.text(item.name + " " + item.lastname + " " + item.title);
+                        option.attr("value", item.id);
+                        selectL.append(option);
+                    });
+                }
+            });
+        });
+
+        ////ROOM SELECT////
+        $(document).ready(function() {
+            let selectR = $('#selectRm' + id);
+
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "http://localhost:8080/api/v1/room",
+                success : function(room){
+                    console.log(room)
+
+                    $.each(room, function(i, item) {
+                        let option = $("<option>");
+                        option.text(item.number + " " + item.size);
+                        option.attr("value", item.id);
+                        selectR.append(option);
+                    });
+                }
+            });
+        });
     });
     /**
      * BUTTONS - ON CLICK OPTION WITH ACTION
@@ -109,7 +154,7 @@ $(document).ready(function(){ // START
             GroupRoomJSON.push($( this ).val());
         });
 
-        // Subject Posting Data
+        ///////// Subject Post'ing Data
 
         $.ajax({
             type: 'POST',
@@ -123,7 +168,7 @@ $(document).ready(function(){ // START
             }
         });
 
-        //Group Posting Data
+        //////Group Post'ing Data
 
         var groupEL = 1;
         let getGroupHoursInput;
@@ -133,8 +178,6 @@ $(document).ready(function(){ // START
         let getGroupYearTypeInput;
 
         $( ".GroupElements" ).each(function( index ) {
-            //console.log( index + ": " + $( this ).val() );
-            //console.log($( this ).val());
             if (groupEL == 1){
                 getGroupHoursInput = $( this ).val();
             }
@@ -158,7 +201,6 @@ $(document).ready(function(){ // START
                     contentType: 'application/json; charset=UTF-8',
                     url: "http://localhost:8080/api/v1/group",
                     data: JSON.stringify(GroupJSON),
-                    //data: JSON.stringify({ "hours": getGroupHoursInput ,"name": getGroupNameInput,"size": getGroupSizeInput,"type": getGroupTypeInput,"year_type": getGroupYearTypeInput}),
                     success : function(lecturer){
                         console.log(lecturer)
                     }
@@ -328,46 +370,3 @@ $(document).ready(function() {
     });
 });
 */
-
-/////////////////////////////////SELECTS DISPLAY(IN GROUPS INPUT)//////////////////////////////
-////LECTURER SELECT////
-$(document).ready(function() {
-    let selectL = $('#selectLec');
-
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: api_lecturer,
-        success : function(lecturers){
-            console.log(lecturers)
-
-            $.each(lecturers, function(i, item) {
-                let option = $("<option>");
-                option.text(item.name + " " + item.lastname + " " + item.title);
-                option.attr("value", item.id);
-                selectL.append(option);
-            });
-        }
-    });
-});
-
-////ROOM SELECT////
-$(document).ready(function() {
-    let selectR = $('#selectRm');
-
-    $.ajax({
-        type: 'GET',
-        dataType: 'json',
-        url: "http://localhost:8080/api/v1/room",
-        success : function(room){
-            console.log(room)
-
-            $.each(room, function(i, item) {
-                let option = $("<option>");
-                option.text(item.number + " " + item.size);
-                option.attr("value", item.id);
-                selectR.append(option);
-            });
-        }
-    });
-});

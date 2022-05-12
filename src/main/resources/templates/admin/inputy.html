@@ -63,10 +63,10 @@
                     <input type="text" class="form-control" id="getSubjectName" placeholder="Programowanie I">
                     <label>Rok Przedmiotu</label>
                     <select name="Year" class="form-control" id="getSubjectYear">
-                        <option>Rok 1</option>
-                        <option>Rok 2</option>
-                        <option>Rok 3</option>
-                        <option>Rok 4</option>
+                        <option>ROK_I</option>
+                        <option>ROK_II</option>
+                        <option>ROK_III</option>
+                        <option>ROK_IV</option>
                     </select>
                     <label>Liczba Godzin dla Przedmiotu</label>
                     <input type="text" class="form-control" id="getSubjectHours" placeholder="60">
@@ -93,27 +93,54 @@
                 </div>
 
                 <div id="GroupContainer" class="inputElement">
-                    </div>
+                    <!--
+                        <h3>Dodaj Group</h3>
+                        <label>Ilosc godzin dla przedmiotu</label>
+                        <div class="inputField">
+                            <input type="text" class="GroupElements" id="getGroupHours" placeholder="30">
+                        </div>
+                        <label>Nazwa Grupy</label>
+                        <select name="GroupName" class="GroupElements" id="getGroupName">
+                            <option>Grupa 1</option>
+                            <option>Grupa 2</option>
+                            <option>Grupa 3</option>
+                            <option>Grupa 4</option>
+                            <option>Grupa 5</option>
+                            <option>Grupa 6</option>
+                        </select>
+                        <label>Rozmiar Grupy</label>
+                        <div class="inputField">
+                            <input type="text" class="GroupElements" id="getGroupSize" placeholder="50">
+                        </div>
+                        <label>Typ Grupy</label>
+                        <select name="GroupType" class="GroupElements" id="getGroupType">
+                            <option>Wykład</option>
+                            <option>Ćwiczenia/Labolatoria</option>
+                            <option>Przedmiot do Wyboru</option>
+                        </select>
+                        <label>Rok Studiów</label>
+                        <select name="Year" class="GroupElements" id="getGroupYear">
+                            <option>Rok 1</option>
+                            <option>Rok 2</option>
+                            <option>Rok 3</option>
+                            <option>Rok 4</option>
+                        </select>
+                        <label>Wykładowca grupy</label>
+                        <div id="SelectGroupLecturer" class="test1">
+                            <select id="selectLec" class="form-select display">
+                                <option value = ""></option>
+                            </select>
+                        </div>
+                        <label>Sala Grupy</label>
+                        <div id="SelectGroupRoom" class="test2">
+                            <select id="selectRm" class="form-select display">
+                                <option value = ""></option>
+                            </select>
+                        </div>
+                        -->
                 <!--
                    <div class="GroupElements">
                        <h3>Dodaj Group</h3>
-                       <label>Typ Grupy</label>
-                       <select name="GroupType" class="form-control" id="getGroupType">
-                           <option>Wykład</option>
-                           <option>Ćwiczenia/Labolatoria</option>
-                           <option>Przedmiot do Wyboru</option>
-                       </select>
-                       <label>Rozmiar Grupy</label>
-                       <div class="inputField">
-                           <input type="text" class="form-control" id="getGroupSize" placeholder="50">
-                       </div>
-                       <label>Rok Studiów</label>
-                       <select name="Year" class="form-control" id="getGroupYear">
-                           <option>Rok 1</option>
-                           <option>Rok 2</option>
-                           <option>Rok 3</option>
-                           <option>Rok 4</option>
-                       </select>
                        <label>Ilosc godzin dla przedmiotu</label>
                        <div class="inputField">
                            <input type="text" class="form-control" id="getGroupHours" placeholder="30">
@@ -126,6 +153,23 @@
                            <option>Grupa 4</option>
                            <option>Grupa 5</option>
                            <option>Grupa 6</option>
+                       </select>
+                       <label>Rozmiar Grupy</label>
+                       <div class="inputField">
+                           <input type="text" class="form-control" id="getGroupSize" placeholder="50">
+                       </div>
+                       <label>Typ Grupy</label>
+                       <select name="GroupType" class="form-control" id="getGroupType">
+                           <option>Wykład</option>
+                           <option>Ćwiczenia/Labolatoria</option>
+                           <option>Przedmiot do Wyboru</option>
+                       </select>
+                       <label>Rok Studiów</label>
+                       <select name="Year" class="form-control" id="getGroupYear">
+                           <option>Rok 1</option>
+                           <option>Rok 2</option>
+                           <option>Rok 3</option>
+                           <option>Rok 4</option>
                        </select>
                        <label>Wykładowca grupy</label>
                        <div id="SelectGroupLecturer" class="test">
@@ -141,6 +185,7 @@
                        </div>
                     </div>
                     -->
+                </div>
                 <div id="MeetingContainer" class="inputElement">
                     <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalMetting" >Dodaj</button>
                     <table id="mettingtable" class="display" style="width:100%">

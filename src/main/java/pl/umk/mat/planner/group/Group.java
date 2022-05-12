@@ -1,5 +1,6 @@
 package pl.umk.mat.planner.group;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +10,6 @@ import pl.umk.mat.planner.types.yearType;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -40,6 +39,7 @@ public class Group {
     @Column(name = "name")
     private String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "group", orphanRemoval = true)
     private Collection<Connector> connectors = new java.util.ArrayList<>();
 

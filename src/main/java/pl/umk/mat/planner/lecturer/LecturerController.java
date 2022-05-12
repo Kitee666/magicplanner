@@ -1,5 +1,6 @@
 package pl.umk.mat.planner.lecturer;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -26,7 +27,9 @@ public class LecturerController {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    @PostMapping("/lecturer")
+    @PostMapping(path = "/lecturer",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
     Lecturer add(@RequestBody Lecturer newLecturer) {
         return repository.save(newLecturer);
     }

@@ -287,7 +287,14 @@ $(document).ready(function(){ // START
             url: "http://localhost:8080/api/v1/room",
             data: JSON.stringify({"number": getRoomName,"size": getRoomSize}),
             success : function(room){
-                console.log(room)
+                console.log(room);
+                $('#RoomResult').text("Pomyślnie dodano do bazy danych");
+                $("#RoomResult").css("color", "#00cb20");
+            },
+            error : function(room){
+                console.log("Nie dziala");
+                $('#RoomResult').text("Nie dodano do bazy danych");
+                $("#RoomResult").css("color", "red");
             }
         });
 

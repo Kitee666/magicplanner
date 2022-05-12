@@ -70,7 +70,7 @@ body {
     font-size: 16px;
 }
 
-.calendarElements .draggable {
+.calendarElements .left .draggableEvents {
     background: #FFFFFF;
     box-shadow: 4px 4px 14px 6px rgb(0 0 0 / 25%);
     border-radius: 6px;
@@ -80,10 +80,13 @@ body {
     margin-top: 20px;
 }
 
-.calendarElements .draggable .singleblock {
+.calendarElements .left .draggableEvents .fc-event {
     margin-bottom: 9px;
     padding: 3px;
     cursor: move;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 4px;
 }
 
 .fc-prev-button .fc-button .fc-button-primary {

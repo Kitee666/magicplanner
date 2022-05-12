@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script th:src="@{/js/src/script.js}"></script>
+    <script th:src="@{/js/src/calendar_user.js}"></script>
+
+    <title>
+        Initialize Globals Demo - Demos | FullCalendar
+    </title>
+
+
 </head>
 <body>
-<p>W tym miejscu ma być homepage z podglądem kalendarza dla usera</p>
+<div class="container-fluid calendarHead">
+    <div class="row">
+        <div class="col-xl-5 offset-xl-1 header">
+            <p class="subtext"><span class="sep">|</span> Magic Plan Scheduler</p>
+            <h1 class="title">Kalendarz</h1>
+        </div>
+        <div class="col-xl-6 header right">
+            <div class="image">
+                <img th:src="@{/img/space.png}" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid calendarElements">
+    <div class="row">
+        <div class="col-xl-2 offset-xl-1 left">
+
+            <label for="roczniki">Wybierz rok:</label>
+
+            <select name="roczniki" id="roczniki">
+                <option value="1">Rok 1</option>
+                <option value="2">Rok 2</option>
+                <option value="3">Rok 3</option>
+                <option value="4">Rok 4</option>
+                <option value="5">Rok 5</option>
+            </select>
+            <label for="grupy">Wybierz grupę:</label>
+            <select name="grupy" id="grupy">
+                <option value="1">Grupa 1</option>
+                <option value="2">Grupa 2</option>
+                <option value="3">Grupa 3</option>
+                <option value="4">Grupa 4</option>
+                <option value="5">Grupa 5</option>
+                <option value="6">Grupa 6</option>
+            </select>
+            <div class="buttonCont">
+                <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Generuj PDF!</a>
+            </div>
+            <!--    <div id='external-events' class="draggable">
+                   <p>
+                       Draggable Events
+                   </p>
+                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                       <div class='fc-event-main'>My Event 1</div>
+                   </div>
+                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                       <div class='fc-event-main'>My Event 2</div>
+                   </div>
+                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                       <div class='fc-event-main'>My Event 3</div>
+                   </div>
+                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                       <div class='fc-event-main'>My Event 4</div>
+                   </div>
+                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                       <div class='fc-event-main'>My Event 5</div>
+                   </div>
+
+               </div>
+              <div class="buttonCont">
+                   <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Dodaj dane do kalendarza</a>
+               </div> -->
+        </div>
+
+        <div class="col-xl-9">
+            <div id='calendar-container'>
+                <div id='calendar_user'></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 </body>
+
 </html>

@@ -153,6 +153,8 @@ $(document).ready(function(){ // START
             console.log($( this ).val());
             GroupRoomJSON.push($( this ).val());
         });
+        console.log(GroupLecturerJSON);
+        console.log(GroupRoomJSON);
 
         ///////// Subject Post'ing Data
 
@@ -163,8 +165,15 @@ $(document).ready(function(){ // START
             url: "http://localhost:8080/api/v1/subject",
             data: JSON.stringify(SubjectJSON),
             //data: JSON.stringify({"hours": getSubjectHoursInput,"name": getSubjectNameInput,"year": getSubjectYearInput}),
-            success : function(lecturer){
-                console.log(lecturer)
+            success : function(subject){
+                console.log(subject)
+                $('#SubjectResult').text("Pomyślnie dodano do bazy danych: Przedmioty");
+                $("#SubjectResult").css("color", "#00cb20");
+            },
+            error : function(subject){
+                console.log("Subject POST Nie dziala");
+                $('#SubjectResult').text("Nie udalo sie dodac do bazy danych: Przedmioty");
+                $("#SubjectResult").css("color", "red");
             }
         });
 
@@ -201,8 +210,15 @@ $(document).ready(function(){ // START
                     contentType: 'application/json; charset=UTF-8',
                     url: "http://localhost:8080/api/v1/group",
                     data: JSON.stringify(GroupJSON),
-                    success : function(lecturer){
-                        console.log(lecturer)
+                    success : function(group){
+                        console.log(group)
+                        $('#GroupResult').text("Pomyślnie dodano do bazy danych: Grupy");
+                        $("#GroupResult").css("color", "#00cb20");
+                    },
+                    error : function(group){
+                        console.log("Group POST Nie dziala");
+                        $('#GroupResult').text("Nie dodano do bazy danych: Grupy");
+                        $("#GroupResult").css("color", "red");
                     }
                 });
 
@@ -229,6 +245,13 @@ $(document).ready(function(){ // START
             data: JSON.stringify({"name": getLecturerNameInput,"lastname": getLecturerLastNameInput,"title": getLecturerDegreeInput}),
             success : function(lecturer){
                 console.log(lecturer)
+                $('#LecturerResult').text("Pomyślnie dodano do bazy danych: Wykladowcy");
+                $("#LecturerResult").css("color", "#00cb20");
+            },
+            error : function(lecturer){
+                console.log("Lecturer POST Nie dziala");
+                $('#LecturerResult').text("Nie udalo sie dodac do bazy danych: Wykladowcy");
+                $("#LecturerResult").css("color", "red");
             }
         });
 
@@ -263,6 +286,13 @@ $(document).ready(function(){ // START
             data: JSON.stringify({"dateFrom": getMeetingStartDateInput,"dateTo": getMeetingEndDateInput}),
             success : function(meeting){
                 console.log(meeting)
+                $('#MeetingResult').text("Pomyślnie dodano do bazy danych: Spotkania");
+                $("#MeetingResult").css("color", "#00cb20");
+            },
+            error : function(meeting){
+                console.log("Meeting POST Nie dziala");
+                $('#MeetingResult').text("Nie dodano do bazy danych: Spotkania");
+                $("#MeetingResult").css("color", "red");
             }
         });
     });

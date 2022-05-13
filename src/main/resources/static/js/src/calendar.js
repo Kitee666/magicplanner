@@ -62,15 +62,62 @@ document.addEventListener('DOMContentLoaded', function() {
     buttonText: {
             today: 'Dzisiaj'
     },
+        //
+        // events: [
+        //     {
+        //         // id: 'a',
+        //         // title: 'my event',
+        //         // start: '2022-05-14T09:00:00+02:00',
+        //         // end: '2022-05-14T11:00:00+02:00'
+        //     }
+        // ],
 
-        events: [
-            {
-                id: '.fc-event',
-                allDay: false
 
-            }
 
-        ],
+        // events: function (start, end, timezone, callback) {
+        //     $.ajax({
+        //         type: "GET",    //WebMethods will not allow GET
+        //         url: "http://localhost:8080/api/v1/event",
+        //         //completely take out 'data:' line if you don't want to pass to webmethod - Important to also change webmethod to not accept any parameters
+        //         contentType: "application/json; charset=utf-8",
+        //         dataType: "json",
+        //         success: function (doc) {
+        //             // console.log(doc);
+        //             var events = [];   //javascript event object created here
+        //
+        //             var obj = doc;
+        //             $(obj).each(function () {
+        //                 console.log("doopa");
+        //                 events.push({
+        //                     title: $(this).attr('name'),  //your calevent object has identical parameters 'title', 'start', ect, so this will work
+        //                     start: $(this).attr('dateFrom'), // will be parsed into DateTime object
+        //                     end: $(this).attr('dateTo')
+        //                 });
+        //             });
+        //             // console.log(events);
+        //             // console.log(events);
+        //             if(callback)
+        //                 callback(events);
+        //         }
+        //     });
+        // },
+
+        // events: function(fetchInfo, successCallback, failureCallback) {
+        //     $.ajax({
+        //         url: 'http://localhost:8080/api/v1/event',
+        //         type: 'GET',
+        //         dataType: 'json',
+        //         success: function(result) {
+        //             console.log(result);
+        //             successCallback(result.events);
+        //
+        //         }
+        //     });
+        // },
+
+        events: 'http://localhost:8080/api/v1/event',
+
+
 
         // eventTimeFormat: {
         //     month: '2-digit',
@@ -89,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 info.draggedEl.parentNode.removeChild(info.draggedEl);
             }
         },
+
         eventReceive: function(info) {
 
             //get the bits of data we want to send into a simple object
@@ -100,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "connector_id": 1,
                 "room_id": 1
             };
-            console.log(eventData);
+            // console.log(eventData);
             //send the data via an AJAX POST request, and log any response which comes from the server
             fetch('http://localhost:8080/api/v1/event', {
                 method: 'POST',
@@ -119,8 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 'From' + info.event.start +
                 'To' + info.event.end);
 
-            // change the border color just for fun
-            info.el.style.borderColor = 'red';
         }
 
 

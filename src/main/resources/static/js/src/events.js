@@ -23,6 +23,17 @@ $(document).ready(function() {
                     console.log(val.id);
                     console.log(val.lecturer.name);
 
+                        $("#external-events").append(`<div class='fc-event'>
+                            <div class="inside_left">
+                                <p class="sup">${val.room.number}</p>
+                                <p class="main">${val.lecturer.name} ${val.lecturer.lastname} <strong>${val.subject.name}</strong></p>
+                            </div>
+                            <div class="inside_right">
+                                <p class="type">${val.group.type}</p>
+                                <p class="name">${val.group.name}</p>
+                            </div>
+                                                                            </div>`);
+
 
                     });
                 }
@@ -34,16 +45,5 @@ $(document).ready(function() {
 
 
 
-    $("#external-events").append("<p>\n" +
-        "                    <strong>Draggable Events</strong>\n" +
-        "                </p>\n" +
-        "                <div class='fc-event'>My Event 1</div>\n" +
-        "                <div class='fc-event'>My Event 2</div>\n" +
-        "                <div class='fc-event'>My Event 3</div>\n" +
-        "                <div class='fc-event'>My Event 4</div>\n" +
-        "                <div class='fc-event'>My Event 5</div>\n" +
-        "                <p>\n" +
-        "                    <input type='checkbox' id='drop-remove' />\n" +
-        "                    <label for='drop-remove'>remove after drop</label>\n" +
-        "                </p>");
+
 });

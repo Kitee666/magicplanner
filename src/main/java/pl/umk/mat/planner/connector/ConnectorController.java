@@ -1,10 +1,10 @@
 package pl.umk.mat.planner.connector;
 
 import org.springframework.web.bind.annotation.*;
-import pl.umk.mat.planner.event.Event;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -31,6 +31,13 @@ public class ConnectorController {
     @PostMapping("/connector")
     Connector add(@RequestBody Connector newConnector) {
         return repository.save(newConnector);
+    }
+
+    @PostMapping(value = "/connector/bulk", consumes = "application/json")
+    Object bulk(@RequestBody Map<String,Object> request)
+    {
+        Object subject = request.get("name");
+        return subject;
     }
 
     @PutMapping("/connector/{id}")

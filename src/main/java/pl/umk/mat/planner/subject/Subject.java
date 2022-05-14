@@ -31,11 +31,6 @@ public class Subject {
     @Column(name = "year", nullable = false)
     private yearType year;
 
-    @ManyToOne
-    @JoinColumn(name = "connector_id")
-    private Connector connector;
-
-
     @JsonBackReference
     @OneToMany(mappedBy = "subject", orphanRemoval = true)
     private Collection<Connector> connectors = new ArrayList<>();

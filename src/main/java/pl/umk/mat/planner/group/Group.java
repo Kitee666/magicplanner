@@ -39,7 +39,6 @@ public class Group {
     @Column(name = "name")
     private String name;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "group", orphanRemoval = true)
     @JsonBackReference
     private Collection<Connector> connectors = new java.util.ArrayList<>();

@@ -46,7 +46,6 @@ public class Connector {
     @JsonManagedReference
     private Room room;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "connector", orphanRemoval = true)
     @JsonBackReference
     private Set<Event> events = new LinkedHashSet<>();

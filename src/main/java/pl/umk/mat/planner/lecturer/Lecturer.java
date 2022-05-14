@@ -1,5 +1,6 @@
 package pl.umk.mat.planner.lecturer;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,12 @@ public class Lecturer {
     private String title;
 
     @OneToMany(mappedBy = "lecturer", orphanRemoval = true)
+    @JsonBackReference
     private Collection<Connector> connectors = new ArrayList<>();
 
+    public Lecturer(String name, String lastname, String title) {
+        this.name = name;
+        this.lastname = lastname;
+        this.title = title;
+    }
 }

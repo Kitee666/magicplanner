@@ -1,5 +1,4 @@
-
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     var Calendar = FullCalendar.Calendar;
     var Draggable = FullCalendar.Draggable;
@@ -13,12 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     new Draggable(containerEl, {
         itemSelector: '.fc-event',
-        eventData: function(eventEl) {
+        eventData: function (eventEl) {
             return {
                 title: eventEl.innerText,
-
-
-
             };
 
         },
@@ -30,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var calendar = new Calendar(calendarEl, {
         locale: 'pl',
-
+        events: api_calendar_url,
         headerToolbar: {
             left: 'prev,next,today',
             center: 'title',
@@ -41,9 +37,9 @@ document.addEventListener('DOMContentLoaded', function() {
         views: {
             timeGridTwoDays: {
                 type: 'timeGrid',
-                duration: { days: 7 },
+                duration: {days: 7},
                 buttonText: 'Weekendy',
-                hiddenDays: [ 1, 2, 3, 4, 5],
+                hiddenDays: [1, 2, 3, 4, 5],
                 weekday: 'long',
                 slotDuration: '01:00:00',
                 slotMinTime: '08:00:00',
@@ -53,20 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 buttonText: 'Widok miesiąca'
             },
         },
-    buttonText: {
+        buttonText: {
             today: 'Dzisiaj'
-    },
+        },
 
-        events: [
-            {
-                id: '.fc-event',
-
-            }
-        ],
 
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
-        drop: function(info) {
+        drop: function (info) {
             // is the "remove after drop" checkbox checked?
             if (checkbox.checked) {
                 // if so, remove the element from the "Draggable Events" list

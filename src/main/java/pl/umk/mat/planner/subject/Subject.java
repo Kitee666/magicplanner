@@ -1,10 +1,7 @@
 package pl.umk.mat.planner.subject;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.umk.mat.planner.connector.Connector;
 import pl.umk.mat.planner.types.yearType;
 

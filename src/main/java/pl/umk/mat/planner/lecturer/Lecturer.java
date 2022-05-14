@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.web.bind.annotation.PostMapping;
 import pl.umk.mat.planner.connector.Connector;
 
 import javax.persistence.*;
@@ -33,9 +32,13 @@ public class Lecturer {
     @Column(name = "title")
     private String title;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "lecturer", orphanRemoval = true)
+    @JsonBackReference
     private Collection<Connector> connectors = new ArrayList<>();
 
-
+    public Lecturer(String name, String lastname, String title) {
+        this.name = name;
+        this.lastname = lastname;
+        this.title = title;
+    }
 }

@@ -1,7 +1,6 @@
 package pl.umk.mat.planner.event;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +17,10 @@ import java.time.OffsetDateTime;
 @Setter
 @Entity
 @Table(name = "events")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,13 +33,20 @@ public class Event {
     @Column(name = "date_to", nullable = false)
     private OffsetDateTime dateTo;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "connector_id", nullable = false)
-    private Connector connector;
-
-    @JsonBackReference
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "room_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "room_id")
+    @JsonManagedReference
     private Room room;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "connector_id", nullable = false)
+    @JsonManagedReference
+    private Connector connector;
+
+    public Event(OffsetDateTime dateFrom, OffsetDateTime dateTo, Connector connector, Room room) {
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.connector = connector;
+        this.room = room;
+    }
 }

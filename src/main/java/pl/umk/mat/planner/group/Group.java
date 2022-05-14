@@ -41,6 +41,14 @@ public class Group {
 
     @JsonBackReference
     @OneToMany(mappedBy = "group", orphanRemoval = true)
+    @JsonBackReference
     private Collection<Connector> connectors = new java.util.ArrayList<>();
 
+    public Group(groupType type, Integer size, pl.umk.mat.planner.types.yearType yearType, Integer hours, String name) {
+        this.type = type;
+        this.size = size;
+        this.yearType = yearType;
+        this.hours = hours;
+        this.name = name;
+    }
 }

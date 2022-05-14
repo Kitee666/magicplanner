@@ -12,8 +12,8 @@ import pl.umk.mat.planner.room.Room;
 import pl.umk.mat.planner.subject.Subject;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -28,22 +28,33 @@ public class Connector {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "subject_id", nullable = false)
+    @JsonManagedReference
     private Subject subject;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "lecturer_id", nullable = false)
+    @JsonManagedReference
     private Lecturer lecturer;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "group_id", nullable = false)
+    @JsonManagedReference
     private Group group;
 
     @ManyToOne
     @JoinColumn(name = "room_id")
+    @JsonManagedReference
     private Room room;
 
     @JsonBackReference
     @OneToMany(mappedBy = "connector", orphanRemoval = true)
-    private Collection<Event> events = new ArrayList<>();
+    @JsonBackReference
+    private Set<Event> events = new LinkedHashSet<>();
 
+    public Connector(Subject subject, Lecturer lecturer, Group group, Room room) {
+        this.subject = subject;
+        this.lecturer = lecturer;
+        this.group = group;
+        this.room = room;
+    }
 }

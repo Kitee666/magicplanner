@@ -1,5 +1,6 @@
 package pl.umk.mat.planner.subject;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import pl.umk.mat.planner.connector.Connector;
 import pl.umk.mat.planner.types.yearType;
@@ -30,10 +31,7 @@ public class Subject {
     @Column(name = "year", nullable = false)
     private yearType year;
 
-    @ManyToOne
-    @JoinColumn(name = "connector_id")
-    private Connector connector;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "subject", orphanRemoval = true)
     private Collection<Connector> connectors = new ArrayList<>();
 

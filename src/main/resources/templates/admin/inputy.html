@@ -49,12 +49,12 @@
             </div>
             <div class="MainContainer">
                 <div class="buttons">
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addSubject" value="Subject" name="button" />
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addLecturer" value="Lecturer" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addSubject" value="Przedmioty" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addLecturer" value="Wykładowcy" name="button" />
                     <!-- <input type="button" class="btn btn-outline-danger btnComp" id="addGroup" value="Group" name="button" /> -->
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addMeeting" value="Meeting" name="button" />
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addRoom" value="Room" name="button" />
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addNote" value="Note" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addMeeting" value="Spotkania" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addRoom" value="Sale" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addNote" value="Notatki" name="button" />
                 </div>
                 <div id="SubjectContainer" class="inputElement">
                     <div class="elementHead">
@@ -76,7 +76,8 @@
                     <div>
                         <button type="button" id="getSubjectButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
-                    <div class="results" id="SubjectResult">Result</div>
+                    <div class="results" id="SubjectResult"></div>
+                        <div class="results" id="GroupResult"></div>
                     </div>
                 </div>
                 <div id="LecturerContainer" class="inputElement">
@@ -84,9 +85,9 @@
                     <table id="lecturertable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Lastname</th>
-                            <th>degree</th>
+                            <th>Imie</th>
+                            <th>Nazwisko</th>
+                            <th>Tytul</th>
                         </tr>
                         </thead>
                     </table>
@@ -191,8 +192,8 @@
                     <table id="mettingtable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>dateStart</th>
-                            <th>dateEnd</th>
+                            <th>Poczatek Zjazdu</th>
+                            <th>Koniec Zjazdu</th>
                         </tr>
                         </thead>
                     </table>
@@ -202,8 +203,8 @@
                     <table id="roomtable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>getRoomNumber</th>
-                            <th>getRoomSize</th>
+                            <th>Nazwa Sali</th>
+                            <th>Pojemnosc Sali</th>
                         </tr>
                         </thead>
                     </table>
@@ -213,8 +214,8 @@
                     <table id="notetable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>getNoteTitle</th>
-                            <th>getNoteInput</th>
+                            <th>Tytul Notatki</th>
+                            <th>Zawartosc Notatki</th>
                         </tr>
                         </thead>
                     </table>
@@ -241,7 +242,7 @@
                     </select>
                 </div>
                 <button type="button" id="getLecturerButton" class="btn btn-dark btnAdd">Dodaj</button>
-                <div class="results" id="LecturerResult">Result</div>
+                <div class="results" id="LecturerResult"></div>
             </div>
         </div>
     </div>
@@ -257,7 +258,7 @@
                     <input type="date" class="pickerSub" id="dateStart" />
                 </div>
                 <button type="button" id="getMeetingButton" class="btn btn-dark btnAdd">Dodaj</button>
-                <div class="results" id="MettingResult">Result</div>
+                <div class="results" id="MeetingResult"></div>
             </div>
         </div>
     </div>
@@ -273,7 +274,7 @@
                     <input type="text" class="form-control" id="getRoomSize" placeholder="30">
                 </div>
                 <button type="button" id="getRoomButton" class="btn btn-dark btnAdd">Dodaj</button>
-                <div class="results" id="RoomResult">Result</div>
+                <div class="results" id="RoomResult"></div>
             </div>
         </div>
     </div>
@@ -289,7 +290,7 @@
                     <input type="text" class="form-control" id="getNoteInput" placeholder="dawno temu">
                 </div>
                 <button type="button" id="getNoteButton" class="btn btn-dark btnAdd">Dodaj</button>
-                <div class="results" id="NoteResult">Result</div>
+                <div class="results" id="NoteResult"></div>
             </div>
         </div>
     </div>

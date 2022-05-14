@@ -70,21 +70,53 @@ body {
     font-size: 16px;
 }
 
-.calendarElements .draggable {
+.calendarElements .left .draggableEvents {
     background: #FFFFFF;
     box-shadow: 4px 4px 14px 6px rgb(0 0 0 / 25%);
     border-radius: 6px;
     z-index: 2;
     padding: 20px;
-    width: 300px;
+    width: 430px;
     margin-top: 20px;
 }
 
-.calendarElements .draggable .singleblock {
+.calendarElements .left .draggableEvents .fc-event {
     margin-bottom: 9px;
     padding: 3px;
     cursor: move;
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
 }
+.calendarElements .left .draggableEvents .fc-event .inside_left {
+    margin-left: 10px;
+}
+
+.calendarElements .left .draggableEvents .fc-event .inside_left .sup {
+    color: #00FF85;
+    font-weight: 600;
+    margin:0;
+}
+.calendarElements .left .draggableEvents .fc-event .inside_left .main{
+    margin: 0;
+}
+.calendarElements .left .draggableEvents .fc-event .inside_left .main strong{
+    color: #FFB61D;
+}
+
+.calendarElements .left .draggableEvents .fc-event .inside_right {
+    margin-right: 10px;
+}
+
+.calendarElements .left .draggableEvents .fc-event .inside_right .type {
+    text-align: center;
+    margin: 0;
+}
+
+
+.calendarElements .left .draggableEvents .fc-event
 
 .fc-prev-button .fc-button .fc-button-primary {
     background: #FC6492;

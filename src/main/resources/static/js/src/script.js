@@ -43,9 +43,9 @@ $(document).ready(function () { // START
 
 
         $("#GroupContainer").append($(`<div class='group-item'><h3>Dodaj Group</h3>
-                        <label>Ilosc godzin dla przedmiotu</label>
+                        <label>Ilosc godzin dla grupy</label>
                         <div class="inputField">
-                            <input type="text" class="form-control GroupElements" id="getGroupHours" placeholder="30">
+                            <input type="text" class="form-control GroupElements" id="getGroupHours" placeholder="ilosc godzin">
                         </div>
                         <label>Nazwa Grupy</label>
                         <select name="GroupName" class="form-control GroupElements"  id="getGroupName">
@@ -58,7 +58,7 @@ $(document).ready(function () { // START
                         </select>
                         <label>Rozmiar Grupy</label>
                         <div class="inputField">
-                            <input type="text" class="form-control GroupElements" id="getGroupSize" placeholder="50">
+                            <input type="text" class="form-control GroupElements" id="getGroupSize" placeholder="ilosc osob">
                         </div>
                         <label>Typ Grupy</label>
                         <select name="GroupType" class="form-control GroupElements" id="getGroupType">
@@ -270,7 +270,7 @@ $(document).ready(function () { // START
 
         let getLecturerNameInput = $("#getLecturerName").val();
         let getLecturerLastNameInput = $("#getLecturerLastName").val();
-        let getLecturerDegreeInput = $("#getLeturerDegree").val(); // !IMPORTANT -> RED FAL
+        let getLecturerDegreeInput = $("#getLecturerDegree").val(); // !IMPORTANT -> RED FAL
         //const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerLastNameInput+'","title": "'+getLecturerDegreeInput+'" }' );
         //console.log(JSON.stringify(LecturerJSON));
 

@@ -18,27 +18,31 @@
 <body>
     <div class="MainContainer">
         <div class="buttons">
-            <input type="button" class="btn btn-outline-danger btnComp" id="changeLogin" value="Change Login" name="button" />
-            <input type="button" class="btn btn-outline-danger btnComp" id="changePassword" value="Change Password" name="button" />
+            <input type="button" class="btn btn-outline-danger btnComp" id="changeLogin" value="Zmień Hasło" name="button" />
+            <input type="button" class="btn btn-outline-danger btnComp" id="changePassword" value="Zmień Login" name="button" />
         </div>
         <div id="LoginContainer" class="userElement">
             <div class="elementHead">
-                <h3>Change login</h3>
+                <h3>Zmień Login</h3>
             </div>
             <div>
-                <input type="text" class="form-control" id="getOldLogin" placeholder="Old login">
-                <input type="text" class="form-control" id="getNewLogin" placeholder="New login">
-                <button type="button" id="getLoginButton" class="btn btn-dark btnAdd">Change</button>
+                <input type="text" class="form-control" id="getOldLogin" placeholder="Stary Login">
+                <input type="text" class="form-control" id="getNewLogin" placeholder="Nowy Login">
+                <input type="text" class="form-control" id="getConfirmNewLogin" placeholder="Potwierdz nowy login">
+                <div class="results2" id="LoginResult"></div>
+                <button type="button" id="getLoginButton" class="btn btn-dark btnAdd">Zmień</button>
             </div>
         </div>
         <div id="passwordContainer" class="userElement">
             <div class="elementHead">
-                <h3>Change Password</h3>
+                <h3>Zmień Hasło</h3>
             </div>
             <div>
-                <input type="text" class="form-control" id="getOldPassword" placeholder="Old Password">
-                <input type="text" class="form-control" id="getNewPassword" placeholder="New Password">
-                <button type="button" id="getPasswordButton" class="btn btn-dark btnAdd">Change</button>
+                <input type="text" class="form-control" id="getOldPassword" placeholder="Stare Hasło">
+                <input type="text" class="form-control" id="getNewPassword" placeholder="Nowe Hasło">
+                <input type="text" class="form-control" id="getConfirmNewPassword" placeholder="Potwierdz nowe hasło">
+                <div class="results2" id="PasswordResult"></div>
+                <button type="button" id="getPasswordButton" class="btn btn-dark btnAdd">Zmień</button>
             </div>
         </div>
     <div/>

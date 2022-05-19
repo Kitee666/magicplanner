@@ -44,10 +44,10 @@ public class ConnectorController {
     Connector replace(@RequestBody Connector newConnector, @PathVariable Long id) {
         return repository.findById(id)
                 .map(connector -> {
-                    connector.setSubject(newConnector.getSubject());
-                    connector.setLecturer(newConnector.getLecturer());
-                    connector.setGroup(newConnector.getGroup());
-                    connector.setRoom(newConnector.getRoom());
+                    //connector.setSubject(newConnector.getSubject());
+                    //connector.setLecturer(newConnector.getLecturer());
+                    //connector.setGroup(newConnector.getGroup());
+                    //connector.setRoom(newConnector.getRoom());
                     return repository.save(connector);
                 })
                 .orElseThrow(EntityNotFoundException::new);

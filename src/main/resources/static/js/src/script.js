@@ -370,6 +370,8 @@ $(document).ready(function () { // START
             }
         });
 
+        //$('#roomtable').DataTable().ajax.reload();
+
     });
 });
 

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.umk.mat.planner.connector.Connector;
 import pl.umk.mat.planner.event.Event;
 
 import javax.persistence.*;
@@ -15,10 +16,6 @@ import java.util.*;
 @Setter
 @Entity
 @Table(name = "room")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,8 +29,9 @@ public class Room {
     private Integer size;
 
     @OneToMany(mappedBy = "room", orphanRemoval = true)
-    @JsonBackReference
+    @JsonIgnore
     private Set<Event> events = new LinkedHashSet<>();
+
 
     public Room(String number, Integer size) {
         this.number = number;

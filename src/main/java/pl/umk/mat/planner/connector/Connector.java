@@ -1,6 +1,7 @@
 package pl.umk.mat.planner.connector;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,9 @@ import pl.umk.mat.planner.room.Room;
 import pl.umk.mat.planner.subject.Subject;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -26,34 +29,17 @@ public class Connector {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "subject_id", nullable = false)
-    @JsonManagedReference
-    private Subject subject;
+    @OneToMany(mappedBy = "connector", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private Set<Subject> subjects = new LinkedHashSet<>();
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "lecturer_id", nullable = false)
-    @JsonManagedReference
-    private Lecturer lecturer;
-
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "group_id", nullable = false)
-    @JsonManagedReference
-    private Group group;
-
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    @JsonManagedReference
-    private Room room;
+    @OneToMany(mappedBy = "connector", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private Set<Lecturer> lecturers = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "connector", orphanRemoval = true)
-    @JsonBackReference
+    private Set<Group> groups = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "connector", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JsonIgnore
     private Set<Event> events = new LinkedHashSet<>();
 
-    public Connector(Subject subject, Lecturer lecturer, Group group, Room room) {
-        this.subject = subject;
-        this.lecturer = lecturer;
-        this.group = group;
-        this.room = room;
-    }
 }

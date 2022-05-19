@@ -41,6 +41,7 @@ public class HomepageController {
     @GetMapping("/")
     public String homePage() {
 
+        /*
         Subject subject = new Subject("subject 1", yearType.ROK_I, 60);
         Lecturer lecturer = new Lecturer("Imie","Nazwisko", "mgr. inż.");
         Group group = new Group(groupType.WYKLAD,30,yearType.ROK_I,60,"gr");
@@ -56,6 +57,7 @@ public class HomepageController {
         this.roomRepository.save(room);
         this.connectorRepository.save(connector);
         this.eventRepository.save(event);
+         */
 
         return "index";
     }

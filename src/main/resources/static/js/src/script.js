@@ -49,6 +49,7 @@ $(document).ready(function () { // START
                         </div>
                         <label>Nazwa Grupy</label>
                         <select name="GroupName" class="form-control GroupElements"  id="getGroupName">
+                            <option>Wszyscy</option>
                             <option>Grupa 1</option>
                             <option>Grupa 2</option>
                             <option>Grupa 3</option>
@@ -62,16 +63,16 @@ $(document).ready(function () { // START
                         </div>
                         <label>Typ Grupy</label>
                         <select name="GroupType" class="form-control GroupElements" id="getGroupType">
-                            <option>WYKLAD</option>
-                            <option>LAB</option>
-                            <option>NIEST</option>
+                            <option value = "WYKLAD">Wykład</option>
+                            <option value = "LAB">Labolatoria</option>
+                            <option value = "NIEST">Niestandardowa</option>
                         </select>
                         <label>Rok Studiów</label>
                         <select name="Year" class="form-control GroupElements" id="getGroupYear">
-                            <option>ROK_I</option>
-                            <option>ROK_II</option>
-                            <option>ROK_III</option>
-                            <option>ROK_IV</option>
+                            <option value = "ROK_I">Rok 1</option>
+                            <option value = "ROK_II">Rok 2</option>
+                            <option value = "ROK_III">Rok 3</option>
+                            <option value = "ROK_IV">Rok 4</option>
                         </select>
                         <label>Wykładowca grupy</label>
                         <div id="SelectGroupLecturer" class="test1">
@@ -372,6 +373,66 @@ $(document).ready(function () { // START
     });
 });
 
+/////// Validation ///////
+function allowOnlyNormal(e, t)
+{
+    if (window.event)
+    {
+        var charCode = window.event.keyCode;
+    }
+    else if (e)
+    {
+        var charCode = e.which;
+    }
+    else { return true; }
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || (charCode > 47 && charCode < 58) || charCode==32)
+        return true;
+    else
+    {
+        alert("Proszę tylko wpisywać litery i liczby");
+        return false;
+    }
+}
+
+function allowOnlyNumbers(e, t)
+{
+    if (window.event)
+    {
+        var charCode = window.event.keyCode;
+    }
+    else if (e)
+    {
+        var charCode = e.which;
+    }
+    else { return true; }
+    if (charCode > 47 && charCode < 58)
+        return true;
+    else
+    {
+        alert("Proszę tylko wpisywać liczby");
+        return false;
+    }
+}
+
+function allowOnlyLetters(e, t)
+{
+    if (window.event)
+    {
+        var charCode = window.event.keyCode;
+    }
+    else if (e)
+    {
+        var charCode = e.which;
+    }
+    else { return true; }
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode==32)
+        return true;
+    else
+    {
+        alert("Proszę tylko wpisywać Litery");
+        return false;
+    }
+}
 
 /////////////////////////////////DATATABLES DISPLAY//////////////////////////////
 ////LECTURER DATATABLE////
@@ -424,6 +485,52 @@ $(document).ready(function () {
         },
             {
                 data: "dateTo"
+            }
+        ]
+    });
+});
+/////SUBJECT DATATABLE////
+$(document).ready(function () {
+    $('#SubjectTable').DataTable({
+        "ajax": {
+            "url": "http://localhost:8080/api/v1/subject",
+            "type": "GET",
+            "dataSrc": "",
+        },
+        "columns": [{
+            data: "name"
+        },
+            {
+                data: "year"
+            },
+            {
+                data: "hours"
+            }
+        ]
+    });
+});
+/////GROUP DATATABLE////
+$(document).ready(function () {
+    $('#GroupTable').DataTable({
+        "ajax": {
+            "url": "http://localhost:8080/api/v1/group",
+            "type": "GET",
+            "dataSrc": "",
+        },
+        "columns": [{
+            data: "hours"
+        },
+            {
+                data: "name"
+            },
+            {
+                data: "size"
+            },
+            {
+                data: "type"
+            },
+            {
+                data: "yearType"
             }
         ]
     });

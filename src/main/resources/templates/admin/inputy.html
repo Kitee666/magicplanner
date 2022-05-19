@@ -49,33 +49,39 @@
             </div>
             <div class="MainContainer">
                 <div class="buttons">
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addSubject" value="Przedmioty" name="button" />
-                    <input type="button" class="btn btn-outline-danger btnComp" id="addLecturer" value="Wykładowcy" name="button" />
-                    <!-- <input type="button" class="btn btn-outline-danger btnComp" id="addGroup" value="Group" name="button" /> -->
                     <input type="button" class="btn btn-outline-danger btnComp" id="addMeeting" value="Spotkania" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addLecturer" value="Wykładowcy" name="button" />
                     <input type="button" class="btn btn-outline-danger btnComp" id="addRoom" value="Sale" name="button" />
+                    <input type="button" class="btn btn-outline-danger btnComp" id="addSubject" value="Przedmioty" name="button" />
+                    <!-- <input type="button" class="btn btn-outline-danger btnComp" id="addGroup" value="Group" name="button" /> -->
                     <input type="button" class="btn btn-outline-danger btnComp" id="addNote" value="Notatki" name="button" />
                 </div>
                 <div id="SubjectContainer" class="inputElement">
                     <div class="elementHead">
                         <h3>Dodaj Subject</h3>
                     <label>Nazwa Przedmiotu</label>
-                    <input type="text" class="form-control" id="getSubjectName" placeholder="nazwa">
+                    <input type="text" class="form-control" id="getSubjectName" placeholder="nazwa" onkeypress="return allowOnlyNormal(event,this);">
                     <label>Rok Przedmiotu</label>
                     <select name="Year" class="form-control" id="getSubjectYear">
-                        <option>ROK_I</option>
-                        <option>ROK_II</option>
-                        <option>ROK_III</option>
-                        <option>ROK_IV</option>
+                        <option value = "ROK_I">Rok 1</option>
+                        <option value = "ROK_II">Rok 2</option>
+                        <option value = "ROK_III">Rok 3</option>
+                        <option value = "ROK_IV">Rok 4</option>
                     </select>
                     <label>Liczba Godzin dla Przedmiotu</label>
-                    <input type="text" class="form-control" id="getSubjectHours" placeholder="ilosc godzin">
+                    <input type="text" class="form-control" id="getSubjectHours" placeholder="ilosc godzin" onkeypress="return allowOnlyNumbers(event,this);">
                     <div>
                         <button type="button" id="addGroupButton" class="btn btn-dark btnAdd">Dodaj Grupe</button>
                     </div>
                     <div>
                         <button type="button" id="getSubjectButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
+                        <div>
+                            <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalSubject" >Subject DT</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalGroup" >Group DT</button>
+                        </div>
                     <div class="results" id="SubjectResult"></div>
                         <div class="results" id="GroupResult"></div>
                     </div>
@@ -92,9 +98,8 @@
                         </thead>
                     </table>
                 </div>
-
+                <!--
                 <div id="GroupContainer" class="inputElement">
-                    <!--
                         <h3>Dodaj Group</h3>
                         <label>Ilosc godzin dla przedmiotu</label>
                         <div class="inputField">
@@ -185,8 +190,8 @@
                            </select>
                        </div>
                     </div>
-                    -->
                 </div>
+                -->
                 <div id="MeetingContainer" class="inputElement">
                     <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalMetting" >Dodaj</button>
                     <table id="mettingtable" class="display" style="width:100%">
@@ -231,8 +236,8 @@
                     <h3>Dodaj Lecturer</h3>
                 </div>
                 <div>
-                    <input type="text" class="form-control" id="getLecturerName" placeholder="Imie">
-                    <input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko">
+                    <input type="text" class="form-control" id="getLecturerName" placeholder="Imie" onkeypress="return allowOnlyLetters(event,this);">
+                    <input type="text" class="form-control" id="getLecturerLastName" placeholder="Nazwisko" onkeypress="return allowOnlyLetters(event,this);">
                     <select name="GroupType" class="form-control" id="getLecturerDegree">
                         <option>Inzynier</option>
                         <option>Magister</option>
@@ -270,8 +275,8 @@
                     <h3>Dodaj Room</h3>
                 </div>
                 <div>
-                    <input type="text" class="form-control" id="getRoomNumber" placeholder="Nazwa Sali">
-                    <input type="text" class="form-control" id="getRoomSize" placeholder="Pojemnosc Sali">
+                    <input type="text" class="form-control" id="getRoomNumber" placeholder="Nazwa Sali" onkeypress="return allowOnlyNormal(event,this);">
+                    <input type="text" class="form-control" id="getRoomSize" placeholder="Pojemnosc Sali" onkeypress="return allowOnlyNumbers(event,this);">
                 </div>
                 <button type="button" id="getRoomButton" class="btn btn-dark btnAdd">Dodaj</button>
                 <div class="results" id="RoomResult"></div>
@@ -286,11 +291,56 @@
                     <h3>Dodaj Room</h3>
                 </div>
                 <div>
-                    <input type="text" class="form-control" id="getNoteTitle" placeholder="Tytuł Notatki">
-                    <input type="text" class="form-control" id="getNoteInput" placeholder="Tresc Notatki">
+                    <input type="text" class="form-control" id="getNoteTitle" placeholder="Tytuł Notatki" onkeypress="return allowOnlyNormal(event,this);">
+                    <input type="text" class="form-control" id="getNoteInput" placeholder="Tresc Notatki" onkeypress="return allowOnlyNormal(event,this);">
                 </div>
                 <button type="button" id="getNoteButton" class="btn btn-dark btnAdd">Dodaj</button>
                 <div class="results" id="NoteResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DATATABLES FOR SUBJECT -->
+    <div class="modal" id="myModalSubject">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <table id="SubjectTable" class="display" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Nazwa Przedmiotu</th>
+                        <th>Rok Przedmiotu</th>
+                        <th>Liczba Godzin</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- DATATABLES FOR Groups -->
+    <div class="modal" id="myModalGroup">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <table id="GroupTable" class="display" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Ilosc godzin</th>
+                        <th>Nazwa Grupy</th>
+                        <th>Rozmiar Grupy</th>
+                        <th>Typ Grupy</th>
+                        <th>Rok Grupy</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Group Container --->
+    <div class="container-fluid groupBody">
+        <div class="row">
+            <div class="col-xl-12">
+                <div id="GroupContainer" class="inputElement"> </div>
             </div>
         </div>
     </div>

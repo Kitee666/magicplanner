@@ -17,10 +17,6 @@ import java.time.OffsetDateTime;
 @Setter
 @Entity
 @Table(name = "events")
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,15 +29,13 @@ public class Event {
     @Column(name = "date_to", nullable = false)
     private OffsetDateTime dateTo;
 
-    @ManyToOne
-    @JoinColumn(name = "room_id")
-    @JsonManagedReference
-    private Room room;
-
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
     @JoinColumn(name = "connector_id", nullable = false)
-    @JsonManagedReference
     private Connector connector;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
 
     public Event(OffsetDateTime dateFrom, OffsetDateTime dateTo, Connector connector, Room room) {
         this.dateFrom = dateFrom;

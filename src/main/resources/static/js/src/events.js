@@ -25,12 +25,15 @@ $(document).ready(function() {
 
                         $("#external-events").append(`<div class='fc-event'>
                             <div class="inside_left">
-                                <p class="sup">${val.room.number}</p>
-                                <p class="main">${val.lecturer.name} ${val.lecturer.lastname} <strong>${val.subject.name}</strong></p>
+                                <p class="sup">${val.lecturer.name} ${val.lecturer.lastname}</p>
+                                <p class="main">${val.subject.name}</p>
+                            </div>
+                             <div class="inside_center">
+                                <p class="typ">${val.group.type}</p>
+                                <p class="grupa">${val.group.name}</p>
                             </div>
                             <div class="inside_right">
-                                <p class="type">${val.group.type}</p>
-                                <p class="name">${val.group.name}</p>
+                                <p class="room">${val.room.number}</p>
                             </div>
                                                                             </div>`);
 

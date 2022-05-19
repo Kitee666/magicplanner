@@ -1,6 +1,7 @@
 package pl.umk.mat.planner.lecturer;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,9 +33,10 @@ public class Lecturer {
     @Column(name = "title")
     private String title;
 
-    @OneToMany(mappedBy = "lecturer", orphanRemoval = true)
-    @JsonBackReference
-    private Collection<Connector> connectors = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "connector_id")
+    @JsonIgnore
+    private Connector connector;
 
     public Lecturer(String name, String lastname, String title) {
         this.name = name;

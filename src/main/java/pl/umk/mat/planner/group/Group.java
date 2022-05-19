@@ -1,6 +1,7 @@
 package pl.umk.mat.planner.group;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,9 +40,10 @@ public class Group {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "group", orphanRemoval = true)
-    @JsonBackReference
-    private Collection<Connector> connectors = new java.util.ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "connector_id")
+    @JsonIgnore
+    private Connector connector;
 
     public Group(groupType type, Integer size, pl.umk.mat.planner.types.yearType yearType, Integer hours, String name) {
         this.type = type;

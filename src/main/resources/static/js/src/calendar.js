@@ -96,12 +96,82 @@ document.addEventListener('DOMContentLoaded', function () {
         //         .catch(error => console.log(error));
         // },
 
-        eventClick: function(info) {
-            alert('Event: ' + info.event.title +
-                'From' + info.event.start +
-                'To' + info.event.end);
+        eventDragStop: function(info) {
+            $("#eventModal").html("");
+            $("#eventModal").append(`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Czy chcesz zmienić długość bloku?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                               Nowa data to od: ${info.event.start.toISOString()}
+                               do: ${info.event.end.toISOString()}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                                <button type="button" class="btn btn-primary">Zapisz zmiany</button>
+                              </div>
+                            </div>
+                          </div>
+                                </div>`);
 
-        }
+            $('#exampleModal').modal('show');
+        },
+        eventResize: function(info) {
+            $("#eventModal").html("");
+            $("#eventModal").append(`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Czy chcesz zmienić długość bloku?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                               Nowa data to: ${info.event.end.toISOString()}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
+                                <button type="button" class="btn btn-primary">Zapisz zmiany</button>
+                              </div>
+                            </div>
+                          </div>
+                                </div>`);
+
+            $('#exampleModal').modal('show');
+
+        },
+
+        eventClick: function(info) {
+            // alert('Event: ' + info.event.title +
+            //     'From' + info.event.start +
+            //     'To' + info.event.end);
+
+            $("#eventModal").html("");
+            $("#eventModal").append(`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">${info.event.title}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                               
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>
+                            </div>
+                          </div>
+                                </div>`);
+
+            $('#exampleModal').modal('show');
+        },
+
+
+
 
 
     });

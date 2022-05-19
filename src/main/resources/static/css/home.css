@@ -51,6 +51,22 @@ body {
     margin-top: 20px;
 }
 
+.buttonCont .addButton{
+    background-color: #000000;
+    border-color: #000000;
+    padding: 10px;
+}
+
+.buttonCont .addButton:focus{
+    box-shadow: none;
+}
+
+.buttonCont .addButton:hover{
+    background-color: #FC6492B2;
+    border-color: #FC6492B2;
+    color: white;
+}
+
 .fc .fc-col-header-cell-cushion {
     text-decoration: none;
     color: #000000;
@@ -65,6 +81,10 @@ body {
     margin-top: 60px;
 }
 
+.calendarElements .left {
+    margin-left: 50px;
+}
+
 .calendarElements .draggable p {
     font-weight: 500;
     font-size: 16px;
@@ -76,7 +96,7 @@ body {
     border-radius: 6px;
     z-index: 2;
     padding: 20px;
-    width: 430px;
+    width: 100%;
     margin-top: 20px;
 }
 
@@ -86,32 +106,53 @@ body {
     cursor: move;
     background-color: #0d6efd;
     color: white;
-    border-radius: 4px;
+    border-radius: 6px;
     display: flex;
     justify-content: space-between;
 }
 .calendarElements .left .draggableEvents .fc-event .inside_left {
     margin-left: 10px;
+    padding: 15px 0;
 }
 
 .calendarElements .left .draggableEvents .fc-event .inside_left .sup {
-    color: #00FF85;
-    font-weight: 600;
-    margin:0;
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: -6px;
+    color: #FC6492;
 }
+
 .calendarElements .left .draggableEvents .fc-event .inside_left .main{
+    font-weight: 700;
+    font-size: 19px;
+    color: white;
     margin: 0;
 }
-.calendarElements .left .draggableEvents .fc-event .inside_left .main strong{
-    color: #FFB61D;
+
+.calendarElements .left .draggableEvents .fc-event .inside_center {
+    padding: 15px 0;
+}
+
+.calendarElements .left .draggableEvents .fc-event .inside_center .typ {
+    margin: 0;
+    color: #FC6492;
+    margin-bottom: -6px;
+}
+
+.calendarElements .left .draggableEvents .fc-event .inside_center .grupa {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
 }
 
 .calendarElements .left .draggableEvents .fc-event .inside_right {
     margin-right: 10px;
+    padding: 22px 0;
 }
 
-.calendarElements .left .draggableEvents .fc-event .inside_right .type {
-    text-align: center;
+.calendarElements .left .draggableEvents .fc-event .inside_right .room {
+    font-size: 20px;
+    font-weight: 700;
     margin: 0;
 }
 
@@ -161,4 +202,15 @@ body {
 .fc .fc-timegrid-axis-cushion,
 .fc .fc-timegrid-slot-label-cushion {
     color: #ff2466;
+}
+.fc-v-event .fc-event-title{
+    width: 100%;
+    font-size: 13px;
+    font-weight: 200;
+}
+
+.fc-v-event .fc-event-title:first-child {
+    width: 50%;
+    font-size: 13px;
+    font-weight: 200;
 }

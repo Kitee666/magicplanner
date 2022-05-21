@@ -167,6 +167,8 @@ $(document).ready(function () { // START
             },
             success: function (r) {
                 console.log(r);
+                $('#GroupTable').DataTable().ajax.reload();
+                $('#SubjectTable').DataTable().ajax.reload();
             },
             error: function (e){
                 console.dir(e);
@@ -289,6 +291,7 @@ $(document).ready(function () { // START
                 console.log(lecturer)
                 $('#LecturerResult').text("Pomyślnie dodano do bazy danych: Wykladowcy");
                 $("#LecturerResult").css("color", "#00cb20");
+                $('#LecturerTable').DataTable().ajax.reload();
             },
             error: function (lecturer) {
                 console.log("Lecturer POST Nie dziala");
@@ -296,7 +299,6 @@ $(document).ready(function () { // START
                 $("#LecturerResult").css("color", "red");
             }
         });
-
     });
     /*
     $("#getGroupButton").click(function() {
@@ -330,6 +332,7 @@ $(document).ready(function () { // START
                 console.log(meeting)
                 $('#MeetingResult').text("Pomyślnie dodano do bazy danych: Spotkania");
                 $("#MeetingResult").css("color", "#00cb20");
+                $('#MettingTable').DataTable().ajax.reload();
             },
             error: function (meeting) {
                 console.log("Meeting POST Nie dziala");
@@ -362,6 +365,7 @@ $(document).ready(function () { // START
                 console.log(room);
                 $('#RoomResult').text("Pomyślnie dodano do bazy danych");
                 $("#RoomResult").css("color", "#00cb20");
+                $('#RoomTable').DataTable().ajax.reload();
             },
             error: function (room) {
                 console.log("Nie dziala");
@@ -369,14 +373,11 @@ $(document).ready(function () { // START
                 $("#RoomResult").css("color", "red");
             }
         });
-
-        //$('#roomtable').DataTable().ajax.reload();
-
     });
 });
 
 /////// Validation ///////
-function allowOnlyNormal(e, t)
+function allowOnlyNormal(e, t) // allow only letters and numbers
 {
     if (window.event)
     {
@@ -396,7 +397,7 @@ function allowOnlyNormal(e, t)
     }
 }
 
-function allowOnlyNumbers(e, t)
+function allowOnlyNumbers(e, t) // allow only numbers
 {
     if (window.event)
     {
@@ -416,7 +417,7 @@ function allowOnlyNumbers(e, t)
     }
 }
 
-function allowOnlyLetters(e, t)
+function allowOnlyLetters(e, t) // allow only letters
 {
     if (window.event)
     {
@@ -439,7 +440,7 @@ function allowOnlyLetters(e, t)
 /////////////////////////////////DATATABLES DISPLAY//////////////////////////////
 ////LECTURER DATATABLE////
 $(document).ready(function () {
-    $('#lecturertable').DataTable({
+    $('#LecturerTable').DataTable({
         "ajax": {
             "url": api_lecturer,
             "type": "GET",
@@ -459,7 +460,7 @@ $(document).ready(function () {
 });
 ////ROOM DATATABLE////
 $(document).ready(function () {
-    $('#roomtable').DataTable({
+    $('#RoomTable').DataTable({
         "ajax": {
             "url": "http://localhost:8080/api/v1/room",
             "type": "GET",
@@ -476,7 +477,7 @@ $(document).ready(function () {
 });
 ////MEETING DATATABLE////
 $(document).ready(function () {
-    $('#mettingtable').DataTable({
+    $('#MettingTable').DataTable({
         "ajax": {
             "url": "http://localhost:8080/api/v1/meeting",
             "type": "GET",
@@ -540,7 +541,7 @@ $(document).ready(function () {
 /*
 ////NOTE DATATABLE////
 $(document).ready(function() {
-    $('#notetable').DataTable({
+    $('#NoteTable').DataTable({
         "ajax": {
             "url": "http://localhost:8080/api/v1/note",
             "type": "GET",

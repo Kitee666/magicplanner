@@ -28,20 +28,24 @@ public class Connector {
     private Long id;
 
     @OneToMany(mappedBy = "connector", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private Set<Subject> subjects = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "connector", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private Set<Lecturer> lecturers = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "connector", orphanRemoval = true)
-    private Set<Group> groups = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "connector", cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JsonIgnore
     private Set<Event> events = new LinkedHashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
+    @JsonIgnore
     private Room room;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+    @JoinColumn(name = "subject_id", nullable = false)
+    private Subject subject;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+    @JoinColumn(name = "lecturer_id", nullable = false)
+    private Lecturer lecturer;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+    @JoinColumn(name = "group_id", nullable = false)
+    private Group group;
 
 }

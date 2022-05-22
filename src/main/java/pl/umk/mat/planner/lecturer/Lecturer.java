@@ -11,6 +11,8 @@ import pl.umk.mat.planner.connector.Connector;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -33,10 +35,9 @@ public class Lecturer {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "connector_id")
+    @OneToMany(mappedBy = "lecturer", cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JsonIgnore
-    private Connector connector;
+    private Set<Connector> connectors = new LinkedHashSet<>();
 
     public Lecturer(String name, String lastname, String title) {
         this.name = name;

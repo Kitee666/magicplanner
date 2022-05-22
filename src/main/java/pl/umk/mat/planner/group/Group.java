@@ -11,6 +11,8 @@ import pl.umk.mat.planner.types.yearType;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @NoArgsConstructor
 @Getter
@@ -40,10 +42,9 @@ public class Group {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "connector_id")
+    @OneToMany(mappedBy = "group", cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JsonIgnore
-    private Connector connector;
+    private Set<Connector> connectors = new LinkedHashSet<>();
 
     public Group(groupType type, Integer size, pl.umk.mat.planner.types.yearType yearType, Integer hours, String name) {
         this.type = type;

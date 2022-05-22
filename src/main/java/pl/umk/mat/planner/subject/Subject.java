@@ -32,10 +32,9 @@ public class Subject {
     @Column(name = "year", nullable = false)
     private yearType year;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "connector_id")
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JsonIgnore
-    private Connector connector;
+    private Set<Connector> connectors = new LinkedHashSet<>();
 
     public Subject(String name, yearType year, Integer hours) {
         this.name = name;

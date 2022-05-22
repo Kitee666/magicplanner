@@ -157,14 +157,22 @@ $(document).ready(function () { // START
             });
         })
         console.log(groups);
+        let data = JSON.stringify({
+            "subject": subject,
+            "groups": groups
+        })
+        console.dir(data);
         $.ajax({
             type: 'POST',
             url: api_connector_add,
+            contentType: "application/json",
             dataType: 'json',
-            data: {
+            data: JSON.stringify({
                 "subject": subject,
-                "groups": groups
-            },
+                "groups": groups,
+                "lecturer": $("#selectLec1 :selected").val(),
+                "room":  $("#SelectGroupRoom :selected").val()
+            }),
             success: function (r) {
                 console.log(r);
                 $('#GroupTable').DataTable().ajax.reload();

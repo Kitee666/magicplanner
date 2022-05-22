@@ -32,9 +32,7 @@ $(document).ready(function() {
                                 <p class="typ">${val.group.type}</p>
                                 <p class="grupa">${val.group.name}</p>
                             </div>
-                            <div class="inside_right">
-                                <p class="room">${val.room.number}</p>
-                            </div>
+                           
                                                                             </div>`);
 
 

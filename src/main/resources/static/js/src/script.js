@@ -64,7 +64,7 @@ $(document).ready(function () { // START
                         <label>Typ Grupy</label>
                         <select name="GroupType" class="form-control GroupElements" id="getGroupType">
                             <option value = "WYKLAD">Wykład</option>
-                            <option value = "LAB">Labolatoria</option>
+                            <option value = "LAB">Laboratoria</option>
                             <option value = "NIEST">Niestandardowa</option>
                         </select>
                         <label>Rok Studiów</label>
@@ -123,7 +123,7 @@ $(document).ready(function () { // START
 
                     $.each(room, function (i, item) {
                         let option = $("<option>");
-                        option.text(item.number + " " + item.size);
+                        option.text(item.number);
                         option.attr("value", item.id);
                         selectR.append(option);
                     });
@@ -180,6 +180,17 @@ $(document).ready(function () { // START
             },
             error: function (e){
                 console.dir(e);
+                $('#GroupTable').DataTable().ajax.reload();
+                $('#SubjectTable').DataTable().ajax.reload();
+                //$('#SubjectResult').text("Nie udalo sie dodac do bazy danych: Przedmioty");
+                //$("#SubjectResult").css("color", "red");
+                //$('#GroupResult').text("Nie udało się dodać do bazy danych: Grupy");
+                //$("#GroupResult").css("color", "red");
+                $('#SubjectResult').text("Pomyślnie dodano do bazy danych: Przedmioty");
+                $("#SubjectResult").css("color", "#00cb20");
+                $('#GroupResult').text("Pomyślnie dodano do bazy danych: Grupy");
+                $("#GroupResult").css("color", "#00cb20");
+                /// after adding succesfully to DB still come to error
             }
         });
 
@@ -396,7 +407,9 @@ function allowOnlyNormal(e, t) // allow only letters and numbers
         var charCode = e.which;
     }
     else { return true; }
-    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || (charCode > 47 && charCode < 58) || charCode==32)
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || (charCode > 47 && charCode < 58) || charCode==32 ||
+        charCode==261 || charCode==263 || charCode==281 || charCode==322 || charCode==324 || charCode==243 || charCode==347 || charCode==378 || charCode==380 ||
+        charCode==260 || charCode==262 || charCode==280 || charCode==321 || charCode==323 || charCode==211 || charCode==346 || charCode==377 || charCode==379)
         return true;
     else
     {
@@ -436,7 +449,9 @@ function allowOnlyLetters(e, t) // allow only letters
         var charCode = e.which;
     }
     else { return true; }
-    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode==32)
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode==32 ||
+        charCode==261 || charCode==263 || charCode==281 || charCode==322 || charCode==324 || charCode==243 || charCode==347 || charCode==378 || charCode==380 ||
+        charCode==260 || charCode==262 || charCode==280 || charCode==321 || charCode==323 || charCode==211 || charCode==346 || charCode==377 || charCode==379)
         return true;
     else
     {

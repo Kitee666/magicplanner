@@ -19,11 +19,11 @@ $(document).ready(function() {
                 if (result && result.length > 0)
                 {
                     jQuery.each(result, function (i, val) {
-                    console.log(val);
-                    console.log(val.id);
-                    console.log(val.lecturer.name);
+                    // console.log(val);
+                    // console.log(val.id);
+                    // console.log(val.lecturer.name);
 
-                        $("#external-events").append(`<div class='fc-event'>
+                        $("#external-events").append(`<div class='fc-event' data-id="${val.id}" data-room="${val.room.id}" onmousedown="getIds(this)">
                             <div class="inside_left">
                                 <p class="sup">${val.lecturer.name} ${val.lecturer.lastname}</p>
                                 <p class="main">${val.subject.name}</p>
@@ -32,8 +32,11 @@ $(document).ready(function() {
                                 <p class="typ">${val.group.type}</p>
                                 <p class="grupa">${val.group.name}</p>
                             </div>
+                             <div class="inside_right">
+                                <p class="room">${val.room.number}</p>
+                            </div>
                            
-                                                                            </div>`);
+                          </div>`);
 
 
                     });

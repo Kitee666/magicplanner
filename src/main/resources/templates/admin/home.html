@@ -15,8 +15,18 @@
     <script>
         const api_calendar_url = "/api/v1/event/filtered";
     </script>
-    <script th:src="@{/js/src/calendar.js}"></script>
+<script>
+    let connectID, roomID;
+
+    function getIds(el){
+        connectID = $(el).data("id");
+        roomID = $(el).data("room");
+        console.log(connectID);
+        console.log(roomID);
+    }
+</script>
     <script th:src="@{/js/src/events.js}"></script>
+    <script th:src="@{/js/src/calendar.js}"></script>
 <!--    <script th:src="@{/js/src/script.js}"></script>-->
 
     <title>
@@ -42,7 +52,7 @@
 
 <div class="container-fluid calendarElements">
     <div class="row">
-        <div class="col-xl-2 offset-xl-1 left">
+        <div class="col-xl-3 left">
             <div id='external-events' class="draggableEvents">
                 <p><strong>Draggable Events</strong></p>
 
@@ -56,7 +66,7 @@
             </div>
         </div>
 
-        <div class="col-xl-9">
+        <div class="col-xl-8">
             <div id='calendar-container'>
                 <div id='calendar'></div>
             </div>
@@ -65,7 +75,11 @@
 </div>
 
 
+<div id="eventModal"></div>
 
+<script>
+
+</script>
 </body>
 
 </html>

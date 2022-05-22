@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // initialize the calendar
     // -----------------------------------------------------------------
 
+    // function getIds(){
+    //     alert($(this).data('id'));
+    //     alert($(this).data('room'));
+    // }
 
     var calendar = new Calendar(calendarEl, {
         locale: 'pl',
@@ -71,30 +75,40 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         },
 
-        // eventReceive: function(info) {
-        //
-        //     //get the bits of data we want to send into a simple object
-        //
-        //     var eventData = {
-        //         // title: info.event.title,
-        //         "dateFrom": info.event.start,
-        //         "dateTo": info.event.end,
-        //         "connector_id": 1,
-        //         "room_id": 1
-        //     };
-        //     // console.log(eventData);
-        //     //send the data via an AJAX POST request, and log any response which comes from the server
-        //     fetch('http://localhost:8080/api/v1/event', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: encodeFormData(eventData)
-        //     })
-        //         .then(response => console.log(response))
-        //         .catch(error => console.log(error));
-        // },
+
+        eventReceive: function(info) {
+
+            //get the bits of data we want to send into a simple object
+            // console.log(eventData);
+            //send the data via an AJAX POST request, and log any response which comes from the server
+            console.log(info.event);
+            console.log(connectID);
+            console.log(roomID);
+
+            // console.log(info.event.start);
+            // console.log(info.event.end);
+            // console.log(info.id);
+            // console.log(info.room.id);
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+                url: "http://localhost:8080/api/v1/event",
+                data: JSON.stringify({
+                    "dateFrom": info.event.start,
+                    "dateTo": info.event.end,
+                    "connector": connectID,
+                    "room": roomID
+
+                }),
+                success: function (addEvent) {
+                    console.log("Dziaua")
+                },
+                error: function (addEvent) {
+                    console.log("Nie dziala");
+                }
+            });
+        },
 
         eventDragStop: function(info) {
             $("#eventModal").html("");

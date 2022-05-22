@@ -31,9 +31,8 @@ public class Connector {
     @JsonIgnore
     private Set<Event> events = new LinkedHashSet<>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id")
-    @JsonIgnore
     private Room room;
 
     @ManyToOne(cascade = CascadeType.PERSIST, optional = false)

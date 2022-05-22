@@ -15,8 +15,18 @@
     <script>
         const api_calendar_url = "/api/v1/event/filtered";
     </script>
-    <script th:src="@{/js/src/calendar.js}"></script>
+<script>
+    let connectID, roomID;
+
+    function getIds(el){
+        connectID = $(el).data("id");
+        roomID = $(el).data("room");
+        console.log(connectID);
+        console.log(roomID);
+    }
+</script>
     <script th:src="@{/js/src/events.js}"></script>
+    <script th:src="@{/js/src/calendar.js}"></script>
 <!--    <script th:src="@{/js/src/script.js}"></script>-->
 
     <title>
@@ -65,7 +75,11 @@
 </div>
 
 
+<div id="eventModal"></div>
 
+<script>
+
+</script>
 </body>
 
 </html>

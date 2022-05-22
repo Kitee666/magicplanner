@@ -1,9 +1,7 @@
 package pl.umk.mat.planner.event;
 
 import com.fasterxml.jackson.annotation.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.umk.mat.planner.connector.Connector;
 import pl.umk.mat.planner.meeting.Meeting;
 import pl.umk.mat.planner.room.Room;
@@ -12,6 +10,8 @@ import pl.umk.mat.planner.subject.Subject;
 import javax.persistence.*;
 import java.time.OffsetDateTime;
 
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter

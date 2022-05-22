@@ -76,7 +76,7 @@ public class EventController {
         Optional<Connector> connector = connectorRepository.findById(node.get("connector").asLong());
         Optional<Room> room = roomRepository.findById(node.get("room").asLong());
 
-        if(connector.isPresent() && room.isPresent()) {
+        if (connector.isPresent() && room.isPresent()) {
             Event event = new Event();
             event.setDateFrom(from);
             event.setDateTo(to);
@@ -89,17 +89,30 @@ public class EventController {
         }
     }
 
+    @SneakyThrows
     @PutMapping("/event/{id}")
-    Event replace(@RequestBody Event newEvent, @PathVariable Long id) {
-        return repository.findById(id)
-                .map(event -> {
-                    event.setDateFrom(newEvent.getDateFrom());
-                    event.setDateTo(newEvent.getDateTo());
-//                    event.setConnector(newEvent.getConnector());
-                    event.setRoom(newEvent.getRoom());
-                    return repository.save(event);
-                })
-                .orElseThrow(EntityNotFoundException::new);
+    public void replace(@RequestBody String newEvent, @PathVariable Long id) {
+        System.out.println(newEvent);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        JsonNode node = objectMapper.readTree(newEvent);
+        OffsetDateTime from = OffsetDateTime.parse(node.get("dateFrom").asText());
+        OffsetDateTime to = OffsetDateTime.parse(node.get("dateTo").asText());
+        Optional<Connector> connector = connectorRepository.findById(node.get("connector").asLong());
+        Optional<Room> room = roomRepository.findById(node.get("room").asLong());
+        System.out.println(connector.get());
+        System.out.println(room.get());
+        if (connector.isPresent() && room.isPresent()) {
+            repository.findById(id)
+                    .map(event -> {
+                        event.setDateFrom(from);
+                        event.setDateTo(to);
+                        event.setConnector(connector.get());
+                        event.setRoom(room.get());
+                        return repository.save(event);
+                    })
+                    .orElseThrow(EntityNotFoundException::new);
+        }
     }
 
     @DeleteMapping("/event/{id}")

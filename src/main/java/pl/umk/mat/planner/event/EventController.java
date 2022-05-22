@@ -1,21 +1,33 @@
 package pl.umk.mat.planner.event;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import pl.umk.mat.planner.connector.Connector;
+import pl.umk.mat.planner.connector.ConnectorRepository;
 import pl.umk.mat.planner.mappers.EventInfo;
+import pl.umk.mat.planner.room.Room;
+import pl.umk.mat.planner.room.RoomRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1")
 public class EventController {
 
     private final EventRepository repository;
+    private final ConnectorRepository connectorRepository;
+    private final RoomRepository roomRepository;
 
-    public EventController(EventRepository repository) {
+    public EventController(EventRepository repository, ConnectorRepository connectorRepository, RoomRepository roomRepository) {
+        this.connectorRepository = connectorRepository;
+        this.roomRepository = roomRepository;
         Assert.notNull(repository, "We need a repository!");
         this.repository = repository;
     }
@@ -50,9 +62,31 @@ public class EventController {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
+    @SneakyThrows
     @PostMapping("/event")
-    Event add(@RequestBody Event newEvent) {
-        return repository.save(newEvent);
+    public void add(@RequestBody String request) {
+        System.out.println(request);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        JsonNode node = objectMapper.readTree(request);
+        System.out.println(node.get("dateFrom").asText());
+
+        OffsetDateTime from = OffsetDateTime.parse(node.get("dateFrom").asText());
+        OffsetDateTime to = OffsetDateTime.parse(node.get("dateTo").asText());
+        Optional<Connector> connector = connectorRepository.findById(node.get("connector").asLong());
+        Optional<Room> room = roomRepository.findById(node.get("room").asLong());
+
+        if(connector.isPresent() && room.isPresent()) {
+            Event event = new Event();
+            event.setDateFrom(from);
+            event.setDateTo(to);
+            connector.ifPresent(event::setConnector);
+            room.ifPresent(event::setRoom);
+            System.out.println(event);
+            repository.save(event);
+        } else {
+            throw new Exception("Nie znaleziono objektów z referencji!");
+        }
     }
 
     @PutMapping("/event/{id}")

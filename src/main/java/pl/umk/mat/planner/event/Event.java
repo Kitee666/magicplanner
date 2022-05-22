@@ -29,11 +29,11 @@ public class Event {
     @Column(name = "date_to", nullable = false)
     private OffsetDateTime dateTo;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
     @JoinColumn(name = "connector_id", nullable = false)
     private Connector connector;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = false)
+    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 

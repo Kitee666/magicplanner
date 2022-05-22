@@ -27,9 +27,7 @@ public class LecturerController {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    @PostMapping(path = "/lecturer",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/lecturer")
     Lecturer add(@RequestBody Lecturer newLecturer) {
         return repository.save(newLecturer);
     }

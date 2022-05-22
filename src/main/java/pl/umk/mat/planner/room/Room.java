@@ -32,6 +32,8 @@ public class Room {
     @JsonIgnore
     private Set<Event> events = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "room", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    private Set<Connector> connectors = new LinkedHashSet<>();
 
     public Room(String number, Integer size) {
         this.number = number;

@@ -332,7 +332,7 @@ $(document).ready(function () { // START
                 console.log(meeting)
                 $('#MeetingResult').text("Pomyślnie dodano do bazy danych: Spotkania");
                 $("#MeetingResult").css("color", "#00cb20");
-                $('#MettingTable').DataTable().ajax.reload();
+                $('#MeetingTable').DataTable().ajax.reload();
             },
             error: function (meeting) {
                 console.log("Meeting POST Nie dziala");
@@ -477,7 +477,7 @@ $(document).ready(function () {
 });
 ////MEETING DATATABLE////
 $(document).ready(function () {
-    $('#MettingTable').DataTable({
+    $('#MeetingTable').DataTable({
         "ajax": {
             "url": "http://localhost:8080/api/v1/meeting",
             "type": "GET",
@@ -557,3 +557,49 @@ $(document).ready(function() {
     });
 });
 */
+////// REMOVE FROM DATABASE ////////
+///// REMOVE FROM METTING
+$(document).ready(function() {
+    var table = $('#MeetingTable').DataTable();
+    var DeleteID;
+
+    $('#MeetingTable tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
+        DeleteID = table.row( this ).data().id;
+        DeleteID = parseInt(DeleteID, 10);
+        console.log(DeleteID);
+    });
+
+    $('#removeMeetingButton').click( function () {
+        /*
+        //var obj = $(this);
+        var el = this;
+        $.ajax({
+            type: "Post",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            url: "http://localhost:8080/api/v1/meeting",
+            data: { id: DeleteID },
+            success : function(data){
+                //delete the row
+                table.row('.selected').remove().draw( false );
+                //$(obj).closest("tr").remove();
+                $(el).closest('tr').css('background','tomato');
+                $(el).closest('tr').fadeOut(800,function(){
+                    $(this).remove();
+                });
+            },
+            error: function(xhr){
+                //nie udalo sie usunac
+            }
+        });
+        */
+    });
+
+} );

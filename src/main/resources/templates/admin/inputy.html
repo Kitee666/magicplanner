@@ -193,8 +193,8 @@
                 </div>
                 -->
                 <div id="MeetingContainer" class="inputElement">
-                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalMetting" >Dodaj</button>
-                    <table id="MettingTable" class="display" style="width:100%">
+                    <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalMeeting" >Dodaj</button>
+                    <table id="MeetingTable" class="display" style="width:100%">
                         <thead>
                         <tr>
                             <th>Poczatek Zjazdu</th>
@@ -202,6 +202,7 @@
                         </tr>
                         </thead>
                     </table>
+                    <input type="button" class="btn btn-outline-danger btnComp" id="removeMeetingButton" value="Usuń" name="button"/>
                 </div>
                 <div id="RoomContainer" class="inputElement">
                     <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalRoom" >Dodaj</button>
@@ -252,7 +253,7 @@
         </div>
     </div>
     <!--  MODAL FOR Metting -->
-    <div class="modal" id="myModalMetting">
+    <div class="modal" id="myModalMeeting">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="elementHead">

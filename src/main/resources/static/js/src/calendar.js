@@ -67,13 +67,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         editable: true,
         droppable: true, // this allows things to be dropped onto the calendar
-        drop: function (info) {
-            // is the "remove after drop" checkbox checked?
-            if (checkbox.checked) {
-                // if so, remove the element from the "Draggable Events" list
-                info.draggedEl.parentNode.removeChild(info.draggedEl);
-            }
-        },
+        // drop: function (info) {
+        //     // is the "remove after drop" checkbox checked?
+        //     if (checkbox.checked) {
+        //         // if so, remove the element from the "Draggable Events" list
+        //         info.draggedEl.parentNode.removeChild(info.draggedEl);
+        //     }
+        // },
 
 
         eventReceive: function(info) {
@@ -102,7 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 }),
                 success: function (addEvent) {
+
                     console.log("Dziaua")
+                    location.reload();
                 },
                 error: function (addEvent) {
                     console.log("Nie dziala");
@@ -145,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             console.log("Udalo sie zrobić drag");
                             console.log(connectordrag);
                             console.log(roomdrag);
+                            location.reload();
                         },
                         error: function (update) {
                             console.log("Nie udalo sie zrobić drag");
@@ -184,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             }),
                             success: function (update) {
                                 console.log("Udalo sie");
+                                location.reload();
                             },
                             error: function (update) {
                                 console.log("Nie udalo sie dodac do bazy");

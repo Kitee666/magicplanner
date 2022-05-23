@@ -1,10 +1,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    var year = document.getElementById("roczniki");
+    var year = document.getElementById("roczniki-b");
     var yearVal = year.value;
     var group = document.getElementById("grupy");
     var groupVal = group.value;
+    var groupW = document.getElementById("grupyW");
+    var groupWVal = groupW.value;
 
     var Calendar = FullCalendar.Calendar;
    // var Draggable = FullCalendar.Draggable;
@@ -34,8 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     var calendar = new Calendar(calendarEl, {
-        events: {
-            url: 'http://localhost:8080/api/v1/event/',
+        events:  {
+            url: 'http://localhost:8080/api/v1/event/filtered',
             method: 'GET',
             extraParams: {
                 year: yearVal,
@@ -75,12 +77,8 @@ document.addEventListener('DOMContentLoaded', function() {
             today: 'Dzisiaj'
         },
 
-        events: [
-            {
-                id: '.fc-event',
 
-            }
-        ],
+
 
         editable: false,
         droppable: false, // this allows things to be dropped onto the calendar

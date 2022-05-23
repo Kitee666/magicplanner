@@ -84,6 +84,9 @@ body {
 .calendarElements .left {
     margin-left: 50px;
 }
+.calendarElements .left .filters h4{
+margin-bottom: 15px;
+}
 
 .calendarElements .left .filters .nav{
     display: flex;

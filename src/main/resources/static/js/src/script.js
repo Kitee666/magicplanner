@@ -42,7 +42,7 @@ $(document).ready(function () { // START
         id++;
 
 
-        $("#GroupContainer").append($(`<div class='group-item'><h3>Dodaj Group</h3>
+        $("#GroupContainer").append($(`<div class='group-item'><h3>Dodaj Grupę ${id}</h3>
                         <label>Ilosc godzin dla grupy</label>
                         <div class="inputField">
                             <input type="text" class="form-control GroupElements" id="getGroupHours" placeholder="ilosc godzin">

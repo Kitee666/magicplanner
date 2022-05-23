@@ -110,50 +110,88 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         },
 
-        eventDragStop: function(info) {
-            $("#eventModal").html("");
-            $("#eventModal").append(`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Czy chcesz zmienić długość bloku?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                               Nowa data to od: ${info.event.start.toISOString()}
-                               do: ${info.event.end.toISOString()}
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                                <button type="button" class="btn btn-primary">Zapisz zmiany</button>
-                              </div>
-                            </div>
-                          </div>
-                                </div>`);
+        eventDrop: function(info) {
 
-            $('#exampleModal').modal('show');
+
+            console.log("daty");
+            console.log(info.event.start);
+            console.log(info.event.end);
+            console.log("drop");
+            console.log(info);
+            let roomdrag, connectordrag;
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "http://localhost:8080/api/v1/event/" + info.event.id,
+                success: function (event) {
+                    console.log(event);
+                    connectordrag = event.connector.id;
+                    roomdrag = event.room.id;
+                    console.log(connectordrag);
+                    console.log(roomdrag);
+
+                    $.ajax({
+                        type: 'PUT',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=UTF-8',
+                        url: "http://localhost:8080/api/v1/event/" + info.event.id,
+                        data: JSON.stringify({
+                            "dateFrom": info.event.start,
+                            "dateTo": info.event.end,
+                            "connector": connectordrag,
+                            "room": roomdrag,
+                        }),
+                        success: function (update) {
+                            console.log("Udalo sie zrobić drag");
+                            console.log(connectordrag);
+                            console.log(roomdrag);
+                        },
+                        error: function (update) {
+                            console.log("Nie udalo sie zrobić drag");
+                            console.log(connectordrag);
+                            console.log(roomdrag);
+                        }
+                    });
+
+                }
+            });
         },
-        eventResize: function(info) {
-            $("#eventModal").html("");
-            $("#eventModal").append(`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Czy chcesz zmienić długość bloku?</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                               Nowa data to: ${info.event.end.toISOString()}
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anuluj</button>
-                                <button type="button" class="btn btn-primary">Zapisz zmiany</button>
-                              </div>
-                            </div>
-                          </div>
-                                </div>`);
 
-            $('#exampleModal').modal('show');
+
+        eventResize: function(info) {
+
+
+                console.log("resize");
+                let room, connector;
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: "http://localhost:8080/api/v1/event/" + info.event.id,
+                    success: function (event) {
+                        connector = event.connector.id;
+                        room = event.room.id;
+
+                        $.ajax({
+                            type: 'PUT',
+                            dataType: 'json',
+                            contentType: 'application/json; charset=UTF-8',
+                            url: "http://localhost:8080/api/v1/event/" + info.event.id,
+                            data: JSON.stringify({
+                                "dateFrom": info.event.start,
+                                "dateTo": info.event.end,
+                                "connector": connector,
+                                "room": room,
+                            }),
+                            success: function (update) {
+                                console.log("Udalo sie");
+                            },
+                            error: function (update) {
+                                console.log("Nie udalo sie dodac do bazy");
+                            }
+                        });
+
+                    }
+                });
 
         },
 
@@ -171,14 +209,15 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
-                               
+                               <h4>Moje notatki:</h4>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <a class="btn btn-danger" data-toggle="modal">Usuń wydarzenie</a>
+                                <button type="button" class="btn btn-primary">Dodaj notatke</button>
                               </div>
                             </div>
                           </div>
+
                                 </div>`);
 
             $('#exampleModal').modal('show');

@@ -201,7 +201,24 @@ document.addEventListener('DOMContentLoaded', function () {
             //     'To' + info.event.end);
 
             $("#eventModal").html("");
-            $("#eventModal").append(`<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            $("#eventModal").append(`
+<script>
+            function deleteEvent(){
+                $.ajax({
+                    type: 'DELETE',
+                    dataType: 'json',
+                    url: "http://localhost:8080/api/v1/event/${info.event.id}" ,
+                    success: function (event) {
+                          console.log("Usunieto EVENT");
+                          $('#exampleModal').modal('hide');
+                          location.reload();
+
+                    }
+                });
+
+        }
+</script>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -212,15 +229,19 @@ document.addEventListener('DOMContentLoaded', function () {
                                <h4>Moje notatki:</h4>
                               </div>
                               <div class="modal-footer">
-                                <a class="btn btn-danger" data-toggle="modal">Usuń wydarzenie</a>
+                                <a class="btn btn-danger" data-toggle="modal" onclick="deleteEvent()">Usuń wydarzenie</a>
                                 <button type="button" class="btn btn-primary">Dodaj notatke</button>
                               </div>
                             </div>
                           </div>
 
-                                </div>`);
+                                </div>
+
+`);
 
             $('#exampleModal').modal('show');
+
+
         },
 
 

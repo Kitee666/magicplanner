@@ -166,6 +166,18 @@ button {
     margin-top: 30px;
 }
 
+.inputView .right .MainContainer .inputElement .btnAdd2 {
+    color: #fff;
+    background: #000000;
+    border-color: #000000;
+    font-weight: 600;
+    font-size: 20px;
+    width: 300px;
+    letter-spacing: 0.05em;
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
 .inputView .right .MainContainer .inputElement .datePick {
     margin-bottom: 20px;
 }

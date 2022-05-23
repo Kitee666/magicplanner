@@ -58,7 +58,14 @@
                 </div>
                 <div id="SubjectContainer" class="inputElement">
                     <div class="elementHead">
-                        <h3>Dodaj Subject</h3>
+                        <h3>Wyświetlanie Tabel:</h3>
+                        <div>
+                            <button type="button" class="btn btn-dark btnAdd2" data-bs-toggle="modal" data-bs-target="#myModalSubject" >Tabela Przedmiotów</button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-dark btnAdd2" data-bs-toggle="modal" data-bs-target="#myModalGroup" >Tabela Grup</button>
+                        </div>
+                        <h3>Dodaj Przedmiot</h3>
                     <label>Nazwa Przedmiotu</label>
                     <input type="text" class="form-control" id="getSubjectName" placeholder="nazwa" onkeypress="return allowOnlyNormal(event,this);">
                     <label>Rok Przedmiotu</label>
@@ -76,12 +83,6 @@
                     <div>
                         <button type="button" id="getSubjectButton" class="btn btn-dark btnAdd">Dodaj</button>
                     </div>
-                        <div>
-                            <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalSubject" >DT Wykładowców</button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalGroup" >DT Grup</button>
-                        </div>
                     <div class="results" id="SubjectResult"></div>
                         <div class="results" id="GroupResult"></div>
                     </div>
@@ -91,9 +92,9 @@
                     <table id="LecturerTable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Imie</th>
+                            <th>Imię</th>
                             <th>Nazwisko</th>
-                            <th>Tytul</th>
+                            <th>Tytuł</th>
                         </tr>
                         </thead>
                     </table>
@@ -198,7 +199,7 @@
                     <table id="MeetingTable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Poczatek Zjazdu</th>
+                            <th>Początek Zjazdu</th>
                             <th>Koniec Zjazdu</th>
                         </tr>
                         </thead>
@@ -211,7 +212,7 @@
                         <thead>
                         <tr>
                             <th>Nazwa Sali</th>
-                            <th>Pojemnosc Sali</th>
+                            <th>Pojemność Sali</th>
                         </tr>
                         </thead>
                     </table>
@@ -222,8 +223,8 @@
                     <table id="NoteTable" class="display" style="width:100%">
                         <thead>
                         <tr>
-                            <th>Tytul Notatki</th>
-                            <th>Zawartosc Notatki</th>
+                            <th>Tytuł Notatki</th>
+                            <th>Zawartość Notatki</th>
                         </tr>
                         </thead>
                     </table>
@@ -327,7 +328,7 @@
                 <table id="GroupTable" class="display" style="width:100%">
                     <thead>
                     <tr>
-                        <th>Ilosc godzin</th>
+                        <th>Ilość godzin</th>
                         <th>Nazwa Grupy</th>
                         <th>Rozmiar Grupy</th>
                         <th>Typ Grupy</th>

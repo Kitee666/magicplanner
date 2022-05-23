@@ -23,7 +23,7 @@ $(document).ready(function() {
                     // console.log(val.id);
                     // console.log(val.lecturer.name);
 
-                        $("#external-events").append(`<div class='fc-event' data-id="${val.id}" data-room="${val.room.id}" onmousedown="getIds(this)">
+                        $("#external-events").append(`<div class='fc-event' data-id="${val.id}" data-room="${val.room.id}" data-year="${val.subject.year}" onmousedown="getIds(this)">
                             <div class="inside_left">
                                 <p class="sup">${val.lecturer.name} ${val.lecturer.lastname}</p>
                                 <p class="main">${val.subject.name}</p>
@@ -34,6 +34,7 @@ $(document).ready(function() {
                             </div>
                              <div class="inside_right">
                                 <p class="room">${val.room.number}</p>
+                                <p>${val.subject.year}</p>
                             </div>
                            
                           </div>`);
@@ -46,6 +47,18 @@ $(document).ready(function() {
                 alert("Request failed: " + textStatus);
             }
         });
+
+
+    $('.nav a').click( function (e) {
+        e.preventDefault();
+        var cat = $(this).data('year');
+        if(cat == "Wszyscy"){
+            $('#external-events > .fc-event').show();
+        } else {
+        $('#external-events > .fc-event').hide();
+        $('#external-events > .fc-event[data-year="'+cat+'"]').show();
+        }
+    });
 
 
 

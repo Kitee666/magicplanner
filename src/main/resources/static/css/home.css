@@ -85,6 +85,11 @@ body {
     margin-left: 50px;
 }
 
+.calendarElements .left .filters .nav{
+    display: flex;
+    justify-content: space-between;
+}
+
 .calendarElements .draggable p {
     font-weight: 500;
     font-size: 16px;
@@ -213,4 +218,12 @@ body {
     width: 50%;
     font-size: 13px;
     font-weight: 200;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+.hidden{
+    display: none;
 }

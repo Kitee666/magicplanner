@@ -16,6 +16,7 @@
         const api_calendar_url = "/api/v1/event/filtered";
     </script>
 <script>
+
     let connectID, roomID;
 
     function getIds(el){
@@ -55,13 +56,28 @@
 <div class="container-fluid calendarElements">
     <div class="row">
         <div class="col-xl-3 left">
-            <div id='external-events' class="draggableEvents">
-                <p><strong>Wybór zajęć</strong></p>
+            <div class="filters">
+                <h4>Filtry</h4>
+                <div class="nav">
+                    <a href="#" class="btn btn-warning" data-year="ROK_I">ROK_I</a>
 
-<!--                <p>-->
-<!--                <input type='checkbox' id='drop-remove' />-->
-<!--                <label for='drop-remove'>remove after drop</label>-->
-<!--                </p>-->
+                    <a href="#" class="btn btn-warning" data-year="ROK_II">ROK_II</a>
+
+                    <a href="#" class="btn btn-warning" data-year="ROK_III">ROK_III</a>
+
+                    <a href="#" class="btn btn-warning" data-year="ROK_IV">ROK_IV</a>
+
+                    <a href="#" class="btn btn-warning" data-year="Wszyscy">Wszyscy</a>
+
+                </div>
+            </div>
+            <div id='external-events' class="draggableEvents">
+                <p><strong>Wybierz blok zajęciowy:</strong></p>
+
+                <p>
+                <input type='checkbox' id='drop-remove' />
+                <label for='drop-remove'>remove after drop</label>
+                </p>
             </div>
             <div class="buttonCont">
                 <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Dodaj dane do kalendarza</a>

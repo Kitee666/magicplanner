@@ -11,8 +11,11 @@
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
     <link th:href="@{/css/index.css}" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script th:src="@{/js/src/script.js}"></script>
+    <script>
+        const api_calendar_url = "/api/v1/event/filtered";
+    </script>
     <script th:src="@{/js/src/calendar_user.js}"></script>
+<!--    <script th:src="@{/js/src/script.js}"></script>-->
 
     <title>
         Initialize Globals Demo - Demos | FullCalendar
@@ -38,18 +41,43 @@
 <div class="container-fluid calendarElements">
     <div class="row">
         <div class="col-xl-2 offset-xl-1 left">
+            <ul class="roczniki-b" id="roczniki-b">
+                <li>
+                    <input type="radio" id="r1" name="year" value="1" checked="checked"/>
+                    <label for="r1">Rok 1</label>
+                </li>
+                <li>
+                    <input type="radio" id="r2" name="year" value="2"/>
+                    <label for="r2">Rok 2</label>
+                </li>
+                <li>
+                    <input type="radio" id="r3" name="year" value="3"/>
+                    <label for="r3">Rok 3</label>
+                </li>
+                <li>
+                    <input type="radio" id="r4" name="year" value="4"/>
+                    <label for="r4">Rok 4</label>
+                </li>
+            </ul>
+            <!--  <label for="roczniki">Wybierz rok:</label>
 
-            <label for="roczniki">Wybierz rok:</label>
+              <select name="roczniki" id="roczniki" style="width:200px;">
+                  <option value="1">Rok 1</option>
+                  <option value="2">Rok 2</option>
+                  <option value="3">Rok 3</option>
+                  <option value="4">Rok 4</option>
 
-            <select name="roczniki" id="roczniki">
-                <option value="1">Rok 1</option>
-                <option value="2">Rok 2</option>
-                <option value="3">Rok 3</option>
-                <option value="4">Rok 4</option>
-                <option value="5">Rok 5</option>
+              </select> -->
+
+            <label for="grupyW">Wybierz grupę wykładową:</label>
+            <select name="grupyW" id="grupyW" style="width:200px;">
+                <option value="1">Grupa 1</option>
+                <option value="2">Grupa 2</option>
+                <option value="3">Grupa 3</option>
+
             </select>
-            <label for="grupy">Wybierz grupę:</label>
-            <select name="grupy" id="grupy">
+            <label for="grupy">Wybierz grupę laboratoryjną:</label>
+            <select name="grupy" id="grupy" style="width:200px;">
                 <option value="1">Grupa 1</option>
                 <option value="2">Grupa 2</option>
                 <option value="3">Grupa 3</option>
@@ -57,33 +85,34 @@
                 <option value="5">Grupa 5</option>
                 <option value="6">Grupa 6</option>
             </select>
-            <div class="buttonCont">
-                <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Generuj PDF!</a>
-            </div>
-            <!--    <div id='external-events' class="draggable">
-                   <p>
-                       Draggable Events
-                   </p>
-                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                       <div class='fc-event-main'>My Event 1</div>
-                   </div>
-                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                       <div class='fc-event-main'>My Event 2</div>
-                   </div>
-                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                       <div class='fc-event-main'>My Event 3</div>
-                   </div>
-                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                       <div class='fc-event-main'>My Event 4</div>
-                   </div>
-                   <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                       <div class='fc-event-main'>My Event 5</div>
-                   </div>
+            <!--
+                        <div class="buttonCont">
+                            <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Generuj PDF!</a>
+                        </div>
+                           <div id='external-events' class="draggable">
+                               <p>
+                                   Draggable Events
+                               </p>
+                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                                   <div class='fc-event-main'>My Event 1</div>
+                               </div>
+                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                                   <div class='fc-event-main'>My Event 2</div>
+                               </div>
+                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                                   <div class='fc-event-main'>My Event 3</div>
+                               </div>
+                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                                   <div class='fc-event-main'>My Event 4</div>
+                               </div>
+                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
+                                   <div class='fc-event-main'>My Event 5</div>
+                               </div>
 
-               </div>
-              <div class="buttonCont">
-                   <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Dodaj dane do kalendarza</a>
-               </div> -->
+                           </div>
+                          <div class="buttonCont">
+                               <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Dodaj dane do kalendarza</a>
+                           </div> -->
         </div>
 
         <div class="col-xl-9">

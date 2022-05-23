@@ -130,3 +130,52 @@ body {
 .fc .fc-timegrid-slot-label-cushion {
     color: #ff2466;
 }
+
+.roczniki-b {
+    list-style-type: none;
+    margin: 25px 0 0 0;
+    padding: 0;
+}
+
+.roczniki-b li {
+    float: left;
+    margin: 0 5px 0 0;
+    width: 100px;
+    height: 40px;
+    position: relative;
+}
+
+.roczniki-b label,
+.roczniki-b input {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.roczniki-b input[type="radio"] {
+    opacity: 0.01;
+    z-index: 100;
+    background: #ff2466;
+}
+
+.roczniki-b input[type="radio"]:checked+label,
+.Checked+label {
+    background: #0d6efd;
+}
+
+.roczniki-b label {
+    padding: 5px;
+    border: 1px solid #CCC;
+    cursor: pointer;
+    z-index: 90;
+}
+
+.roczniki-b label:hover {
+    background: #ff2466;
+}
+
+
+

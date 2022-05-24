@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var groupW = document.getElementById("grupyW");
     var groupWVal = groupW.value;
 
+
     var Calendar = FullCalendar.Calendar;
    // var Draggable = FullCalendar.Draggable;
 
@@ -61,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         views: {
             timeGridTwoDays: {
                 type: 'timeGrid',
-                duration: { days: 7 },
+                duration: { days: 31 },
                 buttonText: 'Weekendy',
                 hiddenDays: [ 1, 2, 3, 4, 5],
                 weekday: 'long',

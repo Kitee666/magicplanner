@@ -14,6 +14,40 @@
     <script>
         const api_calendar_url = "/api/v1/event/filtered";
     </script>
+    <script>
+        function groupWFiller(gVal) {
+            var x = document.getElementById("grupyW");
+            if(x.length > 0) {
+                var zm = x.length;
+                while (zm > 0) {
+                    x.remove(0);
+                    zm--;
+                }
+            }
+
+            for (var i = 1; i <= gVal; i++) {
+                var option = new Option("Grupa " + i.toString(), i.toString());
+                console.log(option.value);
+                x.appendChild(option);
+            }
+        };
+        function groupFiller(gWVal) {
+            var x = document.getElementById("grupy");
+            if(x.length > 0) {
+                var zm = x.length;
+                while (zm > 0) {
+                    x.remove(0);
+                    zm--;
+                }
+            }
+
+            for (var i = 1; i <= gWVal; i++) {
+                var option = new Option("Grupa " + i.toString(), i.toString());
+                console.log(option.value);
+                x.appendChild(option);
+            }
+        };
+    </script>
     <script th:src="@{/js/src/calendar_user.js}"></script>
 <!--    <script th:src="@{/js/src/script.js}"></script>-->
 
@@ -43,19 +77,19 @@
         <div class="col-xl-2 offset-xl-1 left">
             <ul class="roczniki-b" id="roczniki-b">
                 <li>
-                    <input type="radio" id="r1" name="year" value="1" checked="checked"/>
+                    <input type="radio" id="r1" name="year" value="1" checked="checked" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r1">Rok 1</label>
                 </li>
                 <li>
-                    <input type="radio" id="r2" name="year" value="2"/>
+                    <input type="radio" id="r2" name="year" value="2" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r2">Rok 2</label>
                 </li>
                 <li>
-                    <input type="radio" id="r3" name="year" value="3"/>
+                    <input type="radio" id="r3" name="year" value="3" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r3">Rok 3</label>
                 </li>
                 <li>
-                    <input type="radio" id="r4" name="year" value="4"/>
+                    <input type="radio" id="r4" name="year" value="4" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r4">Rok 4</label>
                 </li>
             </ul>
@@ -71,19 +105,19 @@
 
             <label for="grupyW">Wybierz grupę wykładową:</label>
             <select name="grupyW" id="grupyW" style="width:200px;">
-                <option value="1">Grupa 1</option>
+             <!--   <option value="1">Grupa 1</option>
                 <option value="2">Grupa 2</option>
                 <option value="3">Grupa 3</option>
-
+            -->
             </select>
             <label for="grupy">Wybierz grupę laboratoryjną:</label>
             <select name="grupy" id="grupy" style="width:200px;">
-                <option value="1">Grupa 1</option>
+            <!--    <option value="1">Grupa 1</option>
                 <option value="2">Grupa 2</option>
                 <option value="3">Grupa 3</option>
                 <option value="4">Grupa 4</option>
                 <option value="5">Grupa 5</option>
-                <option value="6">Grupa 6</option>
+                <option value="6">Grupa 6</option> -->
             </select>
             <!--
                         <div class="buttonCont">

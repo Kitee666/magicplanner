@@ -98,7 +98,7 @@
                         </tr>
                         </thead>
                     </table>
-                    <input type="button" class="btn btn-outline-danger btnComp" id="removeLecturerButton" value="Usuń" name="button"/>
+                    <button type="button" class="btn btn-outline-danger btnComp" data-bs-toggle="modal" data-bs-target="#ModalDeleteLecturer" >Usuń</button>
                 </div>
                 <!--
                 <div id="GroupContainer" class="inputElement">
@@ -204,7 +204,7 @@
                         </tr>
                         </thead>
                     </table>
-                    <input type="button" class="btn btn-outline-danger btnComp" id="removeMeetingButton" value="Usuń" name="button"/>
+                    <button type="button" class="btn btn-outline-danger btnComp" data-bs-toggle="modal" data-bs-target="#ModalDeleteMeeting" >Usuń</button>
                 </div>
                 <div id="RoomContainer" class="inputElement">
                     <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalRoom" >Dodaj</button>
@@ -216,7 +216,7 @@
                         </tr>
                         </thead>
                     </table>
-                    <input type="button" class="btn btn-outline-danger btnComp" id="removeRoomButton" value="Usuń" name="button"/>
+                    <button type="button" class="btn btn-outline-danger btnComp" data-bs-toggle="modal" data-bs-target="#ModalDeleteRoom" >Usuń</button>
                 </div>
                 <div id="NoteContainer" class="inputElement">
                     <button type="button" class="btn btn-dark btnAdd" data-bs-toggle="modal" data-bs-target="#myModalNote" >Dodaj</button>
@@ -232,12 +232,13 @@
             </div>
         </div>
     </div>
+    <!--  !!!!!!!!!!!!!!! MODALS !!!!!!!!!!!!!!!  -->
     <!--  MODAL FOR LECTURER  -->
     <div class="modal" id="myModalLecturer">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="elementHead">
-                    <h3>Dodaj Lecturer</h3>
+                    <h3>Dodaj Wykładowcę</h3>
                 </div>
                 <div>
                     <input type="text" class="form-control" id="getLecturerName" placeholder="Imie" onkeypress="return allowOnlyLetters(event,this);">
@@ -260,11 +261,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="elementHead">
-                    <h3>Dodaj Metting</h3>
+                    <h3>Dodaj Spotkanie</h3>
                 </div>
                 <div>
                     <p class="datePick">Początek zjazdu</p>
-                    <input type="date" class="pickerSub" id="dateStart" />
+                    <input type="date" class="form-control pickerSub" id="dateStart" />
                 </div>
                 <button type="button" id="getMeetingButton" class="btn btn-dark btnAdd">Dodaj</button>
                 <div class="results" id="MeetingResult"></div>
@@ -276,7 +277,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="elementHead">
-                    <h3>Dodaj Room</h3>
+                    <h3>Dodaj Salę</h3>
                 </div>
                 <div>
                     <input type="text" class="form-control" id="getRoomNumber" placeholder="Nazwa Sali" onkeypress="return allowOnlyNormal(event,this);">
@@ -292,7 +293,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="elementHead">
-                    <h3>Dodaj Room</h3>
+                    <h3>Dodaj Notatkę</h3>
                 </div>
                 <div>
                     <input type="text" class="form-control" id="getNoteTitle" placeholder="Tytuł Notatki" onkeypress="return allowOnlyNormal(event,this);">
@@ -317,7 +318,7 @@
                     </tr>
                     </thead>
                 </table>
-                <input type="button" class="btn btn-outline-danger btnComp" id="removeSubjectButton" value="Usuń" name="button"/>
+                <button type="button" class="btn btn-outline-danger btnComp" data-bs-toggle="modal" data-bs-target="#ModalDeleteSubject" >Usuń</button>
             </div>
         </div>
     </div>
@@ -336,11 +337,81 @@
                     </tr>
                     </thead>
                 </table>
-                <input type="button" class="btn btn-outline-danger btnComp" id="removeGroupButton" value="Usuń" name="button"/>
+                <button type="button" class="btn btn-outline-danger btnComp" data-bs-toggle="modal" data-bs-target="#ModalDeleteGroup" >Usuń</button>
             </div>
         </div>
     </div>
-</div>
+    <!-- !!!!!!! DELETE MODALS !!!!!!! -->
+    <!-- DELETE MEETING MODAL -->
+    <div class="modal fade" id="ModalDeleteMeeting" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content2">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="LecturerDeleteLabel">Czy napewno chcesz usunąc ten rekord z Spotkania?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteMeeting">anuluj</button>
+                    <button type="button" class="btn btn-primary" id="confirmDeleteMeeting">akceptuj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DELETE LECTURER MODAL -->
+    <div class="modal fade" id="ModalDeleteLecturer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content2">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="MeetingDeleteLabel">Czy napewno chcesz usunąc ten rekord z Wykładowcy?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteLecturer">anuluj</button>
+                    <button type="button" class="btn btn-primary" id="confirmDeleteLecturer">akceptuj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DELETE ROOM MODAL -->
+    <div class="modal fade" id="ModalDeleteRoom" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content2">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="RoomDeleteLabel">Czy napewno chcesz usunąc ten rekord z Sale?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteRoom">anuluj</button>
+                    <button type="button" class="btn btn-primary" id="confirmDeleteRoom">akceptuj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DELETE SUBJECT MODAL -->
+    <div class="modal fade" id="ModalDeleteSubject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content2">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="SubjectDeleteLabel">Czy napewno chcesz usunąc ten rekord z Przedmioty?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteSubject">anuluj</button>
+                    <button type="button" class="btn btn-primary" id="confirmDeleteSubject">akceptuj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- DELETE GROUP MODAL -->
+    <div class="modal fade" id="ModalDeleteGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content2">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="GroupDeleteLabel">Czy napewno chcesz usunąc ten rekord z Grupy?</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelDeleteGroup">anuluj</button>
+                    <button type="button" class="btn btn-primary" id="confirmDeleteGroup">akceptuj</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Group Container --->
     <div class="container-fluid groupBody">

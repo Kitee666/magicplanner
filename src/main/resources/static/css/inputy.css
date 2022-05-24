@@ -211,7 +211,6 @@ button {
     margin-bottom: 23px;
 }
 
-
 .modal .modal-content .results{
     margin-top: 40px;
     font-weight: 300;
@@ -223,6 +222,12 @@ button {
 .modal .modal-content {
     padding: 20px;
     height: 70vh;
+}
+
+.modal .modal-content2 {
+    padding: 20px;
+    height: 15vh;
+    width: 30vh;
 }
 
 .inputView .right .MainContainer .inputElement .GroupElements {

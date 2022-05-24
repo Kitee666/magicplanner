@@ -601,25 +601,27 @@ $(document).ready(function() {
         console.log(DeleteID);
     });
     ///DELETE SELECTED MEETING
-    $('#removeMeetingButton').click( function () {
-        if (confirm("Czy jesteś pewien że chcesz usunąć te spotkanie?")) {
-            console.log(DeleteID);
-            $.ajax({
-                type: 'DELETE',
-                dataType: 'json',
-                url: "http://localhost:8080/api/v1/meeting/" + DeleteID,
-                success: function (meeting) {
-                    table.row('.selected').remove().draw( false );
-                },
-                error: function (meeting) {
-                    console.log("error" + DeleteID);
-                    table.row('.selected').remove().draw( false );
-                    alert("Usunięto Spotkanie o id: " + DeleteID);
-                }
-            });
-        }
+    $('#cancelDeleteMeeting').click( function () {
+        $('#ModalDeleteMeeting').modal('hide');
     });
-
+    $('#confirmDeleteMeeting').click( function () {
+        console.log(DeleteID);
+        $.ajax({
+            type: 'DELETE',
+            dataType: 'json',
+            url: "http://localhost:8080/api/v1/meeting/" + DeleteID,
+            success: function (meeting) {
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteMeeting').modal('hide');
+            },
+            error: function (meeting) {
+                console.log("error" + DeleteID);
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteMeeting').modal('hide');
+                alert("Usunięto Spotkanie o id: " + DeleteID);
+            }
+        });
+    });
 } );
 
 ///// REMOVE FROM LECTURER /////
@@ -641,25 +643,27 @@ $(document).ready(function() {
         console.log(DeleteID);
     });
     ///DELETE SELECTED LECTURER
-    $('#removeLecturerButton').click( function () {
-        if (confirm("Czy jesteś pewien że chcesz usunąć tego Wykładowcę?")) {
-            console.log(DeleteID);
-            $.ajax({
-                type: 'DELETE',
-                dataType: 'json',
-                url: "http://localhost:8080/api/v1/lecturer/" + DeleteID,
-                success: function (lecturer) {
-                    table.row('.selected').remove().draw( false );
-                },
-                error: function (lecturer) {
-                    console.log("error" + DeleteID);
-                    table.row('.selected').remove().draw( false );
-                    alert("Usunięto Wykładowcę o id: " + DeleteID);
-                }
-            });
-        }
+    $('#cancelDeleteLecturer').click( function () {
+        $('#ModalDeleteLecturer').modal('hide');
     });
-
+    $('#confirmDeleteLecturer').click( function () {
+        console.log(DeleteID);
+        $.ajax({
+            type: 'DELETE',
+            dataType: 'json',
+            url: "http://localhost:8080/api/v1/lecturer/" + DeleteID,
+            success: function (lecturer) {
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteLecturer').modal('hide');
+            },
+            error: function (lecturer) {
+                console.log("error" + DeleteID);
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteLecturer').modal('hide');
+                alert("Usunięto Wykładowcę o id: " + DeleteID);
+            }
+        });
+    });
 } );
 
 ///// REMOVE FROM ROOM /////
@@ -681,25 +685,27 @@ $(document).ready(function() {
         console.log(DeleteID);
     });
     ///DELETE SELECTED ROOM
-    $('#removeRoomButton').click( function () {
-        if (confirm("Czy jesteś pewien że chcesz usunąć tą Salę?")) {
-            console.log(DeleteID);
-            $.ajax({
-                type: 'DELETE',
-                dataType: 'json',
-                url: "http://localhost:8080/api/v1/room/" + DeleteID,
-                success: function (room) {
-                    table.row('.selected').remove().draw( false );
-                },
-                error: function (room) {
-                    console.log("error" + DeleteID);
-                    table.row('.selected').remove().draw( false );
-                    alert("Usunięto Salę o id: " + DeleteID);
-                }
-            });
-        }
+    $('#cancelDeleteRoom').click( function () {
+        $('#ModalDeleteRoom').modal('hide');
     });
-
+    $('#confirmDeleteRoom').click( function () {
+        console.log(DeleteID);
+        $.ajax({
+            type: 'DELETE',
+            dataType: 'json',
+            url: "http://localhost:8080/api/v1/room/" + DeleteID,
+            success: function (room) {
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteRoom').modal('hide');
+            },
+            error: function (room) {
+                console.log("error" + DeleteID);
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteRoom').modal('hide');
+                alert("Usunięto Salę o id: " + DeleteID);
+            }
+        });
+    });
 } );
 
 ///// REMOVE FROM SUBJECT /////
@@ -721,25 +727,27 @@ $(document).ready(function() {
         console.log(DeleteID);
     });
     ///DELETE SELECTED SUBJECT
-    $('#removeSubjectButton').click( function () {
-        if (confirm("Czy jesteś pewien że chcesz usunąć tą Salę?")) {
-            console.log(DeleteID);
-            $.ajax({
-                type: 'DELETE',
-                dataType: 'json',
-                url: "http://localhost:8080/api/v1/subject/" + DeleteID,
-                success: function (subject) {
-                    table.row('.selected').remove().draw( false );
-                },
-                error: function (subject) {
-                    console.log("error" + DeleteID);
-                    table.row('.selected').remove().draw( false );
-                    alert("Usunięto Przedmiot o id: " + DeleteID);
-                }
-            });
-        }
+    $('#cancelDeleteSubject').click( function () {
+        $('#ModalDeleteSubject').modal('hide');
     });
-
+    $('#confirmDeleteSubject').click( function () {
+        console.log(DeleteID);
+        $.ajax({
+            type: 'DELETE',
+            dataType: 'json',
+            url: "http://localhost:8080/api/v1/subject/" + DeleteID,
+            success: function (subject) {
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteSubject').modal('hide');
+            },
+            error: function (subject) {
+                console.log("error" + DeleteID);
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteSubject').modal('hide');
+                alert("Usunięto Przedmiot o id: " + DeleteID);
+            }
+        });
+    });
 } );
 
 ///// REMOVE FROM GROUP /////
@@ -761,23 +769,25 @@ $(document).ready(function() {
         console.log(DeleteID);
     });
     ///DELETE SELECTED GROUP
-    $('#removeGroupButton').click( function () {
-        if (confirm("Czy jesteś pewien że chcesz usunąć tę Grupę?")) {
-            console.log(DeleteID);
-            $.ajax({
-                type: 'DELETE',
-                dataType: 'json',
-                url: "http://localhost:8080/api/v1/group/" + DeleteID,
-                success: function (subject) {
-                    table.row('.selected').remove().draw( false );
-                },
-                error: function (subject) {
-                    console.log("error" + DeleteID);
-                    table.row('.selected').remove().draw( false );
-                    alert("Usunięto Grupę o id: " + DeleteID);
-                }
-            });
-        }
+    $('#cancelDeleteGroup').click( function () {
+        $('#ModalDeleteGroup').modal('hide');
     });
-
+    $('#confirmDeleteGroup').click( function () {
+        console.log(DeleteID);
+        $.ajax({
+            type: 'DELETE',
+            dataType: 'json',
+            url: "http://localhost:8080/api/v1/group/" + DeleteID,
+            success: function (group) {
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteGroup').modal('hide');
+            },
+            error: function (group) {
+                console.log("error" + DeleteID);
+                table.row('.selected').remove().draw( false );
+                $('#ModalDeleteGroup').modal('hide');
+                alert("Usunięto Grupę o id: " + DeleteID);
+            }
+        });
+    });
 } );

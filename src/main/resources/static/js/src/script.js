@@ -99,7 +99,7 @@ $(document).ready(function () { // START
                 dataType: 'json',
                 url: api_lecturer,
                 success: function (lecturers) {
-                    console.log(lecturers)
+                    //console.log(lecturers)
                     $.each(lecturers, function (i, item) {
                         let option = $("<option>");
                         option.text(item.name + " " + item.lastname + " " + item.title);
@@ -119,8 +119,7 @@ $(document).ready(function () { // START
                 dataType: 'json',
                 url: "http://localhost:8080/api/v1/room",
                 success: function (room) {
-                    console.log(room)
-
+                    //console.log(room)
                     $.each(room, function (i, item) {
                         let option = $("<option>");
                         option.text(item.number);
@@ -142,8 +141,6 @@ $(document).ready(function () { // START
             "year": $("#getSubjectYear :selected").val()
         };
         let groups = [];
-        console.log(subject);
-        console.log(groups);
         let gc = $("#GroupContainer > .group-item")
         gc.each(function (index, elem) {
             groups.push({
@@ -151,49 +148,44 @@ $(document).ready(function () { // START
                 "name": $(elem).find("#getGroupName :selected").val(),
                 "size": $(elem).find("#getGroupSize").val(),
                 "type": $(elem).find("#getGroupType :selected").val(),
-                "yearType": $(elem).find("#getGroupYear :selected").val(),
-                "lecturer_id": $(elem).find("#SelectGroupLecturer :selected").val(),
-                "room_id": $(elem).find("#SelectGroupRoom :selected").val()
+                "yearType": $(elem).find("#getGroupYear :selected").val()
             });
-        })
-        console.log(groups);
-        let data = JSON.stringify({
-            "subject": subject,
-            "groups": groups
-        })
-        console.dir(data);
-        $.ajax({
-            type: 'POST',
-            url: api_connector_add,
-            contentType: "application/json",
-            dataType: 'json',
-            data: JSON.stringify({
-                "subject": subject,
-                "groups": groups,
-                "lecturer": $("#selectLec1 :selected").val(),
-                "room":  $("#SelectGroupRoom :selected").val()
-            }),
-            success: function (r) {
-                console.log(r);
-                $('#GroupTable').DataTable().ajax.reload();
-                $('#SubjectTable').DataTable().ajax.reload();
-            },
-            error: function (e){
-                console.dir(e);
-                $('#GroupTable').DataTable().ajax.reload();
-                $('#SubjectTable').DataTable().ajax.reload();
-                //$('#SubjectResult').text("Nie udalo sie dodac do bazy danych: Przedmioty");
-                //$("#SubjectResult").css("color", "red");
-                //$('#GroupResult').text("Nie udało się dodać do bazy danych: Grupy");
-                //$("#GroupResult").css("color", "red");
-                $('#SubjectResult').text("Pomyślnie dodano do bazy danych: Przedmioty");
-                $("#SubjectResult").css("color", "#00cb20");
-                $('#GroupResult').text("Pomyślnie dodano do bazy danych: Grupy");
-                $("#GroupResult").css("color", "#00cb20");
-                /// after adding succesfully to DB still come to error
-            }
-        });
+            console.log(subject);
+            console.log(groups);
+            console.log($(elem).find("#SelectGroupLecturer :selected").val());
+            console.log($(elem).find("#SelectGroupRoom :selected").val());
 
+            $.ajax({
+                type: 'POST',
+                url: api_connector_add,
+                contentType: "application/json",
+                dataType: 'json',
+                data: JSON.stringify({
+                    "subject": subject,
+                    "groups": groups,
+                    "lecturer": $(elem).find("#SelectGroupLecturer :selected").val(),
+                    "room":  $(elem).find("#SelectGroupRoom :selected").val()
+                }),
+                success: function (r) {
+                    $('#GroupTable').DataTable().ajax.reload();
+                    $('#SubjectTable').DataTable().ajax.reload();
+                },
+                error: function (e){
+                    $('#GroupTable').DataTable().ajax.reload();
+                    $('#SubjectTable').DataTable().ajax.reload();
+                    //$('#SubjectResult').text("Nie udalo sie dodac do bazy danych: Przedmioty");
+                    //$("#SubjectResult").css("color", "red");
+                    //$('#GroupResult').text("Nie udało się dodać do bazy danych: Grupy");
+                    //$("#GroupResult").css("color", "red");
+                    $('#SubjectResult').text("Pomyślnie dodano do bazy danych: Przedmioty");
+                    $("#SubjectResult").css("color", "#00cb20");
+                    $('#GroupResult').text("Pomyślnie dodano do bazy danych: Grupy");
+                    $("#GroupResult").css("color", "#00cb20");
+                    /// after adding succesfully to DB still come to error
+                }
+            });
+            groups = [];
+        })
     });
     // $("#getSubjectButton").click(function() { // adding new lecturer - tmp output in line below
     //     let getSubjectHoursInput = $("#getSubjectHours").val();

@@ -12,7 +12,7 @@ body {
 }
 
 #calendar_user {
-    max-width: 1100px;
+    /*max-width: 1100px;*/
     margin: 20px auto;
 }
 
@@ -131,21 +131,23 @@ body {
     color: #ff2466;
 }
 
-.roczniki-b {
+.MainFilterButtons .roczniki-b {
     list-style-type: none;
     margin: 25px 0 0 0;
     padding: 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.roczniki-b li {
-    float: left;
+.MainFilterButtons .roczniki-b li {
     margin: 0 5px 0 0;
     width: 100px;
     height: 40px;
     position: relative;
+    margin-bottom: 20px;
 }
 
-.roczniki-b label,
+.MainFilterButtons .roczniki-b label,
 .roczniki-b input {
     display: block;
     position: absolute;
@@ -155,27 +157,43 @@ body {
     bottom: 0;
 }
 
-.roczniki-b input[type="radio"] {
+.MainFilterButtons .roczniki-b input[type="radio"] {
     opacity: 0.01;
     z-index: 100;
-    background: #ff2466;
-}
-
-.roczniki-b input[type="radio"]:checked+label,
-.Checked+label {
     background: #0d6efd;
 }
 
-.roczniki-b label {
+.MainFilterButtons .roczniki-b input[type="radio"]:checked+label,
+.MainFilterButtons .Checked+label {
+    background: #0d6efd;
+}
+
+
+.MainFilterButtons .roczniki-b label {
     padding: 5px;
-    border: 1px solid #CCC;
+    border: 1px solid #0d6efd;
     cursor: pointer;
     z-index: 90;
+    border-radius: 4px;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
 }
 
-.roczniki-b label:hover {
-    background: #ff2466;
+.MainFilterButtons .roczniki-b label:hover {
+    background: #0d6efd;
+    border: 1px solid #0d6efd;
 }
 
+.MainSelects {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.buttonCont {
+    text-align: center;
+}
 
 

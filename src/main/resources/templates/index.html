@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js"></script>
     <link th:href="@{/css/index.css}" rel="stylesheet" />
@@ -15,6 +16,7 @@
         const api_calendar_url = "/api/v1/event/filtered";
     </script>
     <script>
+
         function groupWFiller(gVal) {
             var x = document.getElementById("grupyW");
             if(x.length > 0) {
@@ -48,6 +50,35 @@
             }
         };
     </script>
+    <script>
+        function PDFGenerate(){
+            var element = document.getElementById('calendar-container');
+            var opt = {
+
+                filename:     'PlanNiestacjonarne.pdf',
+                image:        {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas:  {
+                    scale: 1,
+                    logging: true,
+                    dpi: 192,
+                    letterRendering: true
+                },
+                jsPDF:        {
+                    unit: 'mm',
+                    format: 'a3',
+                    orientation: 'l'
+                }
+            };
+
+            // New Promise-based usage:
+            html2pdf().set(opt).from(element).save();
+
+        }
+
+    </script>
     <script th:src="@{/js/src/calendar_user.js}"></script>
 <!--    <script th:src="@{/js/src/script.js}"></script>-->
 
@@ -74,25 +105,26 @@
 
 <div class="container-fluid calendarElements">
     <div class="row">
-        <div class="col-xl-2 offset-xl-1 left">
+        <div class="col-xl-4 offset-xl-4 left">
+            <div class="MainFilterButtons">
             <ul class="roczniki-b" id="roczniki-b">
                 <li>
-                    <input type="radio" id="r1" name="year" value="1" checked="checked" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
+                    <input type="radio" id="r1" name="year" class="btn-check" value="1" checked="checked" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r1">Rok 1</label>
                 </li>
                 <li>
-                    <input type="radio" id="r2" name="year" value="2" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
+                    <input type="radio" id="r2" name="year" class="btn-check" value="2" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r2">Rok 2</label>
                 </li>
                 <li>
-                    <input type="radio" id="r3" name="year" value="3" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
+                    <input type="radio" id="r3" name="year" class="btn-check" value="3" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r3">Rok 3</label>
                 </li>
                 <li>
-                    <input type="radio" id="r4" name="year" value="4" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
+                    <input type="radio" id="r4" name="year" class="btn-check" value="4" onclick="groupFiller(this.value);groupWFiller(this.value);"/>
                     <label for="r4">Rok 4</label>
                 </li>
-            </ul>
+            </ul></div>
             <!--  <label for="roczniki">Wybierz rok:</label>
 
               <select name="roczniki" id="roczniki" style="width:200px;">
@@ -102,15 +134,15 @@
                   <option value="4">Rok 4</option>
 
               </select> -->
-
-            <label for="grupyW">Wybierz grupę wykładową:</label>
+        <div class="MainSelects">
+            <label for="grupyW"></label>
             <select name="grupyW" id="grupyW" style="width:200px;">
              <!--   <option value="1">Grupa 1</option>
                 <option value="2">Grupa 2</option>
                 <option value="3">Grupa 3</option>
             -->
             </select>
-            <label for="grupy">Wybierz grupę laboratoryjną:</label>
+            <label for="grupy"></label>
             <select name="grupy" id="grupy" style="width:200px;">
             <!--    <option value="1">Grupa 1</option>
                 <option value="2">Grupa 2</option>
@@ -119,37 +151,48 @@
                 <option value="5">Grupa 5</option>
                 <option value="6">Grupa 6</option> -->
             </select>
-            <!--
+        </div>
                         <div class="buttonCont">
-                            <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Generuj PDF!</a>
+                            <a  class="btn btn-lg btn-outline-dark addButton" onclick="PDFGenerate()">Generuj PDF!</a>
                         </div>
-                           <div id='external-events' class="draggable">
-                               <p>
-                                   Draggable Events
-                               </p>
-                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                                   <div class='fc-event-main'>My Event 1</div>
-                               </div>
-                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                                   <div class='fc-event-main'>My Event 2</div>
-                               </div>
-                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                                   <div class='fc-event-main'>My Event 3</div>
-                               </div>
-                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                                   <div class='fc-event-main'>My Event 4</div>
-                               </div>
-                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>
-                                   <div class='fc-event-main'>My Event 5</div>
-                               </div>
 
-                           </div>
-                          <div class="buttonCont">
-                               <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Dodaj dane do kalendarza</a>
-                           </div> -->
+<!--                           <div id='external-events' class="draggable">-->
+<!--                               <p>-->
+<!--                                   Draggable Events-->
+<!--                               </p>-->
+<!--                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>-->
+<!--                                   <div class='fc-event-main'>My Event 1</div>-->
+<!--                               </div>-->
+<!--                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>-->
+<!--                                   <div class='fc-event-main'>My Event 2</div>-->
+<!--                               </div>-->
+<!--                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>-->
+<!--                                   <div class='fc-event-main'>My Event 3</div>-->
+<!--                               </div>-->
+<!--                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>-->
+<!--                                   <div class='fc-event-main'>My Event 4</div>-->
+<!--                               </div>-->
+<!--                               <div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event singleblock'>-->
+<!--                                   <div class='fc-event-main'>My Event 5</div>-->
+<!--                               </div>-->
+
+<!--                           </div>-->
+<!--                          <div class="buttonCont">-->
+<!--                               <a href="http://localhost:8080/admin/inputy" class="btn btn-primary addButton">Dodaj dane do kalendarza</a>-->
+<!--                           </div> -->
         </div>
 
         <div class="col-xl-9">
+<!--            <div id='calendar-container'>-->
+<!--                <div id='calendar_user'></div>-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid calendarFull">
+    <div class="row">
+        <div class="col-xl-8 offset-xl-2">
             <div id='calendar-container'>
                 <div id='calendar_user'></div>
             </div>

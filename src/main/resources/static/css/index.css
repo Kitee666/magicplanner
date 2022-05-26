@@ -196,4 +196,19 @@ body {
     text-align: center;
 }
 
+.calendarHead .loginButton{
+    text-align: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+.calendarHead .loginButton .loginBt {
+    background-color: #fc6492;
+    border-color: #fc6492;
+}
+
+.calendarHead .loginButton .loginBt:hover {
+    background-color: #E15982;
+    border-color: #E15982;
+}
 

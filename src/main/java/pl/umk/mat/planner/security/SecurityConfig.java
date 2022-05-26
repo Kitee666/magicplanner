@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .csrf().disable() // TODO: zaktualizowac csrf
                 .authorizeRequests()
-                .antMatchers("/", "/css/**","/js/**", "/templates/**", "/api/**").permitAll()
+                .antMatchers("/", "/css/**","/js/**", "/templates/**", "/api/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /*
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/", "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/icon/**", "/api/**");
+        web.ignoring().antMatchers("/", "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/icon/**", "/api/**", "/img/**");
 
     }
     */

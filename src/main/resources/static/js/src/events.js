@@ -49,16 +49,7 @@ $(document).ready(function() {
         });
 
 
-    $('.nav a').click( function (e) {
-        e.preventDefault();
-        var cat = $(this).data('year');
-        if(cat == "Wszyscy"){
-            $('#external-events > .fc-event').show();
-        } else {
-        $('#external-events > .fc-event').hide();
-        $('#external-events > .fc-event[data-year="'+cat+'"]').show();
-        }
-    });
+
 
 
 

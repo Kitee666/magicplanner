@@ -1,3 +1,5 @@
+var CalendarAdmin;
+
 document.addEventListener('DOMContentLoaded', function () {
 
     var Calendar = FullCalendar.Calendar;
@@ -31,12 +33,18 @@ document.addEventListener('DOMContentLoaded', function () {
     //     alert($(this).data('room'));
     // }
 
-    var calendar = new Calendar(calendarEl, {
+    CalendarAdmin = new Calendar(calendarEl, {
         locale: 'pl',
         firstDay: 1,
         forceEventDuration: true,
         defaultTimedEventDuration: '02:00:00',
-        events: api_calendar_url,
+        events:  {
+            url: 'http://localhost:8080/api/v1/event/filtered',
+            method: 'GET',
+            extraParams: {
+                year_type: categNr,
+            }
+            },
         headerToolbar: {
             left: 'prev,next,today',
             center: 'title',
@@ -250,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    calendar.render();
+    CalendarAdmin.render();
 });
 
 // const encodeFormData = (data) => {

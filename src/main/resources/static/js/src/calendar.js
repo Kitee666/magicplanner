@@ -229,12 +229,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <h5 class="modal-title" id="exampleModalLabel">${info.event.title}</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
-                              <div class="modal-body">
-                               <h4>Moje notatki:</h4>
-                              </div>
                               <div class="modal-footer">
                                 <a class="btn btn-danger" data-toggle="modal" onclick="deleteEvent()">Usuń wydarzenie</a>
-                                <button type="button" class="btn btn-primary">Dodaj notatke</button>
                               </div>
                             </div>
                           </div>

@@ -230,3 +230,19 @@ input[type="radio"]{
 .hidden{
     display: none;
 }
+
+.calendarHead .goToUserButton {
+    text-align: right;
+    padding-top: 20px;
+    padding-right: 20px;
+}
+
+.calendarHead .goToUserButton .userBt {
+    background-color: #fc6492;
+    border-color: #fc6492;
+}
+
+.calendarHead .goToUserButton .userBt:hover{
+    background-color: #E15982;
+    border-color: #E15982;
+}

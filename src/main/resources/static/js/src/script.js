@@ -33,8 +33,6 @@ $(document).ready(function () { // START
     });
 
     // Here starts Code for adding multiple groups for object at once
-    let GroupLecturerJSON = [];
-    let GroupRoomJSON = [];
     var id = 0;
 
     $("#addGroupButton").click(function () { // add group input fields and push them to array
@@ -135,6 +133,7 @@ $(document).ready(function () { // START
      * wszystko ponizej jest odpowiedzialne za dodawanie elementow do bazy danych i wyswietlanie elementow pobranych z bazy danych
      * */
     $("#getSubjectButton").click(function () {
+
         let subject = {
             "name": $("#getSubjectName").val(),
             "hours": $("#getSubjectHours").val(),
@@ -181,112 +180,18 @@ $(document).ready(function () { // START
                     $("#SubjectResult").css("color", "#00cb20");
                     $('#GroupResult').text("Pomyślnie dodano do bazy danych: Grupy");
                     $("#GroupResult").css("color", "#00cb20");
+                    $("#GroupContainer").html("");
                     /// after adding succesfully to DB still come to error
                 }
             });
             groups = [];
         })
     });
-    // $("#getSubjectButton").click(function() { // adding new lecturer - tmp output in line below
-    //     let getSubjectHoursInput = $("#getSubjectHours").val();
-    //     let getSubjectNameInput = $("#getSubjectName").val();
-    //     let getSubjectYearInput = $("#getSubjectYear").val();
-    //
-    //     const SubjectJSON = jQuery.parseJSON( '{ "hours": '+getSubjectHoursInput+', "name": "'+getSubjectNameInput+'","year": "'+getSubjectYearInput+'"}' );
-    //     console.log(JSON.stringify(SubjectJSON)); //json for subject inputs
-    //
-    //     $( ".test1" ).each(function( index ) {
-    //         console.log($( this ).val());
-    //         GroupLecturerJSON.push($( this ).val());
-    //     });
-    //
-    //     $( ".test2" ).each(function( index ) {
-    //         console.log($( this ).val());
-    //         GroupRoomJSON.push($( this ).val());
-    //     });
-    //     console.log(GroupLecturerJSON);
-    //     console.log(GroupRoomJSON);
-    //
-    //     ///////// Subject Post'ing Data
-    //
-    //     $.ajax({
-    //         type: 'POST',
-    //         dataType: 'json',
-    //         contentType: 'application/json; charset=UTF-8',
-    //         url: "http://localhost:8080/api/v1/subject",
-    //         data: JSON.stringify(SubjectJSON),
-    //         //data: JSON.stringify({"hours": getSubjectHoursInput,"name": getSubjectNameInput,"year": getSubjectYearInput}),
-    //         success : function(subject){
-    //             console.log(subject)
-    //             $('#SubjectResult').text("Pomyślnie dodano do bazy danych: Przedmioty");
-    //             $("#SubjectResult").css("color", "#00cb20");
-    //         },
-    //         error : function(subject){
-    //             console.log("Subject POST Nie dziala");
-    //             $('#SubjectResult').text("Nie udalo sie dodac do bazy danych: Przedmioty");
-    //             $("#SubjectResult").css("color", "red");
-    //         }
-    //     });
-    //
-    //     //////Group Post'ing Data
-    //
-    //     var groupEL = 1;
-    //     let getGroupHoursInput;
-    //     let getGroupNameInput;
-    //     let getGroupSizeInput;
-    //     let getGroupTypeInput;
-    //     let getGroupYearTypeInput;
-    //
-    //     $( ".GroupElements" ).each(function( index ) {
-    //         if (groupEL == 1){
-    //             getGroupHoursInput = $( this ).val();
-    //         }
-    //         if (groupEL == 2){
-    //             getGroupNameInput = $( this ).val();
-    //         }
-    //         if (groupEL == 3){
-    //             getGroupSizeInput = $( this ).val();
-    //         }
-    //         if (groupEL == 4){
-    //             getGroupTypeInput = $( this ).val();
-    //         }
-    //         if (groupEL == 5){
-    //             getGroupYearTypeInput = $( this ).val();
-    //             const GroupJSON = jQuery.parseJSON( '{ "hours": '+getGroupHoursInput+',"name": "'+getGroupNameInput+'","size": '+getGroupSizeInput+',"type": "'+getGroupTypeInput+'","yearType": "'+getGroupYearTypeInput+'"}' );
-    //             console.log(JSON.stringify(GroupJSON));
-    //
-    //             $.ajax({
-    //                 type: 'POST',
-    //                 dataType: 'json',
-    //                 contentType: 'application/json; charset=UTF-8',
-    //                 url: "http://localhost:8080/api/v1/group",
-    //                 data: JSON.stringify(GroupJSON),
-    //                 success : function(group){
-    //                     console.log(group)
-    //                     $('#GroupResult').text("Pomyślnie dodano do bazy danych: Grupy");
-    //                     $("#GroupResult").css("color", "#00cb20");
-    //                 },
-    //                 error : function(group){
-    //                     console.log("Group POST Nie dziala");
-    //                     $('#GroupResult').text("Nie dodano do bazy danych: Grupy");
-    //                     $("#GroupResult").css("color", "red");
-    //                 }
-    //             });
-    //
-    //             groupEL = 0;
-    //         }
-    //         groupEL++;
-    //     });
-    //     $("#GroupContainer").html(""); // json for groups inputs
-    //
-    // });
     $("#getLecturerButton").click(function () { // adding new lecturer - tmp output in line below
 
         let getLecturerNameInput = $("#getLecturerName").val();
         let getLecturerLastNameInput = $("#getLecturerLastName").val();
         let getLecturerDegreeInput = $("#getLecturerDegree").val(); // !IMPORTANT -> RED FAL
-        //const LecturerJSON = jQuery.parseJSON( '{ "name": "'+getLecturerNameInput+'","lastname": "'+getLecturerLastNameInput+'","title": "'+getLecturerDegreeInput+'" }' );
-        //console.log(JSON.stringify(LecturerJSON));
 
         $.ajax({
             type: 'POST',
@@ -311,27 +216,11 @@ $(document).ready(function () { // START
             }
         });
     });
-    /*
-    $("#getGroupButton").click(function() {
-        let getGroupTypeInput = $("#getGroupType").val();
-        let getGroupSizeInput = $("#getGroupSize").val();
-        let getGroupYearInput = $("#getGroupYear").val();
-        let getGroupHoursInput = $("#getGroupHours").val();
-        let getGroupNameInput = $("#getGroupName").val();
-        let SelectGroupLecturerInput = $("#SelectGroupLecturer option:selected").val();
-        let SelectGroupRoomInput = $("#SelectGroupRoom option:selected").val();
-        const GroupJSON = jQuery.parseJSON( '{ "group_type": "'+getGroupTypeInput+'", "group_size": "'+getGroupSizeInput+'", "group_year": "'+getGroupYearInput+'", "group_hours": "'+getGroupHoursInput+'", "group_name": "'+getGroupNameInput+'", "group_lecturer": "'+SelectGroupLecturerInput+'", "group_room": "'+SelectGroupRoomInput+'", }' );
-
-        console.log(JSON.stringify(GroupJSON));
-    });
-    */
     $("#getMeetingButton").click(function () {
         let getMeetingStartDateInput = $("#dateStart").val();
         let getMeetingEndDateInput = new Date(getMeetingStartDateInput);
         getMeetingEndDateInput.setDate(getMeetingEndDateInput.getDate() + 1); // something like that XD
         getMeetingEndDateInput = getMeetingEndDateInput.getFullYear() + '-' + (getMeetingEndDateInput.getMonth() < 10 ? '0' : '') + (getMeetingEndDateInput.getMonth() + 1) + '-' + (getMeetingEndDateInput.getDate() < 10 ? '0' : '') + getMeetingEndDateInput.getDate(); // date with leading zeros (i know it looks like shit...)
-        //const MeetingJSON = jQuery.parseJSON( '{ "date_from": "'+getMeetingStartDateInput+'","date_to": "'+getMeetingEndDateInput+'" }' );
-        //console.log(JSON.stringify(MeetingJSON));
 
         $.ajax({
             type: 'POST',
@@ -363,8 +252,6 @@ $(document).ready(function () { // START
     $("#getRoomButton").click(function () {
         let getRoomName = $("#getRoomNumber").val();
         let getRoomSize = $("#getRoomSize").val();
-        //const RoomJSON = jQuery.parseJSON( '{ "number": "'+getRoomName+'", "size": "'+getRoomSize+'" }' );
-        //console.log(JSON.stringify(RoomJSON));
 
         $.ajax({
             type: 'POST',
@@ -399,7 +286,7 @@ function allowOnlyNormal(e, t) // allow only letters and numbers
         var charCode = e.which;
     }
     else { return true; }
-    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || (charCode > 47 && charCode < 58) || charCode==32 ||
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || (charCode > 47 && charCode < 58) ||  charCode==32 ||
         charCode==261 || charCode==263 || charCode==281 || charCode==322 || charCode==324 || charCode==243 || charCode==347 || charCode==378 || charCode==380 ||
         charCode==260 || charCode==262 || charCode==280 || charCode==321 || charCode==323 || charCode==211 || charCode==346 || charCode==377 || charCode==379)
         return true;
@@ -421,7 +308,7 @@ function allowOnlyNumbers(e, t) // allow only numbers
         var charCode = e.which;
     }
     else { return true; }
-    if (charCode > 47 && charCode < 58)
+    if (charCode > 47 && charCode < 58 || charCode==32)
         return true;
     else
     {
@@ -441,7 +328,7 @@ function allowOnlyLetters(e, t) // allow only letters
         var charCode = e.which;
     }
     else { return true; }
-    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode==32 ||
+    if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) ||  charCode==32 ||
         charCode==261 || charCode==263 || charCode==281 || charCode==322 || charCode==324 || charCode==243 || charCode==347 || charCode==378 || charCode==380 ||
         charCode==260 || charCode==262 || charCode==280 || charCode==321 || charCode==323 || charCode==211 || charCode==346 || charCode==377 || charCode==379)
         return true;

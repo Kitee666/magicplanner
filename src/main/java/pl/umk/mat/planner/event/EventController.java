@@ -4,17 +4,29 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import pl.umk.mat.planner.PlannerApplication;
 import pl.umk.mat.planner.connector.Connector;
 import pl.umk.mat.planner.connector.ConnectorRepository;
-import pl.umk.mat.planner.mappers.EventInfo;
 import pl.umk.mat.planner.room.Room;
 import pl.umk.mat.planner.room.RoomRepository;
+import pl.umk.mat.planner.types.groupType;
+import pl.umk.mat.planner.types.yearType;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -25,9 +37,12 @@ public class EventController {
     private final ConnectorRepository connectorRepository;
     private final RoomRepository roomRepository;
 
-    public EventController(EventRepository repository, ConnectorRepository connectorRepository, RoomRepository roomRepository) {
+    private final EntityManager em;
+
+    public EventController(EventRepository repository, ConnectorRepository connectorRepository, RoomRepository roomRepository, EntityManager em) {
         this.connectorRepository = connectorRepository;
         this.roomRepository = roomRepository;
+        this.em = em;
         Assert.notNull(repository, "We need a repository!");
         this.repository = repository;
     }
@@ -39,20 +54,53 @@ public class EventController {
 
     @SneakyThrows
     @GetMapping(name = "api_event_getallbetween", path = "/event/filtered")
-    List<EventInfo> findAllBetween() {
-//        return repository.findByConnector_Group_HoursEquals(60);
-        OffsetDateTime offset1 = OffsetDateTime.parse("2022-05-13T00:00:00+02:00");
-        OffsetDateTime offset2 = OffsetDateTime.parse("2022-05-14T00:00:00+02:00");
-//        CallendarEventType obj = new CallendarEventType();
-//        obj.setId(1L);
-//        obj.setStart(offset1);
-//        obj.setEnd(offset2);
-//        obj.setTitle("title 1");
-//        List<CallendarEventType> callendarEventArrayList = new ArrayList<>();
-//        callendarEventArrayList.add(obj);
+    List<Event> findAllBetween(@RequestParam String start, @RequestParam String end, @RequestParam String group_type, @RequestParam String group_number, @RequestParam String year_type) {
+        Logger log = LoggerFactory.getLogger(PlannerApplication.class);
+        log.info(start);
+        log.info(end);
+        OffsetDateTime offset1 = OffsetDateTime.parse(start.concat("+02:00"));
+        OffsetDateTime offset2 = OffsetDateTime.parse(end.concat("+02:00"));
 
-        return repository.findByDateBetween();
-//        return callendarEventArrayList;
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Event> cq = cb.createQuery(Event.class);
+
+        Root<Event> eventRoot = cq.from(Event.class);
+        Predicate startPredicament = cb.between(eventRoot.get("dateFrom"), offset1, offset2);
+        Predicate endPredicament = cb.between(eventRoot.get("dateTo"), offset1, offset2);
+        cq.where(startPredicament,endPredicament);
+
+        log.info(group_type);
+        groupType gt = null;
+
+        switch (group_type) {
+            case "WYKLAD" -> gt = groupType.WYKLAD;
+            case "LAB" -> gt = groupType.LAB;
+            case "NIEST" -> gt = groupType.NIEST;
+        }
+
+        if (gt != null) {
+            Predicate groupTypePredicate = cb.equal(eventRoot.get("connector").get("group").get("type"), gt);
+            cq.where(groupTypePredicate);
+        }
+
+        String gn = group_number.equals("all") ? "Wszyscy" : "Grupa ".concat(group_number);
+        Predicate groupNumberPredicate = cb.equal(eventRoot.get("connector").get("group").get("name"), gn);
+
+        yearType yt = null;
+        switch(year_type){
+            case "1" -> yt = yearType.ROK_I;
+            case "2" -> yt = yearType.ROK_II;
+            case "3" -> yt = yearType.ROK_III;
+            case "4" -> yt = yearType.ROK_IV;
+        }
+
+        Predicate yearTypePredicate = cb.equal(eventRoot.get("connector").get("group").get("yearType"), yt);
+
+        cq.where(groupNumberPredicate, yearTypePredicate);
+
+        TypedQuery<Event> query = em.createQuery(cq);
+//        System.out.println(query.unwrap(Query.class).getQ);
+        return query.getResultList();
     }
 
 

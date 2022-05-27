@@ -17,4 +17,6 @@ public interface EventInfo {
     @JsonProperty("title")
     @Value("#{target.connector.subject.name}")
     String getSubjectName();
+
+
 }

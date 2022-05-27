@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function () {
             method: 'GET',
             extraParams: {
                 year_type: categNr,
+                group_number: groupValAdmin,
+                group_type: groupWAdminVal,
             }
             },
         headerToolbar: {

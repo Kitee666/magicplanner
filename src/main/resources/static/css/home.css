@@ -84,6 +84,12 @@ body {
 .calendarElements .left {
     margin-left: 50px;
 }
+
+.calendarElements .left .filters .adminSelects{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
 .calendarElements .left .filters h4{
 margin-bottom: 15px;
 }

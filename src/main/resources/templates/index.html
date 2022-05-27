@@ -87,15 +87,15 @@
     <script th:src="@{/js/src/calendar_user.js}"></script>
 <!--    <script th:src="@{/js/src/script.js}"></script>-->
     <script>
-
+        var yearVal, group, groupVal, groupW, groupWVal;
         function updateVars() {
-            var yearVal = $('input[name="year"]:checked').val();
+            yearVal = $('input[name="year"]:checked').val();
             console.log(yearVal);
-            var group = document.getElementById("grupy");
-            var groupVal = group.value;
+            group = document.getElementById("grupy");
+            groupVal = group.value;
             console.log(groupVal);
-            var groupW = document.getElementById("grupyW");
-            var groupWVal = groupW.value;
+            groupW = document.getElementById("grupyW");
+            groupWVal = groupW.value;
             console.log(groupWVal);
             calendar.refetchEvents();
         }

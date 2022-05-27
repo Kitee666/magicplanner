@@ -50,8 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
             failure: function() {
                 alert('there was an error while fetching events!');
             },
-            year: '1',   // a non-ajax option
-            group: '1' // a non-ajax option
+            year_type: '1',   // a non-ajax option
+            group_number: '1', // a non-ajax option
+            group_type: "ALL"
         },
         locale: 'pl',
 

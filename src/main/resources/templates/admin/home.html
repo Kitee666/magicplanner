@@ -15,6 +15,8 @@
     <script>
         const api_calendar_url = "/api/v1/event/filtered";
     </script>
+
+
 <script>
 
     let connectID, roomID;
@@ -62,15 +64,13 @@
             <div class="filters">
                 <h4>Filtry:</h4>
                 <div class="nav">
-                    <a href="#" class="btn btn-warning" data-year="ROK_I">ROK I</a>
+                    <a href="#" class="btn btn-warning" data-year="ROK_I" data-yearNr="1">ROK I</a>
 
-                    <a href="#" class="btn btn-warning" data-year="ROK_II">ROK II</a>
+                    <a href="#" class="btn btn-warning" data-year="ROK_II" data-yearNr="2">ROK II</a>
 
-                    <a href="#" class="btn btn-warning" data-year="ROK_III">ROK III</a>
+                    <a href="#" class="btn btn-warning" data-year="ROK_III" data-yearNr="3">ROK III</a>
 
-                    <a href="#" class="btn btn-warning" data-year="ROK_IV">ROK IV</a>
-
-                    <a href="#" class="btn btn-warning" data-year="Wszyscy">Wszyscy</a>
+                    <a href="#" class="btn btn-warning" data-year="ROK_IV"data-yearNr="4">ROK IV</a>
 
                 </div>
             </div>
@@ -102,7 +102,22 @@
 
 
 <script>
+    var categ, categNr;
 
+    $('.nav a').click( function (e) {
+        e.preventDefault();
+        categ = $(this).data('year');
+        categNr = $(this).data('yearNr');
+        console.log(categ);
+        console.log(categNr);
+        if(categ == "Wszyscy"){
+            $('#external-events > .fc-event').show();
+        } else {
+            $('#external-events > .fc-event').hide();
+            $('#external-events > .fc-event[data-year="'+categ+'"]').show();
+        }
+        CalendarAdmin.refetchEvents();
+    });
 </script>
 </body>
 

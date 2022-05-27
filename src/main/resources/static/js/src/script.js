@@ -27,11 +27,12 @@ $(document).ready(function () { // START
         $('.inputElement').hide();
         $("#RoomContainer").show();
     });
+    /*
     $("#addNote").click(function () { // show note - adding options
         $('.inputElement').hide();
         $("#NoteContainer").show();
     });
-
+    */
     // Here starts Code for adding multiple groups for object at once
     var id = 0;
 
@@ -219,8 +220,8 @@ $(document).ready(function () { // START
     $("#getMeetingButton").click(function () {
         let getMeetingStartDateInput = $("#dateStart").val();
         let getMeetingEndDateInput = new Date(getMeetingStartDateInput);
-        getMeetingEndDateInput.setDate(getMeetingEndDateInput.getDate() + 1); // something like that XD
-        getMeetingEndDateInput = getMeetingEndDateInput.getFullYear() + '-' + (getMeetingEndDateInput.getMonth() < 10 ? '0' : '') + (getMeetingEndDateInput.getMonth() + 1) + '-' + (getMeetingEndDateInput.getDate() < 10 ? '0' : '') + getMeetingEndDateInput.getDate(); // date with leading zeros (i know it looks like shit...)
+        getMeetingEndDateInput.setDate(getMeetingEndDateInput.getDate() + 1);
+        getMeetingEndDateInput = getMeetingEndDateInput.getFullYear() + '-' + (getMeetingEndDateInput.getMonth() < 10 ? '0' : '') + (getMeetingEndDateInput.getMonth() + 1) + '-' + (getMeetingEndDateInput.getDate() < 10 ? '0' : '') + getMeetingEndDateInput.getDate(); // date with leading zeros
 
         $.ajax({
             type: 'POST',

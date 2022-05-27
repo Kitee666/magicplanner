@@ -73,6 +73,26 @@
                     <a href="#" class="btn btn-warning" data-year="ROK_IV"data-yearNr="4">ROK IV</a>
 
                 </div>
+
+                <div class="adminSelects">
+                    <select name="grupyAdmin" id="grupyAdmin" style="width:200px;">
+                        <option value="1">Grupa 1</option>
+                        <option value="2">Grupa 2</option>
+                        <option value="3">Grupa 3</option>
+                        <option value="4">Grupa 4</option>
+                        <option value="5">Grupa 5</option>
+                        <option value="6">Grupa 6</option>
+                    </select>
+
+                    <select name="grupyWAdmin" id="grupyWAdmin" style="width:200px;">
+                        <option value="ALL">Wszyskie</option>
+                        <option value="WYKLAD">Wykłady</option>
+                        <option value="GROUP">Grupy Lab.</option>
+                        <option value="NIEST">Grupy niest.</option>
+
+                    </select>
+                </div>
+
             </div>
             <div id='external-events' class="draggableEvents">
                 <p><strong>Wybierz i przeciągnij blok zajęciowy na kalendarz:</strong></p>
@@ -102,14 +122,23 @@
 
 
 <script>
-    var categ, categNr;
+    var categ, categNr, groupAdmin, groupValAdmin, groupWAdmin, groupWAdminVal;
 
     $('.nav a').click( function (e) {
+
+        groupAdmin = document.getElementById("grupyAdmin");
+        groupValAdmin = groupAdmin.value;
+
+        groupWAdmin = document.getElementById("grupyWAdmin");
+        groupWAdminVal = groupWAdmin.value;
+
         e.preventDefault();
         categ = $(this).data('year');
         categNr = $(this).data('yearNr');
         console.log(categ);
         console.log(categNr);
+        console.log(groupValAdmin);
+        console.log(groupWAdminVal);
         if(categ == "Wszyscy"){
             $('#external-events > .fc-event').show();
         } else {

@@ -2,13 +2,6 @@ var calendar;
 document.addEventListener('DOMContentLoaded', function() {
 
 
-    var yearVal = $('input[name="year"]:checked').val();
-    console.log(yearVal);
-    var group = document.getElementById("grupy");
-    var groupVal = group.value;
-    var groupW = document.getElementById("grupyW");
-    var groupWVal = groupW.value;
-
 
     var Calendar = FullCalendar.Calendar;
    // var Draggable = FullCalendar.Draggable;

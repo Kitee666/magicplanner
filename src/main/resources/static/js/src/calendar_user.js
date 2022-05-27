@@ -1,8 +1,9 @@
-
+var calendar;
 document.addEventListener('DOMContentLoaded', function() {
 
-    var year = document.getElementById("roczniki-b");
-    var yearVal = year.value;
+
+    var yearVal = $('input[name="year"]:checked').val();
+    console.log(yearVal);
     var group = document.getElementById("grupy");
     var groupVal = group.value;
     var groupW = document.getElementById("grupyW");
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
    // var containerEl = document.getElementById('external-events');
     var calendarEl = document.getElementById('calendar_user');
     var checkbox = document.getElementById('drop-remove');
+
 
     // initialize the external events
     // -----------------------------------------------------------------
@@ -36,13 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
 
 
-    var calendar = new Calendar(calendarEl, {
+     calendar = new Calendar(calendarEl, {
         events:  {
             url: 'http://localhost:8080/api/v1/event/filtered',
             method: 'GET',
             extraParams: {
-                year: yearVal,
-                group: groupVal
+                year_type: yearVal,
+                group_number: groupVal,
+                group_type: groupWVal
             },
             failure: function() {
                 alert('there was an error while fetching events!');
@@ -93,4 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     calendar.render();
+
+
+
 });

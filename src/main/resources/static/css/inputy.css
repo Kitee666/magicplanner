@@ -156,6 +156,7 @@ button {
 }
 
 .inputView .right .MainContainer .inputElement .btnAdd {
+    margin-bottom: 60px;
     color: #fff;
     background: #000000;
     border-color: #000000;

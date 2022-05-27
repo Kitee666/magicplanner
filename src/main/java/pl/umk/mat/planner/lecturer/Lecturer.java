@@ -1,6 +1,5 @@
 package pl.umk.mat.planner.lecturer;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,8 +8,6 @@ import lombok.Setter;
 import pl.umk.mat.planner.connector.Connector;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -43,5 +40,9 @@ public class Lecturer {
         this.name = name;
         this.lastname = lastname;
         this.title = title;
+    }
+
+    public String getFullName() {
+        return this.title + " " + this.name + " " + this.lastname;
     }
 }

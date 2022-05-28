@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.umk.mat.planner.PlannerApplication;
 import pl.umk.mat.planner.connector.Connector;
 import pl.umk.mat.planner.connector.ConnectorRepository;
+import pl.umk.mat.planner.mappers.EventDto;
 import pl.umk.mat.planner.room.Room;
 import pl.umk.mat.planner.room.RoomRepository;
 import pl.umk.mat.planner.types.groupType;
@@ -26,6 +27,7 @@ import javax.persistence.criteria.Root;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -52,7 +54,7 @@ public class EventController {
 
     @SneakyThrows
     @GetMapping(name = "api_event_getallbetween", path = "/event/filtered")
-    List<Event> findAllBetween(@RequestParam String start, @RequestParam String end, @RequestParam String group_type, @RequestParam String group_number, @RequestParam String year_type) {
+    Stream<EventDto> findAllBetween(@RequestParam String start, @RequestParam String end, @RequestParam String group_type, @RequestParam String group_number, @RequestParam String year_type) {
         Logger log = LoggerFactory.getLogger(PlannerApplication.class);
         log.info(start);
         log.info(end);
@@ -103,17 +105,17 @@ public class EventController {
 
         TypedQuery<Event> query = em.createQuery(cq);
 //        System.out.println(query.unwrap(Query.class).getQ);
-        return query.getResultList();
-//                .stream()
-//                .map(q -> {
-//                    String title = ""
-//                            .concat(q.getConnector().getLecturer().getFullName())
-//                            .concat(" - ")
-//                            .concat(q.getConnector().getSubject().getName())
-//                            .concat(" pokój ")
-//                            .concat(q.getConnector().getRoom().getNumber());
-//                    return new EventDto(q.getId(), q.getDateFrom(), q.getDateTo(), title);
-//                });
+        return query.getResultList()
+                .stream()
+                .map(q -> {
+                    String title = ""
+                            .concat(q.getConnector().getLecturer().getFullName())
+                            .concat(" - ")
+                            .concat(q.getConnector().getSubject().getName())
+                            .concat(" pokój ")
+                            .concat(q.getConnector().getRoom().getNumber());
+                    return new EventDto(q.getId(), q.getDateFrom(), q.getDateTo(), title);
+                });
     }
 
 

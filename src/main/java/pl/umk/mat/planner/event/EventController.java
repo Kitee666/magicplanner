@@ -58,8 +58,8 @@ public class EventController {
         Logger log = LoggerFactory.getLogger(PlannerApplication.class);
         log.info(start);
         log.info(end);
-        OffsetDateTime offset1 = OffsetDateTime.parse(start.concat("+02:00"));
-        OffsetDateTime offset2 = OffsetDateTime.parse(end.concat("+02:00"));
+        OffsetDateTime offset1 = OffsetDateTime.parse(start);
+        OffsetDateTime offset2 = OffsetDateTime.parse(end);
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Event> cq = cb.createQuery(Event.class);

@@ -82,6 +82,7 @@
                         <option value="4">Grupa 4</option>
                         <option value="5">Grupa 5</option>
                         <option value="6">Grupa 6</option>
+                        <option value="all">Wszyscy</option>
                     </select>
 
                     <select name="grupyWAdmin" id="grupyWAdmin" style="width:200px;">
@@ -122,31 +123,9 @@
 
 
 <script>
-    var categ, categNr, groupAdmin, groupValAdmin, groupWAdmin, groupWAdminVal;
 
-    $('.nav a').click( function (e) {
 
-        groupAdmin = document.getElementById("grupyAdmin");
-        groupValAdmin = groupAdmin.value;
 
-        groupWAdmin = document.getElementById("grupyWAdmin");
-        groupWAdminVal = groupWAdmin.value;
-
-        e.preventDefault();
-        categ = $(this).data('year');
-        categNr = $(this).data('yearNr');
-        console.log(categ);
-        console.log(categNr);
-        console.log(groupValAdmin);
-        console.log(groupWAdminVal);
-        if(categ == "Wszyscy"){
-            $('#external-events > .fc-event').show();
-        } else {
-            $('#external-events > .fc-event').hide();
-            $('#external-events > .fc-event[data-year="'+categ+'"]').show();
-        }
-        CalendarAdmin.refetchEvents();
-    });
 </script>
 </body>
 

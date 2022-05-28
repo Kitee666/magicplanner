@@ -1,6 +1,14 @@
 var CalendarAdmin;
+var categ, categNr="all", groupAdmin, groupValAdmin="all", groupWAdmin, groupWAdminVal="ALL";
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
+
+
+
+
+
 
     var Calendar = FullCalendar.Calendar;
     var Draggable = FullCalendar.Draggable;
@@ -32,7 +40,11 @@ document.addEventListener('DOMContentLoaded', function () {
     //     alert($(this).data('id'));
     //     alert($(this).data('room'));
     // }
-
+    console.log("dupa");
+    console.log(typeof groupValAdmin);
+    console.log(categNr);
+    console.log(groupValAdmin);
+    console.log(groupWAdminVal);
     CalendarAdmin = new Calendar(calendarEl, {
         locale: 'pl',
         firstDay: 1,
@@ -261,6 +273,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     CalendarAdmin.render();
+
+    $('.nav a').click( function (e) {
+
+        groupAdmin = document.getElementById("grupyAdmin");
+        groupValAdmin = groupAdmin.value;
+
+        groupWAdmin = document.getElementById("grupyWAdmin");
+        groupWAdminVal = groupWAdmin.value;
+
+        e.preventDefault();
+        categ = $(this).data('year');
+        categNr = $(this).data('yearNr');
+        console.log(categ);
+        console.log(categNr);
+        console.log(groupValAdmin);
+        console.log(groupWAdminVal);
+        if(categ == "Wszyscy"){
+            $('#external-events > .fc-event').show();
+        } else {
+            $('#external-events > .fc-event').hide();
+            $('#external-events > .fc-event[data-year="'+categ+'"]').show();
+        }
+        CalendarAdmin.destroy();
+        CalendarAdmin.render();
+    });
+
 });
 
 // const encodeFormData = (data) => {
@@ -271,4 +309,5 @@ document.addEventListener('DOMContentLoaded', function () {
 //     }
 //     return form_data;
 // }
+
 

@@ -63,12 +63,12 @@ public class EventController {
 
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Event> cq = cb.createQuery(Event.class);
-
         Root<Event> eventRoot = cq.from(Event.class);
+
         Predicate startPredicament = cb.between(eventRoot.get("dateFrom"), offset1, offset2);
         Predicate endPredicament = cb.between(eventRoot.get("dateTo"), offset1, offset2);
         cq.where(startPredicament,endPredicament);
-
+//
         log.info(group_type);
         groupType gt = null;
 
@@ -82,10 +82,13 @@ public class EventController {
             Predicate groupTypePredicate = cb.equal(eventRoot.get("connector").get("group").get("type"), gt);
             cq.where(groupTypePredicate);
         }
-
+//
+//
         String gn = group_number.equals("all") ? "Wszyscy" : "Grupa ".concat(group_number);
+        log.info(gn);
         Predicate groupNumberPredicate = cb.equal(eventRoot.get("connector").get("group").get("name"), gn);
-
+        cq.where(groupNumberPredicate);
+//
         yearType yt = null;
         switch(year_type){
             case "1" -> yt = yearType.ROK_I;
@@ -96,7 +99,7 @@ public class EventController {
 
         Predicate yearTypePredicate = cb.equal(eventRoot.get("connector").get("group").get("yearType"), yt);
 
-        cq.where(groupNumberPredicate, yearTypePredicate);
+        cq.where(yearTypePredicate);
 
         TypedQuery<Event> query = em.createQuery(cq);
 //        System.out.println(query.unwrap(Query.class).getQ);

@@ -101,8 +101,6 @@ public class EventController {
             cq.where(yearTypePredicate);
         }
 
-
-
         TypedQuery<Event> query = em.createQuery(cq);
 //        System.out.println(query.unwrap(Query.class).getQ);
         return query.getResultList()
